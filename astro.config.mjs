@@ -6,7 +6,8 @@ import { gcodeLang } from './src/utils/gcode-lang.ts';
 import remarkCallouts from './src/utils/remark-callouts.mjs';
 
 export default defineConfig({
-  site: 'https://cncmastery.com',
+  site: 'https://milan6633.github.io',
+  base: '/cnc-mastery',
   integrations: [sitemap()],
   markdown: {
     processor: unified({
