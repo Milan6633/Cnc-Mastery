@@ -10,10 +10,28 @@
 import { visit } from 'unist-util-visit';
 import { h } from 'hastscript';
 
+// Icons are drawn from the shop's own vocabulary rather than emoji: the GD&T
+// datum-target circle, the ISO safety triangle, and a rhombic turning insert.
+const svg = (body) =>
+  `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" ` +
+  `stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+
 const CALLOUT_TYPES = {
-  'key-concept': { label: 'Key Concept', icon: '💡' },
-  'warning':     { label: 'Safety Warning', icon: '⚠️' },
-  'pro-tip':     { label: 'Pro Tip', icon: '🔧' },
+  'key-concept': {
+    label: 'Key concept',
+    icon: svg('<circle cx="8" cy="8" r="6.4"/><path d="M1.6 8h12.8"/>'),
+  },
+  'warning': {
+    label: 'Safety warning',
+    icon: svg(
+      '<path d="M8 1.9 15 14.1H1z"/><path d="M8 6.2v3.3"/>' +
+        '<circle cx="8" cy="11.7" r="0.7" fill="currentColor" stroke="none"/>'
+    ),
+  },
+  'pro-tip': {
+    label: 'Pro tip',
+    icon: svg('<path d="M8 1.8 14.2 8 8 14.2 1.8 8z"/><circle cx="8" cy="8" r="1.6"/>'),
+  },
 };
 
 export default function remarkCallouts() {

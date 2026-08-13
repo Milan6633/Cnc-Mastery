@@ -1,95 +1,135 @@
 /* ============================================
    CNC Mastery — Theme System
-   Dark theme default, light theme toggle
+   Direction: "Pendant" — a machine control panel at night.
+   Amber DRO readout on machine gray. Hard edges, matte surfaces.
+   Level colors follow steel tempering: cold → straw → orange → red-hot.
    ============================================ */
 
 /* --- Dark Theme (Default) --- */
 :root {
-  --color-bg-primary: #0f1117;
-  --color-bg-secondary: #1a1d27;
-  --color-bg-tertiary: #242836;
-  --color-bg-code: #1e2130;
-  --color-bg-elevated: #2a2e3d;
+  /* Chassis: matte machine enclosure, not pure black */
+  --color-bg-primary: #101317;
+  --color-bg-secondary: #171b21;
+  --color-bg-tertiary: #1f242c;
+  --color-bg-code: #14181e;
+  --color-bg-elevated: #262c35;
 
-  --color-text-primary: #e8eaed;
-  --color-text-secondary: #9ca3b0;
-  --color-text-tertiary: #6b7280;
+  /* Chalk on steel */
+  --color-text-primary: #e7ebf0;
+  --color-text-secondary: #8b95a3;
+  /* Any third grey dim enough to read as a further step down fails 4.5:1 on
+     these panels, so tertiary sits close to secondary and the hierarchy is
+     carried by size, weight, and tracking instead (see .label). */
+  --color-text-tertiary: #828c99;
 
-  --color-accent-primary: #3b82f6;
-  --color-accent-hover: #60a5fa;
-  --color-accent-secondary: #10b981;
-  --color-accent-warning: #f59e0b;
-  --color-accent-danger: #ef4444;
+  /* Signal colors — these are machine states, not decoration */
+  --color-accent-primary: #ffb020;   /* DRO amber — the signature */
+  --color-accent-hover: #ffc75a;
+  --color-on-accent: #14181e;        /* label colour on an amber fill */
+  --color-accent-secondary: #35d07f; /* cycle start green */
+  --color-accent-warning: #ff7a1a;   /* feed hold orange */
+  --color-accent-danger: #ff453a;    /* E-stop red */
 
-  --color-border: #2d3348;
-  --color-border-active: #3b82f6;
+  /* Scribed hairlines */
+  --color-border: #262c35;
+  --color-border-active: #ffb020;
 
-  /* Level colors */
-  --color-level-1: #22c55e;
-  --color-level-2: #3b82f6;
-  --color-level-3: #a855f7;
-  --color-level-4: #f97316;
+  /* Level colors — steel tempering ramp */
+  --color-level-1: #8b95a3;  /* cold steel */
+  --color-level-2: #ffb020;  /* straw / amber */
+  --color-level-3: #ff7a1a;  /* orange heat */
+  --color-level-4: #ff453a;  /* red hot */
 
   /* Callout backgrounds */
-  --color-callout-info-bg: rgba(59, 130, 246, 0.1);
-  --color-callout-info-border: #3b82f6;
-  --color-callout-warning-bg: rgba(239, 68, 68, 0.1);
-  --color-callout-warning-border: #ef4444;
-  --color-callout-tip-bg: rgba(16, 185, 129, 0.1);
-  --color-callout-tip-border: #10b981;
+  --color-callout-info-bg: rgba(255, 176, 32, 0.08);
+  --color-callout-info-border: #ffb020;
+  --color-callout-warning-bg: rgba(255, 69, 58, 0.08);
+  --color-callout-warning-border: #ff453a;
+  --color-callout-tip-bg: rgba(53, 208, 127, 0.08);
+  --color-callout-tip-border: #35d07f;
+
+  /* Panels are matte — no glow in dark mode */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 }
 
-/* --- Light Theme --- */
+/* --- Light Theme: the same panel under shop lighting --- */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --color-bg-primary: #ffffff;
-    --color-bg-secondary: #f8f9fb;
-    --color-bg-tertiary: #f1f3f5;
-    --color-bg-code: #f6f8fa;
+    --color-bg-primary: #fbfaf7;
+    --color-bg-secondary: #f3f1ec;
+    --color-bg-tertiary: #eae7e0;
+    --color-bg-code: #fdfcfa;
     --color-bg-elevated: #ffffff;
 
-    --color-text-primary: #1a1d27;
-    --color-text-secondary: #4b5563;
-    --color-text-tertiary: #9ca3b0;
+    --color-text-primary: #16191d;
+    --color-text-secondary: #59616c;
+    --color-text-tertiary: #5f6874;
 
-    --color-accent-primary: #2563eb;
-    --color-accent-hover: #1d4ed8;
+    /* Amber needs to darken to stay legible on light ground */
+    --color-accent-primary: #a35c00;
+    --color-accent-hover: #7d4600;
+    --color-on-accent: #ffffff;
+    --color-accent-secondary: #12794a;
+    --color-accent-warning: #b34700;
+    --color-accent-danger: #c22a20;
 
-    --color-border: #e5e7eb;
-    --color-border-active: #2563eb;
+    --color-border: #dcd8cf;
+    --color-border-active: #a35c00;
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --color-level-1: #59616c;
+    --color-level-2: #a35c00;
+    --color-level-3: #b34700;
+    --color-level-4: #c22a20;
 
-    --color-callout-info-bg: rgba(37, 99, 235, 0.06);
-    --color-callout-warning-bg: rgba(239, 68, 68, 0.06);
-    --color-callout-tip-bg: rgba(16, 185, 129, 0.06);
+    --color-callout-info-bg: rgba(163, 92, 0, 0.07);
+    --color-callout-info-border: #a35c00;
+    --color-callout-warning-bg: rgba(194, 42, 32, 0.07);
+    --color-callout-warning-border: #c22a20;
+    --color-callout-tip-bg: rgba(18, 121, 74, 0.07);
+    --color-callout-tip-border: #12794a;
+
+    --shadow-sm: 0 1px 0 rgba(22, 25, 29, 0.06);
+    --shadow-md: 0 1px 0 rgba(22, 25, 29, 0.1);
+    --shadow-lg: 0 2px 0 rgba(22, 25, 29, 0.12);
   }
 }
 
 :root[data-theme="light"] {
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f8f9fb;
-  --color-bg-tertiary: #f1f3f5;
-  --color-bg-code: #f6f8fa;
+  --color-bg-primary: #fbfaf7;
+  --color-bg-secondary: #f3f1ec;
+  --color-bg-tertiary: #eae7e0;
+  --color-bg-code: #fdfcfa;
   --color-bg-elevated: #ffffff;
 
-  --color-text-primary: #1a1d27;
-  --color-text-secondary: #4b5563;
-  --color-text-tertiary: #9ca3b0;
+  --color-text-primary: #16191d;
+  --color-text-secondary: #59616c;
+  --color-text-tertiary: #5f6874;
 
-  --color-accent-primary: #2563eb;
-  --color-accent-hover: #1d4ed8;
+  --color-accent-primary: #a35c00;
+  --color-accent-hover: #7d4600;
+  --color-on-accent: #ffffff;
+  --color-accent-secondary: #12794a;
+  --color-accent-warning: #b34700;
+  --color-accent-danger: #c22a20;
 
-  --color-border: #e5e7eb;
-  --color-border-active: #2563eb;
+  --color-border: #dcd8cf;
+  --color-border-active: #a35c00;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --color-level-1: #59616c;
+  --color-level-2: #a35c00;
+  --color-level-3: #b34700;
+  --color-level-4: #c22a20;
 
-  --color-callout-info-bg: rgba(37, 99, 235, 0.06);
-  --color-callout-warning-bg: rgba(239, 68, 68, 0.06);
-  --color-callout-tip-bg: rgba(16, 185, 129, 0.06);
+  --color-callout-info-bg: rgba(163, 92, 0, 0.07);
+  --color-callout-info-border: #a35c00;
+  --color-callout-warning-bg: rgba(194, 42, 32, 0.07);
+  --color-callout-warning-border: #c22a20;
+  --color-callout-tip-bg: rgba(18, 121, 74, 0.07);
+  --color-callout-tip-border: #12794a;
+
+  --shadow-sm: 0 1px 0 rgba(22, 25, 29, 0.06);
+  --shadow-md: 0 1px 0 rgba(22, 25, 29, 0.1);
+  --shadow-lg: 0 2px 0 rgba(22, 25, 29, 0.12);
 }

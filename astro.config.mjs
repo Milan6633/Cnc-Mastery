@@ -16,8 +16,13 @@ export default defineConfig({
     shikiConfig: {
       themes: {
         dark: 'github-dark-dimmed',
-        light: 'github-light',
+        // Standard github-light drops below 4.5:1 on our warm code panel.
+        light: 'github-light-high-contrast',
       },
+      // Emit CSS variables only. Without this Shiki inlines the light theme's
+      // colours, which paints code blocks white on the dark page. Theme
+      // switching is handled in typography.css.
+      defaultColor: false,
       langs: [gcodeLang],
     },
   },
