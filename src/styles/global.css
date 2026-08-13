@@ -86,11 +86,11 @@ ol {
   --space-20: 5rem;
   --space-24: 6rem;
 
-  /* Border radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* Border radius — machine panels have hard edges, not app-store corners */
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 3px;
   --radius-full: 9999px;
 
   /* Shadows */
@@ -160,7 +160,7 @@ ol {
   z-index: 1000;
   padding: var(--space-2) var(--space-4);
   background: var(--color-accent-primary);
-  color: #fff;
+  color: var(--color-on-accent);
   border-radius: var(--radius-md);
   font-weight: var(--weight-semibold);
 }
