@@ -1,12 +1,13 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro';
 import { baseUrl } from '@utils/lessons';
 
 const navLinks = [
-  { href: baseUrl('/syllabus'), label: 'Syllabus' },
-  { href: baseUrl('/reference/gcode'), label: 'G-Code Reference' },
-  { href: baseUrl('/resources'), label: 'Resources' },
-  { href: baseUrl('/about'), label: 'About' },
+  { href: baseUrl('/syllabus'), label: 'Syllabus', i18nEn: 'Syllabus', i18nFi: 'Opetussuunnitelma' },
+  { href: baseUrl('/reference/gcode'), label: 'G-Code Reference', i18nEn: 'G-Code Reference', i18nFi: 'G-koodi viite' },
+  { href: baseUrl('/resources'), label: 'Resources', i18nEn: 'Resources', i18nFi: 'Resurssit' },
+  { href: baseUrl('/about'), label: 'About', i18nEn: 'About', i18nFi: 'Tietoa' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -31,6 +32,9 @@ const currentPath = Astro.url.pathname;
             <a
               href={link.href}
               class:list={['nav-link', { active: currentPath.startsWith(link.href) }]}
+              data-i18n={`nav.${link.label.toLowerCase().replace(/ /g, '-')}`}
+              data-i18n-en={link.i18nEn}
+              data-i18n-fi={link.i18nFi}
             >
               {link.label}
             </a>
@@ -40,6 +44,7 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="header-actions">
+      <LanguageToggle />
       <ThemeToggle />
       <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -69,6 +74,9 @@ const currentPath = Astro.url.pathname;
           <a
             href={link.href}
             class:list={['mobile-nav-link', { active: currentPath.startsWith(link.href) }]}
+            data-i18n={`mobile.${link.label.toLowerCase().replace(/ /g, '-')}`}
+            data-i18n-en={link.i18nEn}
+            data-i18n-fi={link.i18nFi}
           >
             {link.label}
           </a>

@@ -29,25 +29,25 @@ Let's look at a complete, simple program and break it down.
 
 ## A Complete Example
 
-Here's a program that faces the top of a part with a 2-inch face mill:
+Here's a program that faces the top of a part with a 50 mm face mill:
 
 ```gcode
-O1001 (FACING PROGRAM - 2 INCH FACE MILL)
+O1001 (FACING PROGRAM - 50MM FACE MILL)
 
-N10 G90 G94 G17 G20 G40 G49 G80  (Safety line - known state)
+N10 G90 G94 G17 G21 G40 G49 G80  (Safety line - known state)
 N20 G54                           (Select work coordinate system 1)
 
 N30 T01 M06                       (Tool change to tool 1)
 N40 S2500 M03                     (Spindle on CW at 2500 RPM)
-N50 G43 H01 Z1.0                  (Tool length comp on, move to Z1.0)
+N50 G43 H01 Z25.0                 (Tool length comp on, move to Z25.0)
 N60 M08                           (Coolant on)
 
-N70 G00 X-1.75 Y0.0               (Rapid to start position)
-N80 Z0.1                          (Rapid down to just above part)
-N90 G01 Z-0.05 F10.0              (Feed down to depth of cut)
-N100 X4.75 F25.0                  (Facing pass across the part)
+N70 G00 X-45.0 Y0.0               (Rapid to start position)
+N80 Z2.5                          (Rapid down to just above part)
+N90 G01 Z-1.0 F250                (Feed down to depth of cut)
+N100 X120.0 F600                  (Facing pass across the part)
 
-N110 G00 Z1.0                     (Rapid retract)
+N110 G00 Z25.0                    (Rapid retract)
 N120 M09                          (Coolant off)
 N130 M05                          (Spindle stop)
 N140 G28 G91 Z0.0                 (Return Z to machine home)
@@ -62,19 +62,19 @@ Don't worry about understanding every code yet — we'll cover each one in the c
 ### 1. Program Number
 
 ```gcode
-O1001 (FACING PROGRAM - 2 INCH FACE MILL)
+O1001 (FACING PROGRAM - 50MM FACE MILL)
 ```
 
 The `O` word (letter O, not zero) gives the program a number the control uses to store and find it. The text in parentheses is a **comment** — ignored by the machine, but essential for humans.
 
 :::pro-tip
-Always name your programs descriptively in the comment. Six months from now, "O1001" means nothing, but "FACING PROGRAM - 2 INCH FACE MILL" tells you exactly what it does.
+Always name your programs descriptively in the comment. Six months from now, "O1001" means nothing, but "FACING PROGRAM - 50MM FACE MILL" tells you exactly what it does.
 :::
 
 ### 2. The Safety Block
 
 ```gcode
-N10 G90 G94 G17 G20 G40 G49 G80  (Safety line - known state)
+N10 G90 G94 G17 G21 G40 G49 G80  (Safety line - known state)
 ```
 
 This is the most important line for **crash prevention**. It forces the machine into a predictable state regardless of what the previous program left active:
@@ -84,13 +84,13 @@ This is the most important line for **crash prevention**. It forces the machine 
 | G90 | Absolute positioning |
 | G94 | Feed per minute |
 | G17 | XY plane selected |
-| G20 | Inch units |
+| G21 | Metric units (millimeters) |
 | G40 | Cancel cutter compensation |
 | G49 | Cancel tool length compensation |
 | G80 | Cancel canned cycles |
 
 :::warning
-Never skip the safety block. If the previous program left the machine in incremental mode (G91) or with cutter comp active (G41/G42), your program could move somewhere completely unexpected and crash.
+Never skip the safety block. If the previous program left the machine in incremental mode (G91) or with cutter comp active (G41/G42), your program could move somewhere completely unexpected and crash. Note: use G21 for metric or G20 for inch — always match your machine's setup.
 :::
 
 ### 3. Tool Change & Spindle
@@ -98,7 +98,7 @@ Never skip the safety block. If the previous program left the machine in increme
 ```gcode
 N30 T01 M06          (Tool change to tool 1)
 N40 S2500 M03        (Spindle on CW at 2500 RPM)
-N50 G43 H01 Z1.0     (Tool length comp on, move to Z1.0)
+N50 G43 H01 Z25.0    (Tool length comp on, move to Z25.0)
 ```
 
 - `T01 M06` selects tool 1 and executes the tool change
@@ -108,10 +108,10 @@ N50 G43 H01 Z1.0     (Tool length comp on, move to Z1.0)
 ### 4. Cutting Moves
 
 ```gcode
-N70 G00 X-1.75 Y0.0    (Rapid to start)
-N80 Z0.1               (Rapid down near part)
-N90 G01 Z-0.05 F10.0   (Feed to cutting depth)
-N100 X4.75 F25.0       (Cut across)
+N70 G00 X-45.0 Y0.0    (Rapid to start)
+N80 Z2.5               (Rapid down near part)
+N90 G01 Z-1.0 F250     (Feed to cutting depth)
+N100 X120.0 F600       (Cut across)
 ```
 
 `G00` moves are **rapid** (fast, non-cutting). `G01` moves are **feed** moves (controlled speed, cutting).
@@ -119,7 +119,7 @@ N100 X4.75 F25.0       (Cut across)
 ### 5. Retract & End
 
 ```gcode
-N110 G00 Z1.0          (Retract)
+N110 G00 Z25.0         (Retract)
 N120 M09               (Coolant off)
 N130 M05               (Spindle stop)
 N140 G28 G91 Z0.0      (Home Z axis)
@@ -148,7 +148,7 @@ Feed rate (F), spindle speed (S), and most G-codes are **modal**. This saves typ
 <details>
 <summary>Show Answer</summary>
 
-The safety block (e.g., `G90 G94 G17 G20 G40 G49 G80`) forces the machine into a known, predictable state at the start of the program, canceling any modes left active by a previous program. This prevents crashes caused by unexpected machine states.
+The safety block (e.g., `G90 G94 G17 G21 G40 G49 G80`) forces the machine into a known, predictable state at the start of the program, canceling any modes left active by a previous program. This prevents crashes caused by unexpected machine states.
 </details>
 
 **2. What is the difference between G00 and G01?**
