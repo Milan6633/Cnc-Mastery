@@ -1,0 +1,9 @@
+number: 1
+title: "Shop Safety & Industrial Practices"
+slug: "01-shop-safety"
+level: "foundation"
+levelNumber: 1
+description: "Prerequisite for all other modules — covers OSHA standards, PPE, hazard communication, lockout/tagout procedures, and machine shop housekeeping."
+estimatedHours: 8
+icon: "🛡️"
+tags: ["safety", "osha", "ppe", "loto"]

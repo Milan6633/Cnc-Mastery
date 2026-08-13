@@ -1,0 +1,9 @@
+number: 15
+title: "CAM Programming — 2.5D & 3-Axis"
+slug: "15-cam-milling"
+level: "advanced"
+levelNumber: 3
+description: "CAM workflow from model to G-code — Fusion 360 and Mastercam toolpaths, simulation, verification, and post-processors."
+estimatedHours: 18
+icon: "🛤️"
+tags: ["cam", "toolpath", "fusion360", "mastercam", "post-processor"]

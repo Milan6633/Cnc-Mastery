@@ -1,0 +1,9 @@
+number: 16
+title: "CAM Programming — Turning & Mill-Turn"
+slug: "16-cam-turning"
+level: "advanced"
+levelNumber: 3
+description: "Lathe CAM setup, OD/ID toolpath strategies, threading in CAM, live tooling, C-axis and Y-axis mill-turn operations."
+estimatedHours: 14
+icon: "🔃"
+tags: ["cam", "turning", "mill-turn", "live-tooling"]

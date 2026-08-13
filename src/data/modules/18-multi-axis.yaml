@@ -1,0 +1,9 @@
+number: 18
+title: "Multi-Axis CNC Machining (4 & 5 Axis)"
+slug: "18-multi-axis"
+level: "specialist"
+levelNumber: 4
+description: "4th-axis rotary setup, 3+2 positional machining, simultaneous 5-axis concepts, CAM strategies, and multi-axis workholding."
+estimatedHours: 15
+icon: "🎯"
+tags: ["5-axis", "multi-axis", "rotary", "positional"]

@@ -1,0 +1,9 @@
+number: 17
+title: "Quality Systems & Process Control"
+slug: "17-quality-systems"
+level: "advanced"
+levelNumber: 3
+description: "Quality management (ISO 9001), statistical process control (SPC), process capability (Cp/Cpk), inspection documentation, and AS9100."
+estimatedHours: 10
+icon: "✅"
+tags: ["quality", "iso9001", "spc", "inspection"]

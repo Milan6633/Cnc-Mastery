@@ -1,0 +1,9 @@
+number: 14
+title: "Geometric Dimensioning & Tolerancing (GD&T)"
+slug: "14-gdt"
+level: "advanced"
+levelNumber: 3
+description: "ASME Y14.5 standard — datum systems, form/orientation/location/runout tolerances, MMC/LMC, and interpreting GD&T on part prints."
+estimatedHours: 15
+icon: "⊕"
+tags: ["gdt", "tolerancing", "asme", "datums"]

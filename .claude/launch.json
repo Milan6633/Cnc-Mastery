@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cnc-mastery-dev",
+      "runtimeExecutable": "node_modules\\.bin\\astro.cmd",
+      "runtimeArgs": ["dev"],
+      "port": 4321
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+number: 2
+title: "Shop Mathematics"
+slug: "02-shop-mathematics"
+level: "foundation"
+levelNumber: 1
+description: "Fractions, decimals, tolerances, trigonometry, feeds & speeds calculations, and coordinate geometry for machining."
+estimatedHours: 12
+icon: "🔢"
+tags: ["math", "trigonometry", "feeds-speeds", "coordinates"]

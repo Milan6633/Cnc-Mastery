@@ -1,0 +1,9 @@
+number: 13
+title: "CAD for Manufacturing"
+slug: "13-cad-manufacturing"
+level: "advanced"
+levelNumber: 3
+description: "3D parametric modeling with Fusion 360 and SolidWorks — sketching, extrude, revolve, design for manufacturability (DFM)."
+estimatedHours: 15
+icon: "🖨️"
+tags: ["cad", "fusion360", "solidworks", "dfm"]

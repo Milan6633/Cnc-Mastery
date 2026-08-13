@@ -1,0 +1,80 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="About CNC Mastery and Milan Khadka — mechanical engineer, CNC machinist, and the creator of this free learning platform.">
+  <div class="about-page container container-md">
+    <header class="page-header">
+      <h1>About CNC Mastery</h1>
+    </header>
+
+    <div class="prose">
+      <h2>Why I Built This</h2>
+      <p>
+        I'm Milan Khadka — a mechanical engineer and CNC machinist trained at
+        <strong>Varia</strong> (Vantaan ammattiopisto) in Finland. I've been through both the
+        theoretical side of engineering and the practical, hands-on world of CNC machining.
+      </p>
+      <p>
+        When I was learning, I noticed something: the knowledge needed to become a skilled CNC
+        machinist is scattered across expensive textbooks, locked behind school programs, and
+        spread across dozens of YouTube channels with varying quality. There was no single,
+        structured place to learn everything — from shop safety to 5-axis programming.
+      </p>
+      <p>
+        <strong>CNC Mastery</strong> is my answer to that problem. It's a complete, structured
+        curriculum that covers everything a 2–3 year vocational program would teach, organized
+        into clear modules and lessons that anyone can follow at their own pace.
+      </p>
+
+      <h2>The Curriculum</h2>
+      <p>
+        The syllabus isn't made up — it's compiled from real, respected training programs and
+        certification standards:
+      </p>
+      <ul>
+        <li><strong>NIMS</strong> (National Institute for Metalworking Skills) — Level I/II Machining Standards</li>
+        <li><strong>Haas Automation</strong> — HTEC Curriculum & Certification Program</li>
+        <li><strong>MIT OCW</strong> — 2.008 Design & Manufacturing II / 2.810 Manufacturing Processes</li>
+        <li><strong>DMG MORI Academy</strong> — CNC training for Fachkraft certification</li>
+        <li><strong>Autodesk Fusion 360</strong> — CAD/CAM curriculum</li>
+        <li><strong>America's Cutting Edge (ACE)</strong> — DoD-funded CNC & Metrology Training</li>
+        <li>Plus curricula from <strong>Central Piedmont CC</strong>, <strong>North Idaho College</strong>,
+            <strong>Mesa Community College</strong>, <strong>Laney College</strong>, and more</li>
+      </ul>
+
+      <h2>Who This Is For</h2>
+      <ul>
+        <li>Complete beginners who want to enter the CNC machining field</li>
+        <li>Manual machinists transitioning to CNC</li>
+        <li>Engineering students who want practical machining knowledge</li>
+        <li>Hobbyists and makers with desktop CNC machines</li>
+        <li>Anyone preparing for NIMS or Haas CNC certifications</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>
+        Have feedback, found an error, or want to contribute content?
+        Reach out at <strong>milankhadka74@gmail.com</strong>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-page {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .page-header {
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+  }
+
+  .page-header h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+  }
+</style>

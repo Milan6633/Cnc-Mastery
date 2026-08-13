@@ -1,0 +1,221 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const resources = [
+  {
+    category: 'Textbooks',
+    items: [
+      { name: 'Kalpakjian — Manufacturing Processes for Engineering Materials', description: 'Materials, cutting theory, process physics', cost: 'Textbook' },
+    ],
+  },
+  {
+    category: 'Free Online Resources',
+    items: [
+      { name: 'Haas CNC Certification Program', description: 'Basic mill & lathe operation, safety', cost: 'Free', url: 'https://www.haascnc.com' },
+      { name: 'Haas Operator\'s Manual — Programming Chapter', description: 'G/M codes, canned cycles, programming examples', cost: 'Free', url: 'https://www.haascnc.com' },
+      { name: 'MIT OCW 2.008 / 2.810', description: 'Manufacturing process physics, quality, systems', cost: 'Free', url: 'https://ocw.mit.edu' },
+      { name: 'Autodesk Fusion — Self-Paced Learning', description: 'CAD modeling, CAM toolpaths, simulation', cost: 'Free (education)', url: 'https://www.autodesk.com/products/fusion-360' },
+      { name: 'Haas + Autodesk Fusion Curriculum', description: 'End-to-end blueprint → CAD → CAM → CNC workflow', cost: 'Free' },
+      { name: 'America\'s Cutting Edge (ACE)', description: 'CNC machining, metrology, machining dynamics — DoD-funded', cost: 'Free', url: 'https://www.americascuttingedge.org' },
+    ],
+  },
+  {
+    category: 'Paid Training Platforms',
+    items: [
+      { name: 'Tooling U-SME', description: 'NIMS-aligned self-paced courses covering all modules', cost: 'Subscription', url: 'https://www.toolingu.com' },
+      { name: 'CamInstructor', description: 'Haas CNC training, Mastercam, project-based learning', cost: 'Per-student license', url: 'https://www.caminstructor.com' },
+    ],
+  },
+];
+
+const certifications = [
+  { name: 'NIMS Level I — CNC Milling Operations', modules: '01, 02, 03, 04, 07, 08, 09, 10', notes: 'Core operator credential — widely recognized in US' },
+  { name: 'NIMS Level I — CNC Turning Operations', modules: '01, 02, 03, 04, 07, 08, 09, 11', notes: 'Paired with milling for full NIMS Level I' },
+  { name: 'Haas CNC Certification', modules: '01, 09, 10, 11', notes: 'Free online + hands-on test at Haas Factory Outlet' },
+  { name: 'Autodesk Certified Associate — CAM', modules: '03, 13, 15', notes: 'Validates Fusion CAD/CAM competency' },
+  { name: 'DMG MORI Academy — Fachkraft', modules: '09–12, 18', notes: 'German-standard industrial training — Siemens controllers' },
+  { name: 'ISO 9001 / AS9100 Awareness', modules: '04, 14, 17', notes: 'Quality systems for aerospace & medical manufacturing' },
+];
+---
+
+<BaseLayout title="Resources" description="Recommended textbooks, free learning resources, and certification alignment for CNC machining.">
+  <div class="resources-page container container-lg">
+    <header class="page-header">
+      <h1>Resources & Certifications</h1>
+      <p class="page-subtitle">
+        Recommended books, free training programs, and industry certifications
+        that align with the CNC Mastery curriculum.
+      </p>
+    </header>
+
+    {resources.map(section => (
+      <section class="resource-section">
+        <h2>{section.category}</h2>
+        <div class="resource-list">
+          {section.items.map(item => (
+            <div class="resource-card">
+              <div class="resource-info">
+                <h3>
+                  {item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name} ↗</a> : item.name}
+                </h3>
+                <p>{item.description}</p>
+              </div>
+              <span class="resource-cost">{item.cost}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="cert-section">
+      <h2>Certification Alignment</h2>
+      <p class="cert-intro">
+        This curriculum maps to the following industry certifications.
+        The "Modules" column shows which CNC Mastery modules cover each certification's content.
+      </p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Certification</th>
+              <th>Modules</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {certifications.map(cert => (
+              <tr>
+                <td class="cert-name">{cert.name}</td>
+                <td class="cert-modules">{cert.modules}</td>
+                <td>{cert.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .resources-page {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .page-header {
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-10);
+  }
+
+  .page-header h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+  }
+
+  .page-subtitle {
+    margin-top: var(--space-3);
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+  }
+
+  .resource-section,
+  .cert-section {
+    margin-top: var(--space-10);
+  }
+
+  .resource-section h2,
+  .cert-section h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .resource-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .resource-info h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+  }
+
+  .resource-info h3 a {
+    text-decoration: none;
+  }
+
+  .resource-info h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .resource-info p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-top: var(--space-1);
+  }
+
+  .resource-cost {
+    font-size: var(--text-sm);
+    color: var(--color-accent-secondary);
+    font-weight: var(--weight-semibold);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cert-intro {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  th {
+    text-align: left;
+    font-weight: var(--weight-semibold);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 2px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+  }
+
+  .cert-name {
+    font-weight: var(--weight-medium);
+    color: var(--color-text-primary);
+  }
+
+  .cert-modules {
+    font-family: var(--font-code);
+    font-size: var(--text-xs);
+    color: var(--color-accent-primary);
+  }
+
+  tr:hover td {
+    background: var(--color-bg-secondary);
+  }
+</style>

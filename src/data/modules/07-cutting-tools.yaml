@@ -1,0 +1,9 @@
+number: 7
+title: "Cutting Tools & Toolholders"
+slug: "07-cutting-tools"
+level: "core"
+levelNumber: 2
+description: "Tool geometry, carbide insert selection (ISO/ANSI), end mills, drills, toolholder systems, speeds & feeds, and cutting fluids."
+estimatedHours: 12
+icon: "🔪"
+tags: ["tooling", "inserts", "speeds-feeds", "cutting-fluids"]

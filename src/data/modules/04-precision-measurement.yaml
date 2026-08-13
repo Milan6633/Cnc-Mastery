@@ -1,0 +1,9 @@
+number: 4
+title: "Precision Measurement & Metrology"
+slug: "04-precision-measurement"
+level: "foundation"
+levelNumber: 1
+description: "Measuring instruments — calipers, micrometers, indicators, gauge blocks — plus calibration principles and CMM introduction."
+estimatedHours: 10
+icon: "📏"
+tags: ["measurement", "metrology", "caliper", "micrometer", "cmm"]

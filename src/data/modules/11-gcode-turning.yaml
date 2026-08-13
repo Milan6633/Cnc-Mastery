@@ -1,0 +1,9 @@
+number: 11
+title: "G-Code Programming — Turning"
+slug: "11-gcode-turning"
+level: "core"
+levelNumber: 2
+description: "Manual G-code for CNC turning: OD/ID operations, threading (G76), grooving, roughing/finishing cycles (G70/G71/G72), and worked examples."
+estimatedHours: 18
+icon: "🔄"
+tags: ["gcode", "programming", "turning", "threading"]

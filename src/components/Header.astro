@@ -1,0 +1,304 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const navLinks = [
+  { href: '/syllabus', label: 'Syllabus' },
+  { href: '/reference/gcode', label: 'G-Code Reference' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/about', label: 'About' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="header-container container">
+    <a href="/" class="logo" aria-label="CNC Mastery — Home">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2"/>
+        <line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)"/>
+      </svg>
+      <span class="logo-text">CNC <span class="logo-highlight">Mastery</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link', { active: currentPath.startsWith(link.href) }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <ThemeToggle />
+      <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <div class="mobile-nav-header">
+      <span class="logo-text">CNC <span class="logo-highlight">Mastery</span></span>
+      <button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-nav-list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class:list={['mobile-nav-link', { active: currentPath.startsWith(link.href) }]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('mobile-close-btn');
+  const overlay = document.getElementById('mobile-nav-overlay');
+  const nav = document.getElementById('mobile-nav');
+
+  function openMenu() {
+    nav?.classList.add('open');
+    overlay?.classList.add('open');
+    btn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    nav?.classList.remove('open');
+    overlay?.classList.remove('open');
+    btn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  overlay?.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+    height: var(--header-height);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: var(--space-6);
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-primary);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo:hover {
+    color: var(--color-text-primary);
+  }
+
+  .logo-icon {
+    color: var(--color-text-secondary);
+  }
+
+  .logo:hover .logo-icon {
+    color: var(--color-accent-primary);
+  }
+
+  .logo-highlight {
+    color: var(--color-accent-primary);
+  }
+
+  /* Nav */
+  .main-nav {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .main-nav {
+      display: block;
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .nav-link {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+  }
+
+  .nav-link.active {
+    color: var(--color-accent-primary);
+    background: var(--color-callout-info-bg);
+  }
+
+  /* Header actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+  }
+
+  /* Mobile menu button */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+
+  .mobile-menu-btn:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu-btn {
+      display: none;
+    }
+  }
+
+  /* Mobile nav overlay */
+  .mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+  }
+
+  .mobile-nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Mobile nav drawer */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 80vw;
+    background: var(--color-bg-secondary);
+    z-index: 300;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    overflow-y: auto;
+  }
+
+  .mobile-nav.open {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-md);
+  }
+
+  .mobile-nav-list {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    color: var(--color-accent-primary);
+    background: var(--color-callout-info-bg);
+  }
+</style>

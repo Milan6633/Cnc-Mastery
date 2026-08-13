@@ -1,0 +1,241 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const gcodes = [
+  { code: 'G00', name: 'Rapid Positioning', description: 'Move to position at maximum speed (non-cutting)', category: 'Motion' },
+  { code: 'G01', name: 'Linear Interpolation', description: 'Move in a straight line at specified feed rate (cutting)', category: 'Motion' },
+  { code: 'G02', name: 'Circular Interpolation CW', description: 'Clockwise arc at specified feed rate', category: 'Motion' },
+  { code: 'G03', name: 'Circular Interpolation CCW', description: 'Counter-clockwise arc at specified feed rate', category: 'Motion' },
+  { code: 'G04', name: 'Dwell', description: 'Pause for specified time (P = seconds or milliseconds)', category: 'Motion' },
+  { code: 'G10', name: 'Set Offsets', description: 'Programmable data input — set work offsets or tool offsets', category: 'Setup' },
+  { code: 'G17', name: 'XY Plane Selection', description: 'Select XY plane for circular interpolation (default)', category: 'Plane' },
+  { code: 'G18', name: 'XZ Plane Selection', description: 'Select XZ plane for circular interpolation', category: 'Plane' },
+  { code: 'G19', name: 'YZ Plane Selection', description: 'Select YZ plane for circular interpolation', category: 'Plane' },
+  { code: 'G20', name: 'Inch Mode', description: 'Set units to inches', category: 'Units' },
+  { code: 'G21', name: 'Metric Mode', description: 'Set units to millimeters', category: 'Units' },
+  { code: 'G28', name: 'Return to Home', description: 'Return to machine reference point (home position)', category: 'Motion' },
+  { code: 'G40', name: 'Cancel Cutter Comp', description: 'Cancel cutter radius compensation', category: 'Compensation' },
+  { code: 'G41', name: 'Cutter Comp Left', description: 'Cutter radius compensation — tool left of programmed path', category: 'Compensation' },
+  { code: 'G42', name: 'Cutter Comp Right', description: 'Cutter radius compensation — tool right of programmed path', category: 'Compensation' },
+  { code: 'G43', name: 'Tool Length Comp +', description: 'Tool length compensation — positive direction', category: 'Compensation' },
+  { code: 'G49', name: 'Cancel Tool Length Comp', description: 'Cancel tool length compensation', category: 'Compensation' },
+  { code: 'G54', name: 'Work Coordinate 1', description: 'Select Work Coordinate System 1 (most common)', category: 'Coordinates' },
+  { code: 'G55', name: 'Work Coordinate 2', description: 'Select Work Coordinate System 2', category: 'Coordinates' },
+  { code: 'G80', name: 'Cancel Canned Cycle', description: 'Cancel any active canned cycle', category: 'Canned Cycles' },
+  { code: 'G81', name: 'Drill Cycle', description: 'Simple drilling cycle — rapid in, feed to depth, rapid out', category: 'Canned Cycles' },
+  { code: 'G83', name: 'Peck Drill Cycle', description: 'Deep hole drilling with peck increments for chip clearing', category: 'Canned Cycles' },
+  { code: 'G84', name: 'Tapping Cycle', description: 'Rigid or floating tapping cycle', category: 'Canned Cycles' },
+  { code: 'G90', name: 'Absolute Positioning', description: 'Coordinates are absolute (from work zero)', category: 'Mode' },
+  { code: 'G91', name: 'Incremental Positioning', description: 'Coordinates are incremental (from current position)', category: 'Mode' },
+];
+
+const mcodes = [
+  { code: 'M00', name: 'Program Stop', description: 'Unconditional stop — press Cycle Start to continue', category: 'Program Control' },
+  { code: 'M01', name: 'Optional Stop', description: 'Stop only if Optional Stop switch is ON', category: 'Program Control' },
+  { code: 'M02', name: 'Program End', description: 'End program (cursor stays at M02)', category: 'Program Control' },
+  { code: 'M03', name: 'Spindle On CW', description: 'Start spindle clockwise at programmed S speed', category: 'Spindle' },
+  { code: 'M04', name: 'Spindle On CCW', description: 'Start spindle counter-clockwise', category: 'Spindle' },
+  { code: 'M05', name: 'Spindle Stop', description: 'Stop spindle rotation', category: 'Spindle' },
+  { code: 'M06', name: 'Tool Change', description: 'Execute automatic tool change (with T-word)', category: 'Tool' },
+  { code: 'M08', name: 'Coolant On', description: 'Turn on flood coolant', category: 'Coolant' },
+  { code: 'M09', name: 'Coolant Off', description: 'Turn off all coolant', category: 'Coolant' },
+  { code: 'M30', name: 'Program End & Rewind', description: 'End program and rewind to beginning (most common)', category: 'Program Control' },
+  { code: 'M98', name: 'Subprogram Call', description: 'Call a subprogram (P = program number)', category: 'Subprograms' },
+  { code: 'M99', name: 'Subprogram Return', description: 'Return from subprogram to main program', category: 'Subprograms' },
+];
+---
+
+<BaseLayout title="G-Code & M-Code Reference" description="Quick reference table for common G-codes and M-codes used in CNC milling and turning.">
+  <div class="reference-page container container-lg">
+    <header class="page-header">
+      <h1>G-Code & M-Code Reference</h1>
+      <p class="page-subtitle">Quick reference for the most common CNC codes. Primarily Fanuc/Haas compatible.</p>
+    </header>
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="code-search"
+        placeholder="Search codes... (e.g. G00, rapid, drill)"
+        aria-label="Search G-codes and M-codes"
+      />
+    </div>
+
+    <section class="code-section">
+      <h2>G-Codes (Preparatory Functions)</h2>
+      <div class="table-wrapper">
+        <table id="gcode-table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {gcodes.map(g => (
+              <tr data-search={`${g.code} ${g.name} ${g.description} ${g.category}`.toLowerCase()}>
+                <td class="code-cell">{g.code}</td>
+                <td class="name-cell">{g.name}</td>
+                <td>{g.description}</td>
+                <td><span class="category-badge">{g.category}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="code-section">
+      <h2>M-Codes (Miscellaneous Functions)</h2>
+      <div class="table-wrapper">
+        <table id="mcode-table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mcodes.map(m => (
+              <tr data-search={`${m.code} ${m.name} ${m.description} ${m.category}`.toLowerCase()}>
+                <td class="code-cell">{m.code}</td>
+                <td class="name-cell">{m.name}</td>
+                <td>{m.description}</td>
+                <td><span class="category-badge">{m.category}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('code-search') as HTMLInputElement;
+    const tables = document.querySelectorAll('table');
+
+    searchInput?.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      tables.forEach(table => {
+        const rows = table.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const searchText = (row as HTMLElement).dataset.search || '';
+          (row as HTMLElement).style.display = !query || searchText.includes(query) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .reference-page {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .page-header {
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+  }
+
+  .page-header h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+  }
+
+  .page-subtitle {
+    margin-top: var(--space-2);
+    color: var(--color-text-secondary);
+  }
+
+  .search-box {
+    margin-bottom: var(--space-8);
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: var(--text-base);
+  }
+
+  .search-box input:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  .search-box input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .code-section {
+    margin-top: var(--space-8);
+  }
+
+  .code-section h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  th {
+    text-align: left;
+    font-weight: var(--weight-semibold);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 2px solid var(--color-border);
+    white-space: nowrap;
+    color: var(--color-text-primary);
+  }
+
+  td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+  }
+
+  .code-cell {
+    font-family: var(--font-code);
+    font-weight: var(--weight-bold);
+    color: var(--color-accent-primary);
+    white-space: nowrap;
+  }
+
+  .name-cell {
+    font-weight: var(--weight-medium);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    font-size: var(--text-xs);
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+
+  tr:hover td {
+    background: var(--color-bg-secondary);
+  }
+</style>

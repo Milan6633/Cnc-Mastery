@@ -1,0 +1,188 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getAllModules, getLessonsByModule, getModuleUrl, levelInfo } from '@utils/lessons';
+
+const allModules = await getAllModules();
+
+const levels = [
+  { key: 'foundation', number: 1, name: 'Foundation', description: 'Build the essential knowledge base', modules: allModules.filter(m => m.data.level === 'foundation') },
+  { key: 'core', number: 2, name: 'Core CNC Skills', description: 'Hands-on machining and G-code programming', modules: allModules.filter(m => m.data.level === 'core') },
+  { key: 'advanced', number: 3, name: 'Advanced CNC', description: 'CAD/CAM, GD&T, and quality systems', modules: allModules.filter(m => m.data.level === 'advanced') },
+  { key: 'specialist', number: 4, name: 'Specialist Tracks', description: 'Multi-axis, automation, and Industry 4.0', modules: allModules.filter(m => m.data.level === 'specialist') },
+];
+
+// Get lesson counts per module
+const lessonCounts: Record<string, number> = {};
+for (const mod of allModules) {
+  const lessons = await getLessonsByModule(mod.data.slug);
+  lessonCounts[mod.data.slug] = lessons.length;
+}
+---
+
+<BaseLayout title="Full Syllabus" description="Complete 20-module CNC machining curriculum — from shop safety to 5-axis programming. 4 levels, 127+ lessons.">
+  <div class="syllabus-page container">
+    <header class="page-header">
+      <h1>Complete Syllabus</h1>
+      <p class="page-subtitle">
+        20 modules across 4 levels — everything you need to go from beginner to professional CNC machinist.
+        Curriculum compiled from NIMS, Haas, MIT&nbsp;OCW, DMG&nbsp;MORI, and top training programs.
+      </p>
+    </header>
+
+    {levels.map(level => {
+      const info = levelInfo[level.key];
+      return (
+        <section class="level-section" style={`--level-color: ${info.color}`}>
+          <div class="level-header">
+            <span class={`badge ${info.badgeClass}`}>Level {level.number}</span>
+            <h2>{level.name}</h2>
+            <p>{level.description}</p>
+          </div>
+
+          <div class="modules-grid">
+            {level.modules.map(mod => (
+              <a href={getModuleUrl(mod.data.slug)} class="module-card">
+                <div class="module-card-header">
+                  <span class="module-card-icon">{mod.data.icon}</span>
+                  <span class="module-card-number">
+                    Module {String(mod.data.number).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3>{mod.data.title}</h3>
+                <p>{mod.data.description}</p>
+                <div class="module-card-footer">
+                  <span>{lessonCounts[mod.data.slug] || 0} lessons</span>
+                  <span>~{mod.data.estimatedHours}h</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+</BaseLayout>
+
+<style>
+  .syllabus-page {
+    max-width: var(--container-lg);
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .page-header {
+    text-align: center;
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-header h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+  }
+
+  .page-subtitle {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 55ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: var(--leading-normal);
+  }
+
+  .level-section {
+    margin-top: var(--space-12);
+  }
+
+  .level-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .level-header h2 {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-2);
+    color: var(--level-color);
+  }
+
+  .level-header p {
+    color: var(--color-text-secondary);
+    margin-top: var(--space-1);
+  }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .modules-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .modules-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .module-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .module-card:hover {
+    border-color: var(--level-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .module-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-3);
+  }
+
+  .module-card-icon {
+    font-size: 1.75rem;
+  }
+
+  .module-card-number {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    font-family: var(--font-code);
+  }
+
+  .module-card h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .module-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+    flex: 1;
+  }
+
+  .module-card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+</style>

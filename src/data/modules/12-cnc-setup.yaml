@@ -1,0 +1,9 @@
+number: 12
+title: "CNC Setup, Optimization & Troubleshooting"
+slug: "12-cnc-setup"
+level: "advanced"
+levelNumber: 3
+description: "Job planning, setup sheets, first article inspection, cycle time optimization, chatter diagnosis, and common CNC alarms."
+estimatedHours: 12
+icon: "🔧"
+tags: ["setup", "optimization", "troubleshooting", "alarms"]

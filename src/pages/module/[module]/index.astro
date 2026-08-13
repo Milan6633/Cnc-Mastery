@@ -1,0 +1,241 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getLessonUrl, levelInfo } from '@utils/lessons';
+
+export async function getStaticPaths() {
+  const allModules = await getCollection('modules');
+  const allLessons = await getCollection('lessons');
+
+  return allModules.map(mod => {
+    const moduleLessons = allLessons
+      .filter(l => l.data.module === mod.data.slug && !l.data.draft)
+      .sort((a, b) => a.data.lessonNumber - b.data.lessonNumber);
+
+    return {
+      params: { module: mod.data.slug },
+      props: { module: mod, lessons: moduleLessons },
+    };
+  });
+}
+
+const { module: mod, lessons } = Astro.props;
+const level = levelInfo[mod.data.level];
+---
+
+<BaseLayout title={mod.data.title} description={mod.data.description}>
+  <div class="module-page container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/syllabus">Syllabus</a></li>
+        <li aria-current="page">{mod.data.title}</li>
+      </ol>
+    </nav>
+
+    <header class="module-header">
+      <span class="module-icon">{mod.data.icon}</span>
+      <div>
+        <div class="module-meta">
+          <span class={`badge ${level.badgeClass}`}>Level {mod.data.levelNumber} — {level.name}</span>
+          <span class="meta-item">Module {String(mod.data.number).padStart(2, '0')}</span>
+          <span class="meta-item">~{mod.data.estimatedHours} hours</span>
+        </div>
+        <h1>{mod.data.title}</h1>
+        <p class="module-description">{mod.data.description}</p>
+      </div>
+    </header>
+
+    <section class="lessons-section">
+      <h2>Lessons</h2>
+      {lessons.length > 0 ? (
+        <div class="lessons-list">
+          {lessons.map((lesson: any) => (
+            <a href={getLessonUrl(lesson)} class="lesson-card">
+              <span class="lesson-number">{String(lesson.data.lessonNumber).padStart(2, '0')}</span>
+              <div class="lesson-info">
+                <h3>{lesson.data.title}</h3>
+                <p>{lesson.data.description}</p>
+                <div class="lesson-card-meta">
+                  <span>⏱️ {lesson.data.duration}</span>
+                  <span class="capitalize">📊 {lesson.data.difficulty}</span>
+                </div>
+              </div>
+              <span class="lesson-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="coming-soon">
+          <p>📝 Lessons for this module are being written. Check back soon!</p>
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .module-page {
+    max-width: var(--container-lg);
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    list-style: none;
+  }
+
+  .breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin-left: var(--space-1);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent-primary);
+  }
+
+  .module-header {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+    margin-top: var(--space-6);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .module-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+
+  .module-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .meta-item {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .module-header h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+  }
+
+  .module-description {
+    margin-top: var(--space-3);
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+  }
+
+  .lessons-section {
+    margin-top: var(--space-8);
+  }
+
+  .lessons-section h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .lesson-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .lesson-card:hover {
+    border-color: var(--color-accent-primary);
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lesson-number {
+    font-family: var(--font-code);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+    width: 2rem;
+    text-align: center;
+  }
+
+  .lesson-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .lesson-info h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .lesson-info p {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+  }
+
+  .lesson-card-meta {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  .capitalize {
+    text-transform: capitalize;
+  }
+
+  .lesson-arrow {
+    color: var(--color-accent-primary);
+    font-size: var(--text-xl);
+    flex-shrink: 0;
+    margin-top: var(--space-2);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .lesson-card:hover .lesson-arrow {
+    opacity: 1;
+  }
+
+  .coming-soon {
+    padding: var(--space-10);
+    text-align: center;
+    background: var(--color-bg-secondary);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+  }
+</style>

@@ -1,0 +1,9 @@
+number: 19
+title: "Advanced Programming & Automation"
+slug: "19-advanced-programming"
+level: "specialist"
+levelNumber: 4
+description: "Macro B / parametric programming, probing cycles, bar feeders, pallet changers, and lights-out machining strategies."
+estimatedHours: 15
+icon: "🤖"
+tags: ["macro-b", "parametric", "probing", "automation"]

@@ -1,0 +1,24 @@
+{
+  "name": "cnc-mastery",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "CNC Mastery — Learn CNC machining online. Complete 20-module syllabus.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/markdown-remark": "^7.2.2",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.1",
+    "remark-directive": "^4.0.0",
+    "typescript": "^6.0.3",
+    "unist-util-visit": "^5.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

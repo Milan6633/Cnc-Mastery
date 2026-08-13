@@ -1,0 +1,9 @@
+number: 9
+title: "CNC Machine Operation & Safety"
+slug: "09-cnc-operation"
+level: "core"
+levelNumber: 2
+description: "CNC mill and lathe anatomy, control panels (Haas/Fanuc/Siemens), startup procedures, work coordinates, and tool offsets."
+estimatedHours: 12
+icon: "🖥️"
+tags: ["cnc", "operation", "haas", "fanuc", "offsets"]

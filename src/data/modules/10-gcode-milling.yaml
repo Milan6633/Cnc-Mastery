@@ -1,0 +1,9 @@
+number: 10
+title: "G-Code Programming — Milling"
+slug: "10-gcode-milling"
+level: "core"
+levelNumber: 2
+description: "Manual G-code for CNC milling: rapid/linear moves, arcs, canned cycles, cutter compensation, subprograms, and complete worked examples."
+estimatedHours: 20
+icon: "📝"
+tags: ["gcode", "programming", "milling", "canned-cycles"]

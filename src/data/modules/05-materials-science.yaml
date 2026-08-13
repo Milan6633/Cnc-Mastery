@@ -1,0 +1,9 @@
+number: 5
+title: "Materials Science for Machinists"
+slug: "05-materials-science"
+level: "foundation"
+levelNumber: 1
+description: "Ferrous and non-ferrous metals, plastics, material properties (hardness, tensile strength, machinability), and heat treatment."
+estimatedHours: 8
+icon: "🧪"
+tags: ["materials", "metals", "heat-treatment", "hardness"]

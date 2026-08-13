@@ -1,0 +1,9 @@
+number: 3
+title: "Blueprint Reading & Technical Drawing"
+slug: "03-blueprint-reading"
+level: "foundation"
+levelNumber: 1
+description: "Orthographic projections, dimensioning standards, tolerancing fundamentals, surface finish symbols, and reading real part prints."
+estimatedHours: 10
+icon: "📐"
+tags: ["blueprint", "drawing", "dimensioning", "tolerancing"]
