@@ -17,7 +17,10 @@
   /* Chalk on steel */
   --color-text-primary: #e7ebf0;
   --color-text-secondary: #8b95a3;
-  --color-text-tertiary: #616b78;
+  /* Any third grey dim enough to read as a further step down fails 4.5:1 on
+     these panels, so tertiary sits close to secondary and the hierarchy is
+     carried by size, weight, and tracking instead (see .label). */
+  --color-text-tertiary: #828c99;
 
   /* Signal colors — these are machine states, not decoration */
   --color-accent-primary: #ffb020;   /* DRO amber — the signature */
@@ -62,7 +65,7 @@
 
     --color-text-primary: #16191d;
     --color-text-secondary: #59616c;
-    --color-text-tertiary: #8b95a3;
+    --color-text-tertiary: #5f6874;
 
     /* Amber needs to darken to stay legible on light ground */
     --color-accent-primary: #a35c00;
@@ -102,7 +105,7 @@
 
   --color-text-primary: #16191d;
   --color-text-secondary: #59616c;
-  --color-text-tertiary: #8b95a3;
+  --color-text-tertiary: #5f6874;
 
   --color-accent-primary: #a35c00;
   --color-accent-hover: #7d4600;

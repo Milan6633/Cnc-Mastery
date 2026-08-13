@@ -24,7 +24,7 @@ const level = levelInfo[mod.data.level];
 ---
 
 <BaseLayout title={mod.data.title} description={mod.data.description}>
-  <div class="module-page container">
+  <div class="module-page container" style={`--level-color: ${level.color}`}>
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>
         <li><a href={baseUrl('/')}>Home</a></li>
@@ -34,12 +34,11 @@ const level = levelInfo[mod.data.level];
     </nav>
 
     <header class="module-header">
-      <span class="module-icon">{mod.data.icon}</span>
+      <span class="module-number readout">{String(mod.data.number).padStart(2, '0')}</span>
       <div>
         <div class="module-meta">
           <span class={`badge ${level.badgeClass}`}>Level {mod.data.levelNumber} — {level.name}</span>
-          <span class="meta-item">Module {String(mod.data.number).padStart(2, '0')}</span>
-          <span class="meta-item">~{mod.data.estimatedHours} hours</span>
+          <span class="meta-item label">~{mod.data.estimatedHours} hours</span>
         </div>
         <h1>{mod.data.title}</h1>
         <p class="module-description">{mod.data.description}</p>
@@ -56,9 +55,9 @@ const level = levelInfo[mod.data.level];
               <div class="lesson-info">
                 <h3>{lesson.data.title}</h3>
                 <p>{lesson.data.description}</p>
-                <div class="lesson-card-meta">
-                  <span>⏱️ {lesson.data.duration}</span>
-                  <span class="capitalize">📊 {lesson.data.difficulty}</span>
+                <div class="lesson-card-meta label">
+                  <span>{lesson.data.duration}</span>
+                  <span>{lesson.data.difficulty}</span>
                 </div>
               </div>
               <span class="lesson-arrow">→</span>
@@ -67,7 +66,11 @@ const level = levelInfo[mod.data.level];
         </div>
       ) : (
         <div class="coming-soon">
-          <p>📝 Lessons for this module are being written. Check back soon!</p>
+          <p class="coming-soon-label label">Not yet written</p>
+          <p>
+            Lessons for this module are still being written. The
+            <a href={baseUrl('/syllabus')}>syllabus</a> shows what is ready now.
+          </p>
         </div>
       )}
     </section>
@@ -113,9 +116,14 @@ const level = levelInfo[mod.data.level];
     border-bottom: 1px solid var(--color-border);
   }
 
-  .module-icon {
-    font-size: 3rem;
+  .module-number {
     flex-shrink: 0;
+    padding: var(--space-2) var(--space-3);
+    background: var(--level-color, var(--color-accent-primary));
+    color: var(--color-on-accent);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: 1;
   }
 
   .module-meta {
@@ -170,10 +178,15 @@ const level = levelInfo[mod.data.level];
     transition: all var(--transition-fast);
   }
 
+  /* Rows highlight in place, the way a selected line does on a control screen */
+  .lesson-card {
+    border-left: 3px solid transparent;
+  }
+
   .lesson-card:hover {
-    border-color: var(--color-accent-primary);
-    transform: translateX(4px);
-    box-shadow: var(--shadow-sm);
+    border-color: var(--color-border);
+    border-left-color: var(--color-accent-primary);
+    background: var(--color-bg-tertiary);
   }
 
   .lesson-number {
@@ -231,11 +244,13 @@ const level = levelInfo[mod.data.level];
 
   .coming-soon {
     padding: var(--space-10);
-    text-align: center;
     background: var(--color-bg-secondary);
     border: 1px dashed var(--color-border);
-    border-radius: var(--radius-lg);
     color: var(--color-text-secondary);
-    font-size: var(--text-lg);
+  }
+
+  .coming-soon-label {
+    display: block;
+    margin-bottom: var(--space-2);
   }
 </style>

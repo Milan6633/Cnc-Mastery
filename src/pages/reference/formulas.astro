@@ -1,0 +1,583 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { baseUrl } from '@utils/lessons';
+
+// Every formula on this page is metric-first, matching the rest of the site:
+// vc in m/min, diameters and feeds in mm, Q in cm³/min.
+const groups = [
+  {
+    id: 'speeds',
+    name: 'Speeds and feeds',
+    intro: 'The four numbers you set before every cut. Everything else follows from these.',
+    formulas: [
+      {
+        title: 'Spindle speed from cutting speed',
+        equation: 'n = (vc × 1000) / (π × D)',
+        unit: 'rev/min',
+        vars: [
+          ['n', 'Spindle speed', 'rev/min'],
+          ['vc', 'Cutting speed, from the tool catalogue', 'm/min'],
+          ['D', 'Cutter diameter, or workpiece diameter when turning', 'mm'],
+        ],
+        example: {
+          given: '12 mm carbide end mill in mild steel, vc = 120 m/min',
+          work: 'n = (120 × 1000) / (π × 12) = 120000 / 37.70',
+          result: 'n ≈ 3183 rev/min',
+        },
+      },
+      {
+        title: 'Cutting speed from spindle speed',
+        equation: 'vc = (π × D × n) / 1000',
+        unit: 'm/min',
+        vars: [
+          ['vc', 'Cutting speed', 'm/min'],
+          ['D', 'Cutter or workpiece diameter', 'mm'],
+          ['n', 'Spindle speed', 'rev/min'],
+        ],
+        example: {
+          given: '50 mm face mill running at 2000 rev/min',
+          work: 'vc = (π × 50 × 2000) / 1000 = 314159 / 1000',
+          result: 'vc ≈ 314 m/min',
+        },
+      },
+      {
+        title: 'Table feed rate',
+        equation: 'vf = fz × z × n',
+        unit: 'mm/min',
+        vars: [
+          ['vf', 'Feed rate, the F word in your G-code', 'mm/min'],
+          ['fz', 'Feed per tooth, from the tool catalogue', 'mm/tooth'],
+          ['z', 'Number of flutes', '—'],
+          ['n', 'Spindle speed', 'rev/min'],
+        ],
+        example: {
+          given: '4-flute cutter, fz = 0.05 mm/tooth, n = 3183 rev/min',
+          work: 'vf = 0.05 × 4 × 3183',
+          result: 'vf ≈ 637 mm/min  →  F637',
+        },
+      },
+      {
+        title: 'Feed per tooth from feed rate',
+        equation: 'fz = vf / (z × n)',
+        unit: 'mm/tooth',
+        vars: [
+          ['fz', 'Feed per tooth', 'mm/tooth'],
+          ['vf', 'Feed rate', 'mm/min'],
+          ['z', 'Number of flutes', '—'],
+          ['n', 'Spindle speed', 'rev/min'],
+        ],
+        note: 'Use this to check a program someone else wrote. If fz lands far below the catalogue value the tool is rubbing, not cutting, and it will work-harden the material and fail early.',
+      },
+      {
+        title: 'Feed per revolution',
+        equation: 'f = vf / n',
+        unit: 'mm/rev',
+        vars: [
+          ['f', 'Feed per revolution, the turning and drilling feed', 'mm/rev'],
+          ['vf', 'Feed rate', 'mm/min'],
+          ['n', 'Spindle speed', 'rev/min'],
+        ],
+        note: 'Lathes and drills are programmed in mm/rev under G95. Mills are programmed in mm/min under G94.',
+      },
+    ],
+  },
+  {
+    id: 'removal',
+    name: 'Material removal and power',
+    intro: 'What the cut demands from the machine. Check these before committing to a heavy roughing pass.',
+    formulas: [
+      {
+        title: 'Material removal rate — milling',
+        equation: 'Q = (ap × ae × vf) / 1000',
+        unit: 'cm³/min',
+        vars: [
+          ['Q', 'Material removal rate', 'cm³/min'],
+          ['ap', 'Axial depth of cut', 'mm'],
+          ['ae', 'Radial width of cut', 'mm'],
+          ['vf', 'Feed rate', 'mm/min'],
+        ],
+        example: {
+          given: 'ap = 10 mm, ae = 6 mm, vf = 637 mm/min',
+          work: 'Q = (10 × 6 × 637) / 1000 = 38220 / 1000',
+          result: 'Q ≈ 38.2 cm³/min',
+        },
+      },
+      {
+        title: 'Material removal rate — turning',
+        equation: 'Q = vc × ap × f',
+        unit: 'cm³/min',
+        vars: [
+          ['Q', 'Material removal rate', 'cm³/min'],
+          ['vc', 'Cutting speed', 'm/min'],
+          ['ap', 'Depth of cut', 'mm'],
+          ['f', 'Feed per revolution', 'mm/rev'],
+        ],
+      },
+      {
+        title: 'Net cutting power',
+        equation: 'Pc = (Q × kc) / (60 × 1000 × η)',
+        unit: 'kW',
+        vars: [
+          ['Pc', 'Power at the spindle', 'kW'],
+          ['Q', 'Material removal rate', 'cm³/min'],
+          ['kc', 'Specific cutting force for the material', 'N/mm²'],
+          ['η', 'Machine efficiency, typically 0.75 to 0.9', '—'],
+        ],
+        note: 'Rough kc values: aluminium 700, mild steel 1700, stainless 2100, titanium 1900 N/mm². If Pc approaches your spindle rating, reduce ae before reducing vc.',
+      },
+    ],
+  },
+  {
+    id: 'turning',
+    name: 'Turning',
+    intro: 'Lathe-specific work, where the diameter changes under the tool.',
+    formulas: [
+      {
+        title: 'Surface roughness from feed',
+        equation: 'Ra ≈ (f² × 1000) / (8 × rε)',
+        unit: 'µm',
+        vars: [
+          ['Ra', 'Theoretical arithmetic mean roughness', 'µm'],
+          ['f', 'Feed per revolution', 'mm/rev'],
+          ['rε', 'Insert corner radius', 'mm'],
+        ],
+        example: {
+          given: 'f = 0.15 mm/rev, rε = 0.8 mm',
+          work: 'Ra = (0.15² × 1000) / (8 × 0.8) = 22.5 / 6.4',
+          result: 'Ra ≈ 3.5 µm',
+        },
+        note: 'This is the theoretical floor. Real Ra is worse. To halve roughness, halve the feed or double the corner radius — but a larger radius pushes harder and can chatter on slender parts.',
+      },
+      {
+        title: 'Cutting time',
+        equation: 'tc = L / (f × n)',
+        unit: 'min',
+        vars: [
+          ['tc', 'Time for the pass', 'min'],
+          ['L', 'Length of cut', 'mm'],
+          ['f', 'Feed per revolution', 'mm/rev'],
+          ['n', 'Spindle speed', 'rev/min'],
+        ],
+      },
+      {
+        title: 'Taper per side',
+        equation: 'α = atan((D − d) / (2L))',
+        unit: 'degrees',
+        vars: [
+          ['α', 'Included half-angle, what you set the compound to', 'degrees'],
+          ['D', 'Large diameter', 'mm'],
+          ['d', 'Small diameter', 'mm'],
+          ['L', 'Length between the two diameters', 'mm'],
+        ],
+        example: {
+          given: 'D = 40 mm, d = 30 mm, L = 60 mm',
+          work: 'α = atan((40 − 30) / 120) = atan(0.0833)',
+          result: 'α ≈ 4.76°',
+        },
+      },
+    ],
+  },
+  {
+    id: 'holes',
+    name: 'Drilling and tapping',
+    intro: 'Hole work, where getting the drill size wrong is the difference between a thread and a scrapped part.',
+    formulas: [
+      {
+        title: 'Tap drill size — metric coarse',
+        equation: 'd = D − P',
+        unit: 'mm',
+        vars: [
+          ['d', 'Tap drill diameter', 'mm'],
+          ['D', 'Nominal thread diameter', 'mm'],
+          ['P', 'Thread pitch', 'mm'],
+        ],
+        example: {
+          given: 'M10 × 1.5 coarse thread',
+          work: 'd = 10 − 1.5',
+          result: 'd = 8.5 mm drill',
+        },
+        note: 'This gives roughly 75% thread engagement, which is the standard target. Chasing 100% engagement gains almost no strength and breaks taps.',
+      },
+      {
+        title: 'Thread engagement from drill size',
+        equation: 'E = ((D − d) / (1.0825 × P)) × 100',
+        unit: '%',
+        vars: [
+          ['E', 'Percentage of full thread', '%'],
+          ['D', 'Nominal thread diameter', 'mm'],
+          ['d', 'Actual drill diameter', 'mm'],
+          ['P', 'Thread pitch', 'mm'],
+        ],
+        note: 'Below about 60% the thread is too weak to trust. Above about 80% tapping torque climbs steeply for very little extra strength.',
+      },
+      {
+        title: 'Drill point depth allowance',
+        equation: 'h ≈ 0.3 × D',
+        unit: 'mm',
+        vars: [
+          ['h', 'Extra depth to clear the point', 'mm'],
+          ['D', 'Drill diameter', 'mm'],
+        ],
+        note: 'For a standard 118° point. Add h to the required full-diameter depth so the flat portion of the hole reaches the drawing dimension. A 140° point needs about 0.18 × D.',
+      },
+    ],
+  },
+  {
+    id: 'setup',
+    name: 'Geometry and setup',
+    intro: 'The trigonometry that comes up at the machine, usually while something is already clamped.',
+    formulas: [
+      {
+        title: 'Bolt circle coordinates',
+        equation: 'X = R × cos(θ)     Y = R × sin(θ)',
+        unit: 'mm',
+        vars: [
+          ['X, Y', 'Hole position from the circle centre', 'mm'],
+          ['R', 'Bolt circle radius', 'mm'],
+          ['θ', 'Angle of the hole, measured from +X', 'degrees'],
+        ],
+        example: {
+          given: '6 holes on a 100 mm diameter circle, first hole at 0°',
+          work: 'θ step = 360 / 6 = 60°, R = 50 mm. Hole 2: X = 50 × cos(60°), Y = 50 × sin(60°)',
+          result: 'Hole 2 at X25.0 Y43.301',
+        },
+      },
+      {
+        title: 'Sine bar stack height',
+        equation: 'h = L × sin(α)',
+        unit: 'mm',
+        vars: [
+          ['h', 'Gauge block stack height', 'mm'],
+          ['L', 'Sine bar centre distance, usually 100 or 200 mm', 'mm'],
+          ['α', 'Required angle', 'degrees'],
+        ],
+        example: {
+          given: '100 mm sine bar set to 15°',
+          work: 'h = 100 × sin(15°) = 100 × 0.2588',
+          result: 'h = 25.882 mm of gauge blocks',
+        },
+      },
+      {
+        title: 'Chord length across a circle',
+        equation: 'c = 2 × R × sin(θ / 2)',
+        unit: 'mm',
+        vars: [
+          ['c', 'Straight-line distance between two points on the circle', 'mm'],
+          ['R', 'Circle radius', 'mm'],
+          ['θ', 'Angle subtended at the centre', 'degrees'],
+        ],
+        note: 'Useful for checking hole-to-hole spacing on a bolt circle with calipers before you trust the program.',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Shop Math Formulas"
+  description="Metric CNC machining formulas — speeds and feeds, material removal, turning, drilling and tapping, and setup trigonometry, each with worked examples.">
+  <div class="page container">
+    <nav class="breadcrumb label" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={baseUrl('/')}>Home</a></li>
+        <li aria-current="page">Formulas</li>
+      </ol>
+    </nav>
+
+    <header class="page-header">
+      <p class="page-eyebrow label">Reference</p>
+      <h1 class="page-title">Shop math formulas</h1>
+      <p class="page-subtitle">
+        The calculations that come up at the machine, in metric, each with the
+        variables named and a worked example. Cutting speeds are m/min,
+        diameters and feeds are mm.
+      </p>
+    </header>
+
+    <nav class="jump" aria-label="Sections">
+      {groups.map((group) => (
+        <a href={`#${group.id}`} class="jump-link">{group.name}</a>
+      ))}
+    </nav>
+
+    {groups.map((group) => (
+      <section class="group" id={group.id}>
+        <h2 class="group-name">{group.name}</h2>
+        <p class="group-intro">{group.intro}</p>
+
+        <div class="cards">
+          {group.formulas.map((f) => (
+            <article class="card">
+              <h3 class="card-title">{f.title}</h3>
+
+              <p class="equation readout">
+                {f.equation}
+                <span class="equation-unit">{f.unit}</span>
+              </p>
+
+              <dl class="vars">
+                {f.vars.map(([sym, meaning, unit]) => (
+                  <div class="var">
+                    <dt class="var-sym readout">{sym}</dt>
+                    <dd class="var-meaning">
+                      {meaning}
+                      {unit !== '—' && <span class="var-unit readout">{unit}</span>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              {f.example && (
+                <div class="example">
+                  <p class="example-label label">Worked example</p>
+                  <p class="example-given">{f.example.given}</p>
+                  <p class="example-work readout">{f.example.work}</p>
+                  <p class="example-result readout">{f.example.result}</p>
+                </div>
+              )}
+
+              {f.note && <p class="note">{f.note}</p>}
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: var(--container-lg);
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-24);
+  }
+
+  /* Breadcrumb */
+  .breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin-left: var(--space-2);
+    color: var(--color-text-tertiary);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent-primary);
+  }
+
+  .breadcrumb [aria-current] {
+    color: var(--color-text-primary);
+  }
+
+  /* Header */
+  .page-header {
+    margin-top: var(--space-10);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    margin-top: var(--space-3);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .page-subtitle {
+    max-width: 62ch;
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+  }
+
+  /* Jump nav */
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    margin-top: var(--space-8);
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+
+  .jump-link {
+    flex: 1 1 auto;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-primary);
+    color: var(--color-text-secondary);
+    font-family: var(--font-code);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .jump-link:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-accent-primary);
+  }
+
+  /* Groups */
+  .group {
+    margin-top: var(--space-20);
+    scroll-margin-top: 6rem;
+  }
+
+  .group-name {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    line-height: 1;
+    padding-bottom: var(--space-3);
+    border-bottom: 3px solid var(--color-accent-primary);
+  }
+
+  .group-intro {
+    max-width: 60ch;
+    margin-top: var(--space-4);
+    color: var(--color-text-secondary);
+  }
+
+  /* Formula cards */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  @media (min-width: 900px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+  }
+
+  .card-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+  }
+
+  /* The equation is the point of the card, so it gets the panel treatment */
+  .equation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-bg-code);
+    border-left: 3px solid var(--color-accent-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    color: var(--color-accent-primary);
+    overflow-x: auto;
+  }
+
+  .equation-unit {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+  }
+
+  /* Variable key */
+  .vars {
+    margin-top: var(--space-5);
+  }
+
+  .var {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-sm);
+  }
+
+  .var:first-child {
+    border-top: none;
+  }
+
+  .var-sym {
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+  }
+
+  .var-meaning {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+  }
+
+  .var-unit {
+    margin-left: var(--space-2);
+    padding: 0.1em 0.4em;
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    font-size: var(--text-xs);
+  }
+
+  /* Worked example */
+  .example {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    border: 1px dashed var(--color-border);
+  }
+
+  .example-given {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .example-work {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
+    overflow-x: auto;
+  }
+
+  .example-result {
+    margin-top: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-accent-secondary);
+  }
+
+  .note {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+  }
+
+  /* Push the note to the bottom so cards in a row align */
+  .card > .note:last-child {
+    margin-top: auto;
+  }
+</style>
