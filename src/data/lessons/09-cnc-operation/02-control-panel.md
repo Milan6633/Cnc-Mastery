@@ -46,19 +46,19 @@ Jog mode lets you move each axis using buttons on the panel. You'll use this con
 3. **Select the speed** — use the jog feed override dial or select rapid/slow jog
 
 :::warning
-Jog in rapid mode (100%) moves the machine at full speed — on a large VMC, that can be 1000+ inches per minute. Always start with a slow jog speed when you're close to the part. One wrong button press at rapid speed can crash the tool into the vise, the table, or worse.
+Jog in rapid mode (100%) moves the machine at full speed — on a large VMC, that can be 25,000+ mm per minute. Always start with a slow jog speed when you're close to the part. One wrong button press at rapid speed can crash the tool into the vise, the table, or worse.
 :::
 
 ### The Handwheel (MPG)
 
 The **Manual Pulse Generator (MPG)** is the stepped dial on the control panel (or a remote pendant). It gives you fine control:
 
-| MPG Increment | Resolution |
-|---------------|-----------|
-| ×1 | 0.0001" per click |
-| ×10 | 0.001" per click |
-| ×100 | 0.010" per click |
-| ×1000 | 0.100" per click |
+| MPG Increment | Resolution (Metric) |
+|---------------|-------------------|
+| ×1 | 0.001 mm per click |
+| ×10 | 0.010 mm per click |
+| ×100 | 0.100 mm per click |
+| ×1000 | 1.000 mm per click |
 
 Select the axis, select the increment, and turn the handwheel. This is how you precisely touch off tools and set work offsets.
 

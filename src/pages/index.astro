@@ -81,18 +81,18 @@ const stats = [
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content container">
-      <span class="hero-badge badge badge-core">Free Online Course</span>
+      <span class="hero-badge badge badge-core" data-i18n="hero.badge" data-i18n-en="Free Online Course" data-i18n-fi="Ilmainen verkkokurssi">Free Online Course</span>
       <h1 class="hero-title">
-        Master CNC Machining<br />
-        <span class="hero-highlight">Without 3 Years of School</span>
+        <span data-i18n="hero.title1" data-i18n-en="Master CNC Machining" data-i18n-fi="Hallitse CNC-koneistus">Master CNC Machining</span><br />
+        <span class="hero-highlight" data-i18n="hero.title2" data-i18n-en="Without 3 Years of School" data-i18n-fi="Ilman 3 vuoden koulua">Without 3 Years of School</span>
       </h1>
-      <p class="hero-description">
+      <p class="hero-description" data-i18n="hero.desc" data-i18n-en="A complete, structured curriculum — from shop safety to 5-axis programming. Built from NIMS, Haas, MIT OCW, and industry-standard training programs." data-i18n-fi="Täydellinen, jäsennelty opetussuunnitelma — työturvallisuudesta 5-akseliseen ohjelmointiin. Rakennettu NIMS-, Haas-, MIT OCW- ja alan standardiohjelmien pohjalta.">
         A complete, structured curriculum — from shop safety to 5-axis programming.
         Built from NIMS, Haas, MIT&nbsp;OCW, and industry-standard training programs.
       </p>
       <div class="hero-actions">
-        <a href={baseUrl('/syllabus')} class="btn btn-primary">View Full Syllabus</a>
-        <a href={baseUrl('/module/01-shop-safety')} class="btn btn-secondary">Start Learning →</a>
+        <a href={baseUrl('/syllabus')} class="btn btn-primary" data-i18n="hero.cta1" data-i18n-en="View Full Syllabus" data-i18n-fi="Katso opetussuunnitelma">View Full Syllabus</a>
+        <a href={baseUrl('/module/01-shop-safety')} class="btn btn-secondary" data-i18n="hero.cta2" data-i18n-en="Start Learning →" data-i18n-fi="Aloita oppiminen →">Start Learning →</a>
       </div>
     </div>
   </section>
@@ -100,10 +100,10 @@ const stats = [
   <!-- Stats -->
   <section class="stats-section">
     <div class="stats-grid container">
-      {stats.map(stat => (
+      {stats.map((stat, i) => (
         <div class="stat-item">
           <span class="stat-value">{stat.value}</span>
-          <span class="stat-label">{stat.label}</span>
+          <span class="stat-label" data-i18n={`stat.${i}`} data-i18n-en={stat.label} data-i18n-fi={stat.labelFi}>{stat.label}</span>
         </div>
       ))}
     </div>
@@ -112,16 +112,16 @@ const stats = [
   <!-- Features -->
   <section class="features-section">
     <div class="container">
-      <h2 class="section-title">Everything You Need to Learn CNC</h2>
-      <p class="section-subtitle">
+      <h2 class="section-title" data-i18n="features.title" data-i18n-en="Everything You Need to Learn CNC" data-i18n-fi="Kaikki mitä tarvitset CNC:n oppimiseen">Everything You Need to Learn CNC</h2>
+      <p class="section-subtitle" data-i18n="features.sub" data-i18n-en="No prior experience required. Start from the basics and work your way up to specialist-level skills." data-i18n-fi="Aiempaa kokemusta ei tarvita. Aloita perusteista ja etene asiantuntijatasolle.">
         No prior experience required. Start from the basics and work your way up to specialist-level skills.
       </p>
       <div class="features-grid">
-        {features.map(feature => (
+        {features.map((feature, i) => (
           <div class="feature-card">
             <span class="feature-icon">{feature.icon}</span>
-            <h3 class="feature-title">{feature.title}</h3>
-            <p class="feature-description">{feature.description}</p>
+            <h3 class="feature-title" data-i18n={`feat.t.${i}`} data-i18n-en={feature.title} data-i18n-fi={feature.titleFi}>{feature.title}</h3>
+            <p class="feature-description" data-i18n={`feat.d.${i}`} data-i18n-en={feature.description} data-i18n-fi={feature.descFi}>{feature.description}</p>
           </div>
         ))}
       </div>
@@ -131,21 +131,21 @@ const stats = [
   <!-- Curriculum Preview -->
   <section class="curriculum-section">
     <div class="container">
-      <h2 class="section-title">Your Learning Path</h2>
-      <p class="section-subtitle">
+      <h2 class="section-title" data-i18n="curr.title" data-i18n-en="Your Learning Path" data-i18n-fi="Oppimispolkusi">Your Learning Path</h2>
+      <p class="section-subtitle" data-i18n="curr.sub" data-i18n-en="4 levels, 20 modules — structured to take you from zero to professional-level competency." data-i18n-fi="4 tasoa, 20 moduulia — rakennettu viemään sinut nollasta ammattitasolle.">
         4 levels, 20 modules — structured to take you from zero to professional-level competency.
       </p>
       <div class="levels-grid">
-        {levels.map(level => (
+        {levels.map((level, i) => (
           <div class="level-card" style={`--level-color: ${level.color}`}>
             <div class="level-header">
               <span class="level-icon">{level.icon}</span>
               <div>
                 <span class={`badge ${level.badgeClass}`}>Level {level.number}</span>
-                <h3 class="level-name">{level.name}</h3>
+                <h3 class="level-name" data-i18n={`lvl.${i}`} data-i18n-en={level.name} data-i18n-fi={level.nameFi}>{level.name}</h3>
               </div>
             </div>
-            <p class="level-description">{level.description}</p>
+            <p class="level-description" data-i18n={`lvl.d.${i}`} data-i18n-en={level.description} data-i18n-fi={level.descFi}>{level.description}</p>
             <div class="level-meta">
               <span>Modules {level.modules}</span>
               <span>{level.moduleCount} modules</span>
@@ -154,7 +154,7 @@ const stats = [
         ))}
       </div>
       <div class="curriculum-cta">
-        <a href={baseUrl('/syllabus')} class="btn btn-primary">Explore Full Curriculum →</a>
+        <a href={baseUrl('/syllabus')} class="btn btn-primary" data-i18n="curr.cta" data-i18n-en="Explore Full Curriculum →" data-i18n-fi="Tutustu opetussuunnitelmaan →">Explore Full Curriculum →</a>
       </div>
     </div>
   </section>
@@ -163,13 +163,13 @@ const stats = [
   <section class="about-section">
     <div class="container container-md">
       <div class="about-card">
-        <h2 class="about-title">Built by a Machinist, for Machinists</h2>
-        <p class="about-text">
+        <h2 class="about-title" data-i18n="about.title" data-i18n-en="Built by a Machinist, for Machinists" data-i18n-fi="Koneistajan rakentama, koneistajille">Built by a Machinist, for Machinists</h2>
+        <p class="about-text" data-i18n="about.text" data-i18n-en="I'm Milan — a mechanical engineer and CNC machinist trained at Varia (Finland). I created CNC Mastery because I believe everyone deserves access to quality CNC education, not locked behind expensive schools or outdated textbooks." data-i18n-fi="Olen Milan — koneinsinööri ja CNC-koneistaja, valmistunut Variasta (Suomi). Loin CNC Masteryn, koska uskon, että kaikilla on oikeus laadukkaaseen CNC-koulutukseen — ilman kalliita kouluja tai vanhentuneita oppikirjoja.">
           I'm Milan — a mechanical engineer and CNC machinist trained at Varia (Finland).
           I created CNC Mastery because I believe everyone deserves access to quality
           CNC education, not locked behind expensive schools or outdated textbooks.
         </p>
-        <a href={baseUrl('/about')} class="btn btn-secondary">Learn More About the Project →</a>
+        <a href={baseUrl('/about')} class="btn btn-secondary" data-i18n="about.cta" data-i18n-en="Learn More About the Project →" data-i18n-fi="Lue lisää projektista →">Learn More About the Project →</a>
       </div>
     </div>
   </section>
