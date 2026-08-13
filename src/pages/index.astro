@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { baseUrl } from '@utils/lessons';
 
 const levels = [
   {
@@ -90,8 +91,8 @@ const stats = [
         Built from NIMS, Haas, MIT&nbsp;OCW, and industry-standard training programs.
       </p>
       <div class="hero-actions">
-        <a href="/syllabus" class="btn btn-primary">View Full Syllabus</a>
-        <a href="/module/01-shop-safety" class="btn btn-secondary">Start Learning →</a>
+        <a href={baseUrl('/syllabus')} class="btn btn-primary">View Full Syllabus</a>
+        <a href={baseUrl('/module/01-shop-safety')} class="btn btn-secondary">Start Learning →</a>
       </div>
     </div>
   </section>
@@ -153,7 +154,7 @@ const stats = [
         ))}
       </div>
       <div class="curriculum-cta">
-        <a href="/syllabus" class="btn btn-primary">Explore Full Curriculum →</a>
+        <a href={baseUrl('/syllabus')} class="btn btn-primary">Explore Full Curriculum →</a>
       </div>
     </div>
   </section>
@@ -168,7 +169,7 @@ const stats = [
           I created CNC Mastery because I believe everyone deserves access to quality
           CNC education, not locked behind expensive schools or outdated textbooks.
         </p>
-        <a href="/about" class="btn btn-secondary">Learn More About the Project →</a>
+        <a href={baseUrl('/about')} class="btn btn-secondary">Learn More About the Project →</a>
       </div>
     </div>
   </section>

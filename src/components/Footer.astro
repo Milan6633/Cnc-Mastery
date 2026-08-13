@@ -1,4 +1,5 @@
 ---
+import { baseUrl } from '@utils/lessons';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -6,25 +7,25 @@ const currentYear = new Date().getFullYear();
   <div class="footer-container container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="footer-logo">CNC <span>Mastery</span></a>
+        <a href={baseUrl('/')} class="footer-logo">CNC <span>Mastery</span></a>
         <p class="footer-tagline">Learn CNC machining online — from blueprint to finished part. No school required.</p>
       </div>
 
       <div class="footer-links">
         <h3 class="footer-heading">Course</h3>
         <ul>
-          <li><a href="/syllabus">Full Syllabus</a></li>
-          <li><a href="/module/01-shop-safety">Start Learning</a></li>
-          <li><a href="/reference/gcode">G-Code Reference</a></li>
-          <li><a href="/reference/formulas">Shop Math Formulas</a></li>
+          <li><a href={baseUrl('/syllabus')}>Full Syllabus</a></li>
+          <li><a href={baseUrl('/module/01-shop-safety')}>Start Learning</a></li>
+          <li><a href={baseUrl('/reference/gcode')}>G-Code Reference</a></li>
+          <li><a href={baseUrl('/reference/formulas')}>Shop Math Formulas</a></li>
         </ul>
       </div>
 
       <div class="footer-links">
         <h3 class="footer-heading">More</h3>
         <ul>
-          <li><a href="/resources">Resources & Books</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href={baseUrl('/resources')}>Resources & Books</a></li>
+          <li><a href={baseUrl('/about')}>About</a></li>
         </ul>
       </div>
     </div>

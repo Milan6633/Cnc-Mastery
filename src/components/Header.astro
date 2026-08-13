@@ -1,11 +1,12 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { baseUrl } from '@utils/lessons';
 
 const navLinks = [
-  { href: '/syllabus', label: 'Syllabus' },
-  { href: '/reference/gcode', label: 'G-Code Reference' },
-  { href: '/resources', label: 'Resources' },
-  { href: '/about', label: 'About' },
+  { href: baseUrl('/syllabus'), label: 'Syllabus' },
+  { href: baseUrl('/reference/gcode'), label: 'G-Code Reference' },
+  { href: baseUrl('/resources'), label: 'Resources' },
+  { href: baseUrl('/about'), label: 'About' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -13,7 +14,7 @@ const currentPath = Astro.url.pathname;
 
 <header class="site-header">
   <div class="header-container container">
-    <a href="/" class="logo" aria-label="CNC Mastery — Home">
+    <a href={baseUrl('/')} class="logo" aria-label="CNC Mastery — Home">
       <svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2"/>
         <line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>

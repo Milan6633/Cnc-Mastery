@@ -1,6 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { getAllModules, getLessonsByModule, getAdjacentLessons, getLessonUrl, getModuleUrl, levelInfo } from '@utils/lessons';
+import { getAllModules, getLessonsByModule, getAdjacentLessons, getLessonUrl, getModuleUrl, levelInfo, baseUrl } from '@utils/lessons';
 
 interface Props {
   title: string;
@@ -58,8 +58,8 @@ const level = currentModule ? levelInfo[currentModule.data.level] : null;
       <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>
-          <li><a href="/">Home</a></li>
-          <li><a href="/syllabus">Syllabus</a></li>
+          <li><a href={baseUrl('/')}>Home</a></li>
+          <li><a href={baseUrl('/syllabus')}>Syllabus</a></li>
           {currentModule && <li><a href={getModuleUrl(currentModule.data.slug)}>{currentModule.data.title}</a></li>}
           <li aria-current="page">{title}</li>
         </ol>
@@ -107,7 +107,7 @@ const level = currentModule ? levelInfo[currentModule.data.level] : null;
             <span class="lesson-nav-title">{next.data.title}</span>
           </a>
         ) : (
-          <a href="/syllabus" class="lesson-nav-card next">
+          <a href={baseUrl('/syllabus')} class="lesson-nav-card next">
             <span class="lesson-nav-label">Completed! →</span>
             <span class="lesson-nav-title">Back to Syllabus</span>
           </a>

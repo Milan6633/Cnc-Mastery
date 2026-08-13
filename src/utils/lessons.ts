@@ -41,13 +41,19 @@ export async function getAdjacentLessons(moduleSlug: string, lessonNumber: numbe
   return { prev, next };
 }
 
+/** Prepend the Astro base path to a root-relative URL. */
+export function baseUrl(path: string) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}${path}`;
+}
+
 export function getLessonUrl(lesson: { data: { module: string }; id: string }) {
   // The id from glob loader is the filename without extension (e.g., "01-shop-safety/01-osha-standards")
-  return `/module/${lesson.id}`;
+  return baseUrl(`/module/${lesson.id}`);
 }
 
 export function getModuleUrl(moduleSlug: string) {
-  return `/module/${moduleSlug}`;
+  return baseUrl(`/module/${moduleSlug}`);
 }
 
 export const levelInfo: Record<string, { name: string; color: string; badgeClass: string }> = {

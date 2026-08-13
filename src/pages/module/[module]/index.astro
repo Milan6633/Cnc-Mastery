@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { getLessonUrl, levelInfo } from '@utils/lessons';
+import { getLessonUrl, levelInfo, baseUrl } from '@utils/lessons';
 
 export async function getStaticPaths() {
   const allModules = await getCollection('modules');
@@ -27,8 +27,8 @@ const level = levelInfo[mod.data.level];
   <div class="module-page container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>
-        <li><a href="/">Home</a></li>
-        <li><a href="/syllabus">Syllabus</a></li>
+        <li><a href={baseUrl('/')}>Home</a></li>
+        <li><a href={baseUrl('/syllabus')}>Syllabus</a></li>
         <li aria-current="page">{mod.data.title}</li>
       </ol>
     </nav>
