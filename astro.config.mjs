@@ -7,7 +7,7 @@ import remarkCallouts from './src/utils/remark-callouts.mjs';
 
 export default defineConfig({
   site: 'https://milan6633.github.io',
-  base: '/cnc-mastery',
+  base: '/Cnc-Mastery',
   integrations: [sitemap()],
   markdown: {
     processor: unified({
