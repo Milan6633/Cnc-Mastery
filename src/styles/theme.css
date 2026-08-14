@@ -1,145 +1,147 @@
 /* ============================================
    CNC Mastery — Theme System
-   Direction: "Pendant" — a machine control panel at night.
-   Amber DRO readout on machine gray. Hard edges, matte surfaces.
-   Level colors follow steel tempering: cold → straw → orange → red-hot.
+   Direction: "Broadsheet" — editorial precision, DMG Mori-inspired
+   clean authority. Warm neutral ground, teal accent, serif typography.
+   Level colours follow a teal ramp: steel → teal → deep → warm.
    ============================================ */
 
-/* --- Dark Theme (Default) --- */
+/* --- Light Theme (Default) --- */
 :root {
-  /* Chassis: matte machine enclosure, not pure black */
-  --color-bg-primary: #101317;
-  --color-bg-secondary: #171b21;
-  --color-bg-tertiary: #1f242c;
-  --color-bg-code: #14181e;
-  --color-bg-elevated: #262c35;
-
-  /* Chalk on steel */
-  --color-text-primary: #e7ebf0;
-  --color-text-secondary: #8b95a3;
-  /* Any third grey dim enough to read as a further step down fails 4.5:1 on
-     these panels, so tertiary sits close to secondary and the hierarchy is
-     carried by size, weight, and tracking instead (see .label). */
-  --color-text-tertiary: #828c99;
-
-  /* Signal colors — these are machine states, not decoration */
-  --color-accent-primary: #ffb020;   /* DRO amber — the signature */
-  --color-accent-hover: #ffc75a;
-  --color-on-accent: #14181e;        /* label colour on an amber fill */
-  --color-accent-secondary: #35d07f; /* cycle start green */
-  --color-accent-warning: #ff7a1a;   /* feed hold orange */
-  --color-accent-danger: #ff453a;    /* E-stop red */
-
-  /* Scribed hairlines */
-  --color-border: #262c35;
-  --color-border-active: #ffb020;
-
-  /* Level colors — steel tempering ramp */
-  --color-level-1: #8b95a3;  /* cold steel */
-  --color-level-2: #ffb020;  /* straw / amber */
-  --color-level-3: #ff7a1a;  /* orange heat */
-  --color-level-4: #ff453a;  /* red hot */
-
-  /* Callout backgrounds */
-  --color-callout-info-bg: rgba(255, 176, 32, 0.08);
-  --color-callout-info-border: #ffb020;
-  --color-callout-warning-bg: rgba(255, 69, 58, 0.08);
-  --color-callout-warning-border: #ff453a;
-  --color-callout-tip-bg: rgba(53, 208, 127, 0.08);
-  --color-callout-tip-border: #35d07f;
-
-  /* Recessed panel and glow — DRO signature */
-  --color-bg-inset: #0a0d11;
-  --color-accent-glow: rgba(255, 176, 32, 0.12);
-
-  /* Panels are matte — no glow in dark mode */
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-}
-
-/* --- Light Theme: the same panel under shop lighting --- */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --color-bg-primary: #fbfaf7;
-    --color-bg-secondary: #f3f1ec;
-    --color-bg-tertiary: #eae7e0;
-    --color-bg-code: #fdfcfa;
-    --color-bg-elevated: #ffffff;
-
-    --color-text-primary: #16191d;
-    --color-text-secondary: #59616c;
-    --color-text-tertiary: #5f6874;
-
-    /* Amber needs to darken to stay legible on light ground */
-    --color-accent-primary: #a35c00;
-    --color-accent-hover: #7d4600;
-    --color-on-accent: #ffffff;
-    --color-accent-secondary: #12794a;
-    --color-accent-warning: #b34700;
-    --color-accent-danger: #c22a20;
-
-    --color-border: #dcd8cf;
-    --color-border-active: #a35c00;
-
-    --color-level-1: #59616c;
-    --color-level-2: #a35c00;
-    --color-level-3: #b34700;
-    --color-level-4: #c22a20;
-
-    --color-callout-info-bg: rgba(163, 92, 0, 0.07);
-    --color-callout-info-border: #a35c00;
-    --color-callout-warning-bg: rgba(194, 42, 32, 0.07);
-    --color-callout-warning-border: #c22a20;
-    --color-callout-tip-bg: rgba(18, 121, 74, 0.07);
-    --color-callout-tip-border: #12794a;
-
-    --color-bg-inset: #e5e2db;
-    --color-accent-glow: rgba(163, 92, 0, 0.10);
-
-    --shadow-sm: 0 1px 0 rgba(22, 25, 29, 0.06);
-    --shadow-md: 0 1px 0 rgba(22, 25, 29, 0.1);
-    --shadow-lg: 0 2px 0 rgba(22, 25, 29, 0.12);
-  }
-}
-
-:root[data-theme="light"] {
-  --color-bg-primary: #fbfaf7;
-  --color-bg-secondary: #f3f1ec;
-  --color-bg-tertiary: #eae7e0;
-  --color-bg-code: #fdfcfa;
+  /* Warm paper ground */
+  --color-bg-primary: #f3f2f0;
+  --color-bg-secondary: #eae9e7;
+  --color-bg-tertiary: #e0dfdc;
+  --color-bg-code: #f8f7f5;
   --color-bg-elevated: #ffffff;
 
-  --color-text-primary: #16191d;
-  --color-text-secondary: #59616c;
-  --color-text-tertiary: #5f6874;
+  /* Warm near-black ink */
+  --color-text-primary: #201e1d;
+  --color-text-secondary: #5c5856;
+  --color-text-tertiary: #7a7674;
 
-  --color-accent-primary: #a35c00;
-  --color-accent-hover: #7d4600;
+  /* Signal colours — teal editorial accent */
+  --color-accent-primary: #0088b0;
+  --color-accent-hover: #006786;
   --color-on-accent: #ffffff;
   --color-accent-secondary: #12794a;
   --color-accent-warning: #b34700;
   --color-accent-danger: #c22a20;
+  --color-accent-spot: #006786;     /* module numbers, spot figures */
 
-  --color-border: #dcd8cf;
-  --color-border-active: #a35c00;
+  /* Divider — semi-transparent ink */
+  --color-border: rgba(32, 30, 29, 0.14);
+  --color-border-active: #0088b0;
+  --color-border-heavy: #201e1d;    /* double-rule rails */
 
-  --color-level-1: #59616c;
-  --color-level-2: #a35c00;
-  --color-level-3: #b34700;
-  --color-level-4: #c22a20;
+  /* Level colours — teal authority ramp */
+  --color-level-1: #5c5856;  /* steel grey */
+  --color-level-2: #0088b0;  /* teal */
+  --color-level-3: #b34700;  /* deep orange */
+  --color-level-4: #c22a20;  /* warm red */
 
-  --color-callout-info-bg: rgba(163, 92, 0, 0.07);
-  --color-callout-info-border: #a35c00;
+  /* Callout backgrounds */
+  --color-callout-info-bg: rgba(0, 136, 176, 0.07);
+  --color-callout-info-border: #0088b0;
   --color-callout-warning-bg: rgba(194, 42, 32, 0.07);
   --color-callout-warning-border: #c22a20;
   --color-callout-tip-bg: rgba(18, 121, 74, 0.07);
   --color-callout-tip-border: #12794a;
 
-  --color-bg-inset: #e5e2db;
-  --color-accent-glow: rgba(163, 92, 0, 0.10);
+  /* Stat rail and DRO inset */
+  --color-bg-inset: #e5e3e0;
+  --color-accent-glow: rgba(0, 136, 176, 0.08);
 
-  --shadow-sm: 0 1px 0 rgba(22, 25, 29, 0.06);
-  --shadow-md: 0 1px 0 rgba(22, 25, 29, 0.1);
-  --shadow-lg: 0 2px 0 rgba(22, 25, 29, 0.12);
+  /* Subtle editorial shadows */
+  --shadow-sm: 0 1px 2px rgba(32, 30, 29, 0.08);
+  --shadow-md: 0 3px 10px rgba(32, 30, 29, 0.10);
+  --shadow-lg: 0 12px 32px rgba(32, 30, 29, 0.14);
+}
+
+/* --- Dark Theme --- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg-primary: #1a1917;
+    --color-bg-secondary: #232220;
+    --color-bg-tertiary: #2d2c29;
+    --color-bg-code: #1e1d1b;
+    --color-bg-elevated: #302f2c;
+
+    --color-text-primary: #e8e5e2;
+    --color-text-secondary: #9b9795;
+    --color-text-tertiary: #807c7a;
+
+    --color-accent-primary: #3db8df;
+    --color-accent-hover: #62c5ee;
+    --color-on-accent: #1a1917;
+    --color-accent-secondary: #35d07f;
+    --color-accent-warning: #ff7a1a;
+    --color-accent-danger: #ff453a;
+    --color-accent-spot: #3db8df;
+
+    --color-border: rgba(232, 229, 226, 0.12);
+    --color-border-active: #3db8df;
+    --color-border-heavy: #e8e5e2;
+
+    --color-level-1: #9b9795;
+    --color-level-2: #3db8df;
+    --color-level-3: #ff7a1a;
+    --color-level-4: #ff453a;
+
+    --color-callout-info-bg: rgba(61, 184, 223, 0.08);
+    --color-callout-info-border: #3db8df;
+    --color-callout-warning-bg: rgba(255, 69, 58, 0.08);
+    --color-callout-warning-border: #ff453a;
+    --color-callout-tip-bg: rgba(53, 208, 127, 0.08);
+    --color-callout-tip-border: #35d07f;
+
+    --color-bg-inset: #141312;
+    --color-accent-glow: rgba(61, 184, 223, 0.12);
+
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-bg-primary: #1a1917;
+  --color-bg-secondary: #232220;
+  --color-bg-tertiary: #2d2c29;
+  --color-bg-code: #1e1d1b;
+  --color-bg-elevated: #302f2c;
+
+  --color-text-primary: #e8e5e2;
+  --color-text-secondary: #9b9795;
+  --color-text-tertiary: #807c7a;
+
+  --color-accent-primary: #3db8df;
+  --color-accent-hover: #62c5ee;
+  --color-on-accent: #1a1917;
+  --color-accent-secondary: #35d07f;
+  --color-accent-warning: #ff7a1a;
+  --color-accent-danger: #ff453a;
+  --color-accent-spot: #3db8df;
+
+  --color-border: rgba(232, 229, 226, 0.12);
+  --color-border-active: #3db8df;
+  --color-border-heavy: #e8e5e2;
+
+  --color-level-1: #9b9795;
+  --color-level-2: #3db8df;
+  --color-level-3: #ff7a1a;
+  --color-level-4: #ff453a;
+
+  --color-callout-info-bg: rgba(61, 184, 223, 0.08);
+  --color-callout-info-border: #3db8df;
+  --color-callout-warning-bg: rgba(255, 69, 58, 0.08);
+  --color-callout-warning-border: #ff453a;
+  --color-callout-tip-bg: rgba(53, 208, 127, 0.08);
+  --color-callout-tip-border: #35d07f;
+
+  --color-bg-inset: #141312;
+  --color-accent-glow: rgba(61, 184, 223, 0.12);
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 }
