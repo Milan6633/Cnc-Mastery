@@ -52,6 +52,9 @@ const levels = [
 const features = [
   {
     icon: 'sheet',
+    panel: 'A',
+    zone: 'Curriculum',
+    zoneFi: 'Opetussuunnitelma',
     title: 'Complete Syllabus',
     titleFi: 'Täysi opetussuunnitelma',
     description:
@@ -61,6 +64,9 @@ const features = [
   },
   {
     icon: 'toolpath',
+    panel: 'B',
+    zone: 'Programming',
+    zoneFi: 'Ohjelmointi',
     title: 'G-Code & CAM',
     titleFi: 'G-koodi ja CAM',
     description:
@@ -70,6 +76,9 @@ const features = [
   },
   {
     icon: 'dimension',
+    panel: 'C',
+    zone: 'Metrology',
+    zoneFi: 'Metrologia',
     title: 'Blueprint & GD&T',
     titleFi: 'Piirustukset ja GD&T',
     description:
@@ -79,6 +88,9 @@ const features = [
   },
   {
     icon: 'stamp',
+    panel: 'D',
+    zone: 'Standards',
+    zoneFi: 'Standardit',
     title: 'Industry Standards',
     titleFi: 'Alan standardit',
     description:
@@ -100,7 +112,11 @@ const readout = [
 <BaseLayout title="Learn CNC Machining Online">
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true">
+      <div class="hero-origin"></div>
+      <span class="hero-axis hero-axis-x">X+</span>
+      <span class="hero-axis hero-axis-y">Y+</span>
+    </div>
     <div class="hero-inner container">
       <p class="hero-eyebrow label">
         <span class="lamp" aria-hidden="true"></span>
@@ -158,7 +174,10 @@ const readout = [
             class="dro-label label"
             data-i18n={`dro.${i}`}
             data-i18n-en={r.field}
-            data-i18n-fi={r.labelFi}>{r.field}</span>
+            data-i18n-fi={r.labelFi}>
+            <span class="dro-dot" aria-hidden="true"></span>
+            {r.field}
+          </span>
           <span class="dro-value readout" data-count={r.value} data-display={r.display}>
             {r.display}
           </span>
@@ -187,6 +206,14 @@ const readout = [
       <div class="features-grid">
         {features.map((feature, i) => (
           <article class="feature-card">
+            <div class="feature-panel-header">
+              <span class="feature-lamp" aria-hidden="true"></span>
+              <span
+                class="feature-panel-label"
+                data-i18n={`feat.p.${i}`}
+                data-i18n-en={`Panel ${feature.panel} · ${feature.zone}`}
+                data-i18n-fi={`Paneeli ${feature.panel} · ${feature.zoneFi}`}>Panel {feature.panel} · {feature.zone}</span>
+            </div>
             <span class="feature-icon" aria-hidden="true">
               {feature.icon === 'sheet' && (
                 <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.25">
@@ -253,7 +280,7 @@ const readout = [
 
       <ol class="levels">
         {levels.map((level, i) => (
-          <li class="level-card" style={`--level-color: ${level.color}`}>
+          <li class="level-card" style={`--level-color: ${level.color}`} data-level={i + 1}>
             <div class="level-top">
               <span class="level-code readout">{level.code}</span>
               <h3
@@ -271,6 +298,7 @@ const readout = [
               <span class="readout">{level.modules}</span>
               <span class="readout">{level.moduleCount} mod</span>
             </p>
+            <span class="level-temp-bar" aria-hidden="true"></span>
           </li>
         ))}
       </ol>
@@ -341,6 +369,33 @@ const readout = [
       };
       requestAnimationFrame(frame);
     });
+
+    // Scroll reveal: axis-homing entrance animation
+    const reveals = document.querySelectorAll<HTMLElement>(
+      '.feature-card, .level-card, .about-card'
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            el.classList.add('revealed');
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    reveals.forEach((el, i) => {
+      // Stagger siblings within the same parent
+      const siblings = Array.from(el.parentElement?.children ?? []);
+      const idx = siblings.indexOf(el);
+      el.style.transitionDelay = `${idx * 60}ms`;
+      el.classList.add('reveal-ready');
+      observer.observe(el);
+    });
   }
 </script>
 
@@ -352,7 +407,7 @@ const readout = [
     overflow: hidden;
   }
 
-  /* Drawing-sheet grid, not a gradient blob */
+  /* Drawing-sheet grid — CNC coordinate system */
   .hero-grid {
     position: absolute;
     inset: 0;
@@ -364,6 +419,59 @@ const readout = [
     mask-image: radial-gradient(ellipse 90% 70% at 20% 0%, #000 20%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse 90% 70% at 20% 0%, #000 20%, transparent 75%);
     pointer-events: none;
+  }
+
+  /* Origin crosshair at first grid intersection */
+  .hero-origin {
+    position: absolute;
+    top: 44px;
+    left: 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-origin::before,
+  .hero-origin::after {
+    content: '';
+    position: absolute;
+    background: var(--color-accent-primary);
+    opacity: 0.3;
+  }
+
+  .hero-origin::before {
+    top: 50%;
+    left: -22px;
+    width: 88px;
+    height: 1px;
+    transform: translateY(-0.5px);
+  }
+
+  .hero-origin::after {
+    left: 50%;
+    top: -22px;
+    width: 1px;
+    height: 88px;
+    transform: translateX(-0.5px);
+  }
+
+  .hero-axis {
+    position: absolute;
+    font-family: var(--font-code);
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-primary);
+    opacity: 0.35;
+  }
+
+  .hero-axis-x {
+    top: calc(44px + 26px);
+    left: calc(44px + 50px);
+  }
+
+  .hero-axis-y {
+    top: calc(44px - 28px);
+    left: calc(44px + 5px);
   }
 
   .hero-inner {
@@ -458,12 +566,29 @@ const readout = [
   .dro {
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-inset);
+    position: relative;
+  }
+
+  /* Scan-line texture — subtle CRT/LCD overlay */
+  .dro::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
   }
 
   .dro-inner {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    position: relative;
   }
 
   @media (min-width: 720px) {
@@ -492,7 +617,18 @@ const readout = [
   }
 
   .dro-label {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .dro-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-primary);
+    opacity: 0.5;
+    flex-shrink: 0;
   }
 
   .dro-value {
@@ -502,6 +638,8 @@ const readout = [
     font-weight: var(--weight-bold);
     line-height: 1;
     color: var(--color-accent-primary);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 20px var(--color-accent-glow);
   }
 
   /* ===== Section furniture ===== */
@@ -553,10 +691,50 @@ const readout = [
     padding: var(--space-8);
     background: var(--color-bg-primary);
     transition: background var(--transition-fast);
+    position: relative;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    transition: background var(--transition-fast);
   }
 
   .feature-card:hover {
     background: var(--color-bg-secondary);
+  }
+
+  .feature-card:hover::before {
+    background: var(--color-accent-primary);
+  }
+
+  .feature-panel-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .feature-lamp {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-secondary);
+    box-shadow: 0 0 0 2px rgba(53, 208, 127, 0.12);
+    flex-shrink: 0;
+  }
+
+  .feature-panel-label {
+    font-family: var(--font-code);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-tertiary);
   }
 
   .feature-icon {
@@ -615,11 +793,61 @@ const readout = [
     border: 1px solid var(--color-border);
     border-top: 3px solid var(--level-color);
     transition: border-color var(--transition-fast), background var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Heat glow — intensifies per level */
+  .level-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .level-card:hover::after {
+    opacity: 1;
+  }
+
+  .level-card[data-level="1"]::after {
+    background: linear-gradient(to bottom, rgba(139, 149, 163, 0.06), transparent);
+  }
+
+  .level-card[data-level="2"]::after {
+    background: linear-gradient(to bottom, rgba(255, 176, 32, 0.10), transparent);
+  }
+
+  .level-card[data-level="3"]::after {
+    background: linear-gradient(to bottom, rgba(255, 122, 26, 0.14), transparent);
+  }
+
+  .level-card[data-level="4"]::after {
+    background: linear-gradient(to bottom, rgba(255, 69, 58, 0.18), transparent);
   }
 
   .level-card:hover {
     background: var(--color-bg-tertiary);
   }
+
+  /* Temperature bar at card bottom — shows progression */
+  .level-temp-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--level-color);
+    border-radius: 1px;
+  }
+
+  .level-card[data-level="1"] .level-temp-bar { width: 25%; }
+  .level-card[data-level="2"] .level-temp-bar { width: 50%; }
+  .level-card[data-level="3"] .level-temp-bar { width: 75%; }
+  .level-card[data-level="4"] .level-temp-bar { width: 100%; }
 
   .level-top {
     display: flex;
@@ -690,5 +918,26 @@ const readout = [
 
   .about-card .btn {
     margin-top: var(--space-6);
+  }
+
+  /* ===== Scroll reveal: axis-homing entrance ===== */
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .reveal-ready.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-ready {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 </style>

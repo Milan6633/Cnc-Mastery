@@ -48,6 +48,10 @@
   --color-callout-tip-bg: rgba(53, 208, 127, 0.08);
   --color-callout-tip-border: #35d07f;
 
+  /* Recessed panel and glow — DRO signature */
+  --color-bg-inset: #0a0d11;
+  --color-accent-glow: rgba(255, 176, 32, 0.12);
+
   /* Panels are matte — no glow in dark mode */
   --shadow-sm: none;
   --shadow-md: none;
@@ -90,6 +94,9 @@
     --color-callout-tip-bg: rgba(18, 121, 74, 0.07);
     --color-callout-tip-border: #12794a;
 
+    --color-bg-inset: #e5e2db;
+    --color-accent-glow: rgba(163, 92, 0, 0.10);
+
     --shadow-sm: 0 1px 0 rgba(22, 25, 29, 0.06);
     --shadow-md: 0 1px 0 rgba(22, 25, 29, 0.1);
     --shadow-lg: 0 2px 0 rgba(22, 25, 29, 0.12);
@@ -128,6 +135,9 @@
   --color-callout-warning-border: #c22a20;
   --color-callout-tip-bg: rgba(18, 121, 74, 0.07);
   --color-callout-tip-border: #12794a;
+
+  --color-bg-inset: #e5e2db;
+  --color-accent-glow: rgba(163, 92, 0, 0.10);
 
   --shadow-sm: 0 1px 0 rgba(22, 25, 29, 0.06);
   --shadow-md: 0 1px 0 rgba(22, 25, 29, 0.1);
