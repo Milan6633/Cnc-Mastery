@@ -135,6 +135,14 @@ const langs = [
     color: var(--color-on-accent);
   }
 
+  /* Roomier touch target on phones — 32x30 was tight for a thumb */
+  @media (max-width: 767px) {
+    .lang-btn {
+      min-width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+
   .lang-btn.active:hover {
     color: var(--color-on-accent);
   }

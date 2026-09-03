@@ -146,9 +146,9 @@ const readout = [
         <span class="lamp" aria-hidden="true"></span>
         <span
           data-i18n="hero.badge"
-          data-i18n-en="Free · Open · No enrolment"
-          data-i18n-fi="Ilmainen · Avoin · Ei ilmoittautumista"
-          data-i18n-hi="निःशुल्क · खुला · कोई नामांकन नहीं">Free · Open · No enrolment</span>
+          data-i18n-en="No tuition. No login. No catch."
+          data-i18n-fi="Ei lukukausimaksua. Ei kirjautumista. Ei yllätyksiä."
+          data-i18n-hi="कोई फीस नहीं. कोई लॉगिन नहीं. कोई शर्त नहीं.">No tuition. No login. No catch.</span>
       </p>
 
       <h1 class="hero-title">
@@ -494,7 +494,23 @@ const readout = [
   }
 
   .lamp {
-    display: none;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent-secondary);
+    box-shadow: 0 0 0 3px var(--color-callout-tip-bg);
+    flex-shrink: 0;
+    animation: lamp-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes lamp-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lamp { animation: none; }
   }
 
   .hero-title {
@@ -887,23 +903,21 @@ const readout = [
     margin-top: 1.75rem;
   }
 
-  /* ===== Scroll reveal ===== */
+  /* ===== Scroll reveal — probe-sweep, not a generic fade-up =====
+     Content is clipped behind a hard edge and swept into view left-to-right,
+     like a measurement sweeping across a readout, rather than fading up. */
   .reveal-ready {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
-      transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.6s cubic-bezier(0.65, 0, 0.35, 1);
   }
 
   .reveal-ready.revealed {
-    opacity: 1;
-    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal-ready {
-      opacity: 1;
-      transform: none;
+      clip-path: none;
       transition: none;
     }
   }

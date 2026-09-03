@@ -17,11 +17,16 @@
   /* Warm near-black ink */
   --color-text-primary: #201e1d;
   --color-text-secondary: #5c5856;
-  --color-text-tertiary: #7a7674;
+  --color-text-tertiary: #645f5d;   /* darkened from #7a7674 — that read under 4.5:1 AA on every bg tier it's used against */
 
-  /* Signal colours — teal editorial accent */
-  --color-accent-primary: #0088b0;
-  --color-accent-hover: #006786;
+  /* Signal colours — teal editorial accent
+     #0088b0 read close/clean visually but only hit ~4.1:1 on white,
+     under the 4.5:1 AA floor for normal text — every button and link
+     using it as the sole foreground colour was technically failing.
+     #006786 (was the hover shade) clears AA everywhere it's used as text
+     or button fill, so it's now the base; hover goes one step darker. */
+  --color-accent-primary: #006786;
+  --color-accent-hover: #00516a;
   --color-on-accent: #ffffff;
   --color-accent-secondary: #12794a;
   --color-accent-warning: #b34700;
@@ -33,9 +38,11 @@
   --color-border-active: #0088b0;
   --color-border-heavy: #201e1d;    /* double-rule rails */
 
-  /* Level colours — teal authority ramp */
+  /* Level colours — teal authority ramp
+     level-2 shares the same AA-safe teal as --color-accent-primary above —
+     both carry white badge/button text and need the 4.5:1 floor. */
   --color-level-1: #5c5856;  /* steel grey */
-  --color-level-2: #0088b0;  /* teal */
+  --color-level-2: #006786;  /* teal */
   --color-level-3: #b34700;  /* deep orange */
   --color-level-4: #c22a20;  /* warm red */
 
@@ -68,7 +75,7 @@
 
     --color-text-primary: #e8e5e2;
     --color-text-secondary: #9b9795;
-    --color-text-tertiary: #807c7a;
+    --color-text-tertiary: #979290;   /* darkened from #807c7a for the same AA reason as light theme */
 
     --color-accent-primary: #3db8df;
     --color-accent-hover: #62c5ee;
@@ -112,7 +119,7 @@
 
   --color-text-primary: #e8e5e2;
   --color-text-secondary: #9b9795;
-  --color-text-tertiary: #807c7a;
+  --color-text-tertiary: #979290;   /* darkened from #807c7a for the same AA reason as light theme */
 
   --color-accent-primary: #3db8df;
   --color-accent-hover: #62c5ee;
