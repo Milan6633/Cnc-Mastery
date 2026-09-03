@@ -4,6 +4,15 @@
    system sans for utility, JetBrains Mono for data and code.
    ============================================ */
 
+/* Hindi (Devanagari script): Source Serif 4 has no Devanagari glyphs, so
+   swap body/heading text to Noto Sans Devanagari while data-lang="hi".
+   :where() keeps this at zero specificity so .label/.readout/.prose code
+   (JetBrains Mono UI numerals and lesson G-code, defined later in this file)
+   still win the cascade and are left untouched regardless of language. */
+:root[data-lang='hi'] :where(body, h1, h2, h3, h4, h5, h6, p, a, span, button, li) {
+  font-family: var(--font-devanagari);
+}
+
 :root {
   /* Font stacks
      Display + Body: Source Serif 4 — editorial authority, DMG Mori precision.
@@ -12,6 +21,7 @@
   --font-code: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
   --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-heading: var(--font-display);
+  --font-devanagari: 'Noto Sans Devanagari', 'Source Serif 4', Georgia, sans-serif;
 
   /* Type scale — editorial precision */
   --text-xs: 0.75rem;
