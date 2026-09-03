@@ -7,45 +7,53 @@ const levels = [
     code: 'L1',
     name: 'Foundation',
     nameFi: 'Perusta',
+    nameHi: 'आधार',
     color: 'var(--color-level-1)',
     badgeClass: 'badge-foundation',
     modules: '01–05',
     moduleCount: 5,
     description: 'Safety, shop math, blueprints, measurement, materials science',
     descFi: 'Turvallisuus, konepajamatematiikka, piirustukset, mittaus, materiaalioppi',
+    descHi: 'सुरक्षा, दुकान गणित, ब्लूप्रिंट, मापन, सामग्री विज्ञान',
   },
   {
     code: 'L2',
     name: 'Core CNC',
     nameFi: 'CNC:n ydin',
+    nameHi: 'मुख्य सीएनसी',
     color: 'var(--color-level-2)',
     badgeClass: 'badge-core',
     modules: '06–11',
     moduleCount: 6,
     description: 'Manual machining, cutting tools, workholding, G-code programming',
     descFi: 'Manuaalikoneistus, terät, kiinnittimet, G-koodin ohjelmointi',
+    descHi: 'मैनुअल मशीनिंग, कटिंग टूल, वर्कहोल्डिंग, जी-कोड प्रोग्रामिंग',
   },
   {
     code: 'L3',
     name: 'Advanced',
     nameFi: 'Edistynyt',
+    nameHi: 'उन्नत',
     color: 'var(--color-level-3)',
     badgeClass: 'badge-advanced',
     modules: '12–17',
     moduleCount: 6,
     description: 'CAD/CAM, GD&T, setup optimization, quality systems',
     descFi: 'CAD/CAM, GD&T, asetusten optimointi, laatujärjestelmät',
+    descHi: 'CAD/CAM, GD&T, सेटअप अनुकूलन, गुणवत्ता प्रणाली',
   },
   {
     code: 'L4',
     name: 'Specialist',
     nameFi: 'Asiantuntija',
+    nameHi: 'विशेषज्ञ',
     color: 'var(--color-level-4)',
     badgeClass: 'badge-specialist',
     modules: '18–20',
     moduleCount: 3,
     description: '5-axis machining, macro programming, Industry 4.0',
     descFi: '5-akselinen koneistus, makro-ohjelmointi, Teollisuus 4.0',
+    descHi: '5-अक्ष मशीनिंग, मैक्रो प्रोग्रामिंग, उद्योग 4.0',
   },
 ];
 
@@ -55,57 +63,73 @@ const features = [
     panel: 'A',
     zone: 'Curriculum',
     zoneFi: 'Opetussuunnitelma',
+    zoneHi: 'पाठ्यक्रम',
     title: 'Complete Syllabus',
     titleFi: 'Täysi opetussuunnitelma',
+    titleHi: 'पूर्ण पाठ्यक्रम',
     description:
       '20 modules covering everything from shop safety to 5-axis machining — structured like a professional training program.',
     descFi:
       '20 moduulia työturvallisuudesta 5-akseliseen koneistukseen — rakennettu kuten ammatillinen koulutusohjelma.',
+    descHi:
+      'दुकान सुरक्षा से लेकर 5-अक्ष मशीनिंग तक सब कुछ कवर करने वाले 20 मॉड्यूल — एक पेशेवर प्रशिक्षण कार्यक्रम की तरह संरचित।',
   },
   {
     icon: 'toolpath',
     panel: 'B',
     zone: 'Programming',
     zoneFi: 'Ohjelmointi',
+    zoneHi: 'प्रोग्रामिंग',
     title: 'G-Code & CAM',
     titleFi: 'G-koodi ja CAM',
+    titleHi: 'जी-कोड और सीएएम',
     description:
       'Write G-code from scratch, then move to CAD/CAM with Fusion 360 and Mastercam toolpath strategies.',
     descFi:
       'Kirjoita G-koodia alusta alkaen ja siirry sitten CAD/CAM-työhön Fusion 360:n ja Mastercamin ratastrategioilla.',
+    descHi:
+      'शुरू से जी-कोड लिखें, फिर Fusion 360 और Mastercam टूलपाथ रणनीतियों के साथ CAD/CAM की ओर बढ़ें।',
   },
   {
     icon: 'dimension',
     panel: 'C',
     zone: 'Metrology',
     zoneFi: 'Metrologia',
+    zoneHi: 'मापविज्ञान',
     title: 'Blueprint & GD&T',
     titleFi: 'Piirustukset ja GD&T',
+    titleHi: 'ब्लूप्रिंट और GD&T',
     description:
       'Read engineering drawings, interpret GD&T callouts, and apply tolerances the way the shop floor expects.',
     descFi:
       'Lue teknisiä piirustuksia, tulkitse GD&T-merkinnät ja sovella toleransseja kuten konepajassa odotetaan.',
+    descHi:
+      'इंजीनियरिंग ड्रॉइंग पढ़ें, GD&T कॉलआउट की व्याख्या करें, और वर्कशॉप में अपेक्षित तरीके से टॉलरेंस लागू करें।',
   },
   {
     icon: 'stamp',
     panel: 'D',
     zone: 'Standards',
     zoneFi: 'Standardit',
+    zoneHi: 'मानक',
     title: 'Industry Standards',
     titleFi: 'Alan standardit',
+    titleHi: 'उद्योग मानक',
     description:
       'Curriculum aligned with NIMS certifications, Haas training, MIT OCW, and real community college programs.',
     descFi:
       'Opetussuunnitelma noudattaa NIMS-sertifiointeja, Haas-koulutusta, MIT OCW:tä ja oikeita oppilaitosohjelmia.',
+    descHi:
+      'पाठ्यक्रम NIMS प्रमाणपत्रों, Haas प्रशिक्षण, MIT OCW, और वास्तविक कम्युनिटी कॉलेज कार्यक्रमों के अनुरूप है।',
   },
 ];
 
 // DRO fields — the hero readout. Values are counted up on load.
 const readout = [
-  { field: 'MODULES', value: 20, display: '20', labelFi: 'MODUULIA' },
-  { field: 'LEVELS', value: 4, display: '04', labelFi: 'TASOA' },
-  { field: 'LESSONS', value: 127, display: '127', labelFi: 'OPPITUNTIA' },
-  { field: 'COST', value: 0, display: '0.00', labelFi: 'HINTA' },
+  { field: 'MODULES', value: 20, display: '20', labelFi: 'MODUULIA', labelHi: 'मॉड्यूल' },
+  { field: 'LEVELS', value: 4, display: '04', labelFi: 'TASOA', labelHi: 'स्तर' },
+  { field: 'LESSONS', value: 127, display: '127', labelFi: 'OPPITUNTIA', labelHi: 'पाठ' },
+  { field: 'COST', value: 0, display: '0.00', labelFi: 'HINTA', labelHi: 'लागत' },
 ];
 ---
 
@@ -123,26 +147,30 @@ const readout = [
         <span
           data-i18n="hero.badge"
           data-i18n-en="Free · Open · No enrolment"
-          data-i18n-fi="Ilmainen · Avoin · Ei ilmoittautumista">Free · Open · No enrolment</span>
+          data-i18n-fi="Ilmainen · Avoin · Ei ilmoittautumista"
+          data-i18n-hi="निःशुल्क · खुला · कोई नामांकन नहीं">Free · Open · No enrolment</span>
       </p>
 
       <h1 class="hero-title">
         <span
           data-i18n="hero.title1"
           data-i18n-en="Master CNC machining"
-          data-i18n-fi="Hallitse CNC-koneistus">Master CNC machining</span><br />
+          data-i18n-fi="Hallitse CNC-koneistus"
+          data-i18n-hi="सीएनसी मशीनिंग में महारत हासिल करें">Master CNC machining</span><br />
         <span
           class="hero-title-accent"
           data-i18n="hero.title2"
           data-i18n-en="without three years of school"
-          data-i18n-fi="ilman kolmen vuoden koulua">without three years of school</span>
+          data-i18n-fi="ilman kolmen vuoden koulua"
+          data-i18n-hi="बिना तीन साल की पढ़ाई के">without three years of school</span>
       </h1>
 
       <p
         class="hero-description"
         data-i18n="hero.desc"
         data-i18n-en="A full curriculum, in order, from shop safety to 5-axis programming. Built from NIMS, Haas, MIT OCW, and the training programmes shops actually hire from."
-        data-i18n-fi="Täysi opetussuunnitelma järjestyksessä työturvallisuudesta 5-akseliseen ohjelmointiin. Rakennettu NIMS:n, Haasin, MIT OCW:n ja niiden ohjelmien pohjalta, joista konepajat oikeasti palkkaavat.">
+        data-i18n-fi="Täysi opetussuunnitelma järjestyksessä työturvallisuudesta 5-akseliseen ohjelmointiin. Rakennettu NIMS:n, Haasin, MIT OCW:n ja niiden ohjelmien pohjalta, joista konepajat oikeasti palkkaavat."
+        data-i18n-hi="दुकान सुरक्षा से लेकर 5-अक्ष प्रोग्रामिंग तक, क्रम में एक पूर्ण पाठ्यक्रम। NIMS, Haas, MIT OCW, और उन प्रशिक्षण कार्यक्रमों से बनाया गया है जिनसे वर्कशॉप वास्तव में भर्ती करती हैं।">
         A full curriculum, in order, from shop safety to 5-axis programming.
         Built from NIMS, Haas, MIT&nbsp;OCW, and the training programmes shops
         actually hire from.
@@ -154,13 +182,15 @@ const readout = [
           class="btn btn-primary"
           data-i18n="hero.cta2"
           data-i18n-en="Start module 01"
-          data-i18n-fi="Aloita moduuli 01">Start module 01</a>
+          data-i18n-fi="Aloita moduuli 01"
+          data-i18n-hi="मॉड्यूल 01 शुरू करें">Start module 01</a>
         <a
           href={baseUrl('/syllabus')}
           class="btn btn-secondary"
           data-i18n="hero.cta1"
           data-i18n-en="View full syllabus"
-          data-i18n-fi="Katso opetussuunnitelma">View full syllabus</a>
+          data-i18n-fi="Katso opetussuunnitelma"
+          data-i18n-hi="पूरा पाठ्यक्रम देखें">View full syllabus</a>
       </div>
 
       <div class="hero-gallery">
@@ -197,7 +227,8 @@ const readout = [
             class="dro-label label"
             data-i18n={`dro.${i}`}
             data-i18n-en={r.field}
-            data-i18n-fi={r.labelFi}>
+            data-i18n-fi={r.labelFi}
+            data-i18n-hi={r.labelHi}>
             <span class="dro-dot" aria-hidden="true"></span>
             {r.field}
           </span>
@@ -212,17 +243,19 @@ const readout = [
   <!-- Features -->
   <section class="features">
     <div class="container">
-      <p class="section-eyebrow label" data-i18n="features.eyebrow" data-i18n-en="What you get" data-i18n-fi="Mitä saat">What you get</p>
+      <p class="section-eyebrow label" data-i18n="features.eyebrow" data-i18n-en="What you get" data-i18n-fi="Mitä saat" data-i18n-hi="आपको क्या मिलेगा">What you get</p>
       <h2
         class="section-title"
         data-i18n="features.title"
         data-i18n-en="Everything you need to learn CNC"
-        data-i18n-fi="Kaikki mitä tarvitset CNC:n oppimiseen">Everything you need to learn CNC</h2>
+        data-i18n-fi="Kaikki mitä tarvitset CNC:n oppimiseen"
+        data-i18n-hi="सीएनसी सीखने के लिए आपको जो कुछ चाहिए">Everything you need to learn CNC</h2>
       <p
         class="section-subtitle"
         data-i18n="features.sub"
         data-i18n-en="No prior experience required. Start at the basics and work up to specialist work."
-        data-i18n-fi="Aiempaa kokemusta ei tarvita. Aloita perusteista ja etene asiantuntijatasolle.">
+        data-i18n-fi="Aiempaa kokemusta ei tarvita. Aloita perusteista ja etene asiantuntijatasolle."
+        data-i18n-hi="पूर्व अनुभव की आवश्यकता नहीं। बुनियादी बातों से शुरू करें और विशेषज्ञ स्तर तक पहुंचें।">
         No prior experience required. Start at the basics and work up to specialist work.
       </p>
 
@@ -235,7 +268,8 @@ const readout = [
                 class="feature-panel-label"
                 data-i18n={`feat.p.${i}`}
                 data-i18n-en={`Panel ${feature.panel} · ${feature.zone}`}
-                data-i18n-fi={`Paneeli ${feature.panel} · ${feature.zoneFi}`}>Panel {feature.panel} · {feature.zone}</span>
+                data-i18n-fi={`Paneeli ${feature.panel} · ${feature.zoneFi}`}
+                data-i18n-hi={`पैनल ${feature.panel} · ${feature.zoneHi}`}>Panel {feature.panel} · {feature.zone}</span>
             </div>
             <span class="feature-icon" aria-hidden="true">
               {feature.icon === 'sheet' && (
@@ -272,12 +306,14 @@ const readout = [
               class="feature-title"
               data-i18n={`feat.t.${i}`}
               data-i18n-en={feature.title}
-              data-i18n-fi={feature.titleFi}>{feature.title}</h3>
+              data-i18n-fi={feature.titleFi}
+              data-i18n-hi={feature.titleHi}>{feature.title}</h3>
             <p
               class="feature-description"
               data-i18n={`feat.d.${i}`}
               data-i18n-en={feature.description}
-              data-i18n-fi={feature.descFi}>{feature.description}</p>
+              data-i18n-fi={feature.descFi}
+              data-i18n-hi={feature.descHi}>{feature.description}</p>
           </article>
         ))}
       </div>
@@ -287,17 +323,19 @@ const readout = [
   <!-- Curriculum: the tempering ramp -->
   <section class="curriculum">
     <div class="container">
-      <p class="section-eyebrow label" data-i18n="curr.eyebrow" data-i18n-en="The path" data-i18n-fi="Polku">The path</p>
+      <p class="section-eyebrow label" data-i18n="curr.eyebrow" data-i18n-en="The path" data-i18n-fi="Polku" data-i18n-hi="मार्ग">The path</p>
       <h2
         class="section-title"
         data-i18n="curr.title"
         data-i18n-en="Four levels, twenty modules"
-        data-i18n-fi="Neljä tasoa, kaksikymmentä moduulia">Four levels, twenty modules</h2>
+        data-i18n-fi="Neljä tasoa, kaksikymmentä moduulia"
+        data-i18n-hi="चार स्तर, बीस मॉड्यूल">Four levels, twenty modules</h2>
       <p
         class="section-subtitle"
         data-i18n="curr.sub"
         data-i18n-en="Levels run cold to hot, the way steel colours as it tempers. Start at L1 and work up."
-        data-i18n-fi="Tasot etenevät kylmästä kuumaan, kuten teräs värjäytyy päästökarkaisussa. Aloita L1:stä ja etene ylöspäin.">
+        data-i18n-fi="Tasot etenevät kylmästä kuumaan, kuten teräs värjäytyy päästökarkaisussa. Aloita L1:stä ja etene ylöspäin."
+        data-i18n-hi="स्तर ठंडे से गर्म की ओर बढ़ते हैं, जैसे टेम्परिंग के दौरान स्टील का रंग बदलता है। L1 से शुरू करें और ऊपर बढ़ें।">
         Levels run cold to hot, the way steel colours as it tempers. Start at L1 and work up.
       </p>
 
@@ -310,13 +348,15 @@ const readout = [
                 class="level-name"
                 data-i18n={`lvl.${i}`}
                 data-i18n-en={level.name}
-                data-i18n-fi={level.nameFi}>{level.name}</h3>
+                data-i18n-fi={level.nameFi}
+                data-i18n-hi={level.nameHi}>{level.name}</h3>
             </div>
             <p
               class="level-description"
               data-i18n={`lvl.d.${i}`}
               data-i18n-en={level.description}
-              data-i18n-fi={level.descFi}>{level.description}</p>
+              data-i18n-fi={level.descFi}
+              data-i18n-hi={level.descHi}>{level.description}</p>
             <p class="level-meta label">
               <span class="readout">{level.modules}</span>
               <span class="readout">{level.moduleCount} mod</span>
@@ -332,7 +372,8 @@ const readout = [
           class="btn btn-primary"
           data-i18n="curr.cta"
           data-i18n-en="Explore full curriculum"
-          data-i18n-fi="Tutustu opetussuunnitelmaan">Explore full curriculum</a>
+          data-i18n-fi="Tutustu opetussuunnitelmaan"
+          data-i18n-hi="पूरा पाठ्यक्रम देखें">Explore full curriculum</a>
       </div>
     </div>
   </section>
@@ -341,17 +382,19 @@ const readout = [
   <section class="about">
     <div class="container container-md">
       <div class="about-card">
-        <p class="section-eyebrow label" data-i18n="about.eyebrow" data-i18n-en="Who made this" data-i18n-fi="Kuka tämän teki">Who made this</p>
+        <p class="section-eyebrow label" data-i18n="about.eyebrow" data-i18n-en="Who made this" data-i18n-fi="Kuka tämän teki" data-i18n-hi="यह किसने बनाया">Who made this</p>
         <h2
           class="about-title"
           data-i18n="about.title"
           data-i18n-en="Built by a machinist, for machinists"
-          data-i18n-fi="Koneistajan rakentama, koneistajille">Built by a machinist, for machinists</h2>
+          data-i18n-fi="Koneistajan rakentama, koneistajille"
+          data-i18n-hi="एक मशीनिस्ट द्वारा, मशीनिस्टों के लिए बनाया गया">Built by a machinist, for machinists</h2>
         <p
           class="about-text"
           data-i18n="about.text"
           data-i18n-en="I'm Milan — a mechanical engineer and CNC machinist trained at Varia in Finland. I built CNC Mastery because good CNC training shouldn't sit behind tuition fees or twenty-year-old textbooks."
-          data-i18n-fi="Olen Milan — koneinsinööri ja CNC-koneistaja, koulutettu Variassa Suomessa. Rakensin CNC Masteryn, koska hyvän CNC-koulutuksen ei pitäisi olla lukukausimaksujen tai kaksikymmentä vuotta vanhojen oppikirjojen takana.">
+          data-i18n-fi="Olen Milan — koneinsinööri ja CNC-koneistaja, koulutettu Variassa Suomessa. Rakensin CNC Masteryn, koska hyvän CNC-koulutuksen ei pitäisi olla lukukausimaksujen tai kaksikymmentä vuotta vanhojen oppikirjojen takana."
+          data-i18n-hi="मैं मिलन हूं — एक मैकेनिकल इंजीनियर और सीएनसी मशीनिस्ट, जिन्होंने फिनलैंड के Varia से प्रशिक्षण लिया। मैंने CNC Mastery इसलिए बनाया क्योंकि अच्छी सीएनसी शिक्षा को ट्यूशन फीस या बीस साल पुरानी किताबों के पीछे नहीं छिपा होना चाहिए।">
           I'm Milan — a mechanical engineer and CNC machinist trained at Varia in
           Finland. I built CNC Mastery because good CNC training shouldn't sit
           behind tuition fees or twenty-year-old textbooks.
@@ -361,7 +404,8 @@ const readout = [
           class="btn btn-secondary"
           data-i18n="about.cta"
           data-i18n-en="More about the project"
-          data-i18n-fi="Lisää projektista">More about the project</a>
+          data-i18n-fi="Lisää projektista"
+          data-i18n-hi="प्रोजेक्ट के बारे में अधिक जानें">More about the project</a>
       </div>
     </div>
   </section>

@@ -4,10 +4,10 @@ import LanguageToggle from './LanguageToggle.astro';
 import { baseUrl } from '@utils/lessons';
 
 const navLinks = [
-  { href: baseUrl('/syllabus'), label: 'Syllabus', i18nEn: 'Syllabus', i18nFi: 'Opetussuunnitelma' },
-  { href: baseUrl('/reference/gcode'), label: 'G-Code Reference', i18nEn: 'G-Code Reference', i18nFi: 'G-koodi viite' },
-  { href: baseUrl('/resources'), label: 'Resources', i18nEn: 'Resources', i18nFi: 'Resurssit' },
-  { href: baseUrl('/about'), label: 'About', i18nEn: 'About', i18nFi: 'Tietoa' },
+  { href: baseUrl('/syllabus'), label: 'Syllabus', i18nEn: 'Syllabus', i18nFi: 'Opetussuunnitelma', i18nHi: 'पाठ्यक्रम' },
+  { href: baseUrl('/reference/gcode'), label: 'G-Code Reference', i18nEn: 'G-Code Reference', i18nFi: 'G-koodi viite', i18nHi: 'जी-कोड संदर्भ' },
+  { href: baseUrl('/resources'), label: 'Resources', i18nEn: 'Resources', i18nFi: 'Resurssit', i18nHi: 'संसाधन' },
+  { href: baseUrl('/about'), label: 'About', i18nEn: 'About', i18nFi: 'Tietoa', i18nHi: 'परिचय' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -35,6 +35,7 @@ const currentPath = Astro.url.pathname;
               data-i18n={`nav.${link.label.toLowerCase().replace(/ /g, '-')}`}
               data-i18n-en={link.i18nEn}
               data-i18n-fi={link.i18nFi}
+              data-i18n-hi={link.i18nHi}
             >
               {link.label}
             </a>

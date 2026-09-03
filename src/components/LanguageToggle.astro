@@ -1,5 +1,5 @@
 ---
-// Language toggle button — switches between English and Finnish.
+// Language toggle button — cycles between English, Finnish, and Hindi.
 // Uses localStorage to persist preference; client-side JS swaps all [data-i18n] text.
 ---
 
@@ -10,35 +10,53 @@
 <script>
   // Language toggle: swaps all [data-i18n] elements with their translation
   const STORAGE_KEY = 'cnc-mastery-lang';
+  const LANGS = ['en', 'fi', 'hi'] as const;
+  type Lang = (typeof LANGS)[number];
 
-  function getLang(): string {
-    return localStorage.getItem(STORAGE_KEY) || 'en';
+  const LABELS: Record<Lang, string> = { en: 'FI', fi: 'HI', hi: 'EN' };
+  const TITLES: Record<Lang, string> = {
+    en: 'Vaihda suomeksi', // shown while current lang is 'en' -> next is 'fi'
+    fi: 'हिन्दी में बदलें', // shown while current lang is 'fi' -> next is 'hi'
+    hi: 'Switch to English', // shown while current lang is 'hi' -> next is 'en'
+  };
+
+  function getLang(): Lang {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return (LANGS as readonly string[]).includes(stored || '') ? (stored as Lang) : 'en';
   }
 
-  function setLang(lang: string) {
+  function nextLang(current: Lang): Lang {
+    const idx = LANGS.indexOf(current);
+    return LANGS[(idx + 1) % LANGS.length];
+  }
+
+  function setLang(lang: Lang) {
     localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
     applyTranslations(lang);
     updateToggleButton(lang);
   }
 
-  function updateToggleButton(lang: string) {
+  function updateToggleButton(lang: Lang) {
     const label = document.getElementById('lang-label');
     if (label) {
-      label.textContent = lang === 'en' ? 'FI' : 'EN';
+      label.textContent = LABELS[lang];
     }
     const btn = document.getElementById('lang-toggle');
     if (btn) {
-      btn.setAttribute('title', lang === 'en' ? 'Vaihda suomeksi' : 'Switch to English');
+      btn.setAttribute('title', TITLES[lang]);
     }
   }
 
-  function applyTranslations(lang: string) {
+  function applyTranslations(lang: Lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
       const enText = el.getAttribute('data-i18n-en');
       const fiText = el.getAttribute('data-i18n-fi');
-      if (lang === 'fi' && fiText) {
+      const hiText = el.getAttribute('data-i18n-hi');
+      if (lang === 'hi' && hiText) {
+        el.textContent = hiText;
+      } else if (lang === 'fi' && fiText) {
         el.textContent = fiText;
       } else if (enText) {
         el.textContent = enText;
@@ -49,7 +67,10 @@
     document.querySelectorAll('[data-i18n-aria]').forEach(el => {
       const enText = el.getAttribute('data-i18n-aria-en');
       const fiText = el.getAttribute('data-i18n-aria-fi');
-      if (lang === 'fi' && fiText) {
+      const hiText = el.getAttribute('data-i18n-aria-hi');
+      if (lang === 'hi' && hiText) {
+        el.setAttribute('aria-label', hiText);
+      } else if (lang === 'fi' && fiText) {
         el.setAttribute('aria-label', fiText);
       } else if (enText) {
         el.setAttribute('aria-label', enText);
@@ -60,13 +81,13 @@
   // Initialize
   const currentLang = getLang();
   document.documentElement.setAttribute('data-lang', currentLang);
+  document.documentElement.setAttribute('lang', currentLang);
   updateToggleButton(currentLang);
   applyTranslations(currentLang);
 
-  // Toggle handler
+  // Toggle handler — cycles EN -> FI -> HI -> EN
   document.getElementById('lang-toggle')?.addEventListener('click', () => {
-    const current = getLang();
-    setLang(current === 'en' ? 'fi' : 'en');
+    setLang(nextLang(getLang()));
   });
 </script>
 
