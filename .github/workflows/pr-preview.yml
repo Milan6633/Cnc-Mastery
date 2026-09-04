@@ -1,0 +1,54 @@
+name: Deploy PR Preview
+
+# Publishes every open PR's built site to its own subfolder under
+# https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-<number>/ on the
+# gh-pages branch, alongside (never overwriting) the live site that
+# deploy.yml publishes to that branch's root. Removes the subfolder
+# automatically when the PR closes.
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+concurrency:
+  group: pr-preview-${{ github.event.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: npm ci
+
+      # ASTRO_BASE overrides astro.config.mjs's default base path so
+      # every internal link/asset in this build resolves under the
+      # preview's own subfolder instead of the live site's root.
+      - name: Build with Astro (preview base path)
+        if: github.event.action != 'closed'
+        run: npm run build
+        env:
+          ASTRO_BASE: /Cnc-Mastery/pr-preview/pr-${{ github.event.number }}
+
+      - name: Deploy or remove PR preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./dist
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
