@@ -7,7 +7,11 @@ import remarkCallouts from './src/utils/remark-callouts.mjs';
 
 export default defineConfig({
   site: 'https://milan6633.github.io',
-  base: '/Cnc-Mastery',
+  // Overridable so PR-preview builds (served from a subpath under
+  // /Cnc-Mastery/pr-preview/pr-<n>/) generate correct internal links.
+  // Unset in normal builds -- defaults to the live site's base exactly
+  // as before.
+  base: process.env.ASTRO_BASE || '/Cnc-Mastery',
   integrations: [sitemap()],
   markdown: {
     processor: unified({
