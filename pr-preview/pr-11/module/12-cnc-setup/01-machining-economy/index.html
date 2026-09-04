@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.1"><!-- Prevent flash of wrong theme / language --><script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        const savedLang = localStorage.getItem('cnc-mastery-lang');
+        if (savedLang && savedLang !== 'en') {
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      })();
+    </script><!-- Fonts: Source Serif 4 (display + body), JetBrains Mono (data + code), Noto Sans Devanagari (Hindi) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"><!-- SEO --><title>Machining Economy — Cost per Component &amp; Tool Life | CNC Mastery</title><meta name="description" content="Learn how cutting speed, feed, depth of cut, and tool life together determine the total cost per machined component."><link rel="canonical" href="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/01-machining-economy/"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="Machining Economy — Cost per Component &amp; Tool Life | CNC Mastery"><meta property="og:description" content="Learn how cutting speed, feed, depth of cut, and tool life together determine the total cost per machined component."><meta property="og:url" content="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/01-machining-economy/"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Cnc-Mastery/pr-preview/pr-11/favicon.svg"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/BaseLayout.9EMDZLzl.css"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/_lesson_.o8WOnXci.css"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header class="site-header" data-astro-cid-nen7h5rs><div class="header-container container" data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/" class="logo" aria-label="CNC Mastery — Home" data-astro-cid-nen7h5rs><svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2" data-astro-cid-nen7h5rs></circle><line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)" data-astro-cid-nen7h5rs></circle></svg><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span></a><nav class="main-nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><ul class="nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="nav-link" data-i18n="nav.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-i18n-hi="पाठ्यक्रम" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="nav-link" data-i18n="nav.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-i18n-hi="जी-कोड संदर्भ" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="nav-link" data-i18n="nav.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-i18n-hi="संसाधन" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="nav-link" data-i18n="nav.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-i18n-hi="परिचय" data-astro-cid-nen7h5rs>About</a></li></ul></nav><div class="header-actions" data-astro-cid-nen7h5rs><div class="lang-group" role="group" aria-label="Switch language" data-astro-cid-ra2rg4ph><button class="lang-btn" data-lang-btn="en" aria-pressed="false" title="Switch to English" data-astro-cid-ra2rg4ph>EN</button><button class="lang-btn" data-lang-btn="fi" aria-pressed="false" title="Vaihda suomeksi" data-astro-cid-ra2rg4ph>FI</button><button class="lang-btn" data-lang-btn="hi" aria-pressed="false" title="हिन्दी में बदलें" data-astro-cid-ra2rg4ph>HI</button></div><script type="module">var e=`cnc-mastery-lang`,t=[`en`,`fi`,`hi`];function n(){let n=localStorage.getItem(e);return t.includes(n||``)?n:`en`}function r(t){localStorage.setItem(e,t),document.documentElement.setAttribute(`data-lang`,t),document.documentElement.setAttribute(`lang`,t),a(t),i(t)}function i(e){document.querySelectorAll(`[data-lang-btn]`).forEach(t=>{let n=t.dataset.langBtn===e;t.classList.toggle(`active`,n),t.setAttribute(`aria-pressed`,String(n))})}function a(e){document.querySelectorAll(`[data-i18n]`).forEach(t=>{let n=t.getAttribute(`data-i18n-en`),r=t.getAttribute(`data-i18n-fi`),i=t.getAttribute(`data-i18n-hi`);e===`hi`&&i?t.textContent=i:e===`fi`&&r?t.textContent=r:n&&(t.textContent=n)}),document.querySelectorAll(`[data-i18n-aria]`).forEach(t=>{let n=t.getAttribute(`data-i18n-aria-en`),r=t.getAttribute(`data-i18n-aria-fi`),i=t.getAttribute(`data-i18n-aria-hi`);e===`hi`&&i?t.setAttribute(`aria-label`,i):e===`fi`&&r?t.setAttribute(`aria-label`,r):n&&t.setAttribute(`aria-label`,n)})}var o=n();document.documentElement.setAttribute(`data-lang`,o),document.documentElement.setAttribute(`lang`,o),i(o),a(o),document.querySelectorAll(`[data-lang-btn]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.langBtn;t&&t!==n()&&r(t)})});</script><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" data-astro-cid-l6lhmie6><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><circle cx="12" cy="12" r="5" data-astro-cid-l6lhmie6></circle><line x1="12" y1="1" x2="12" y2="3" data-astro-cid-l6lhmie6></line><line x1="12" y1="21" x2="12" y2="23" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-l6lhmie6></line><line x1="1" y1="12" x2="3" y2="12" data-astro-cid-l6lhmie6></line><line x1="21" y1="12" x2="23" y2="12" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-l6lhmie6></line></svg><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-l6lhmie6></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`);function t(){return localStorage.getItem(`theme`)||`dark`}function n(e){document.documentElement.setAttribute(`data-theme`,e),localStorage.setItem(`theme`,e)}e?.addEventListener(`click`,()=>{n(t()===`dark`?`light`:`dark`)});</script><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-nen7h5rs></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-nen7h5rs></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div></div><!-- Mobile Nav Drawer --><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-astro-cid-nen7h5rs></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-astro-cid-nen7h5rs><div class="mobile-nav-header" data-astro-cid-nen7h5rs><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span><button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="18" y1="6" x2="6" y2="18" data-astro-cid-nen7h5rs></line><line x1="6" y1="6" x2="18" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div><ul class="mobile-nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="mobile-nav-link" data-i18n="mobile.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="mobile-nav-link" data-i18n="mobile.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="mobile-nav-link" data-i18n="mobile.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="mobile-nav-link" data-i18n="mobile.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`mobile-menu-btn`),t=document.getElementById(`mobile-close-btn`),n=document.getElementById(`mobile-nav-overlay`),r=document.getElementById(`mobile-nav`);function i(){r?.classList.add(`open`),n?.classList.add(`open`),e?.setAttribute(`aria-expanded`,`true`),document.body.style.overflow=`hidden`}function a(){r?.classList.remove(`open`),n?.classList.remove(`open`),e?.setAttribute(`aria-expanded`,`false`),document.body.style.overflow=``}e?.addEventListener(`click`,i),t?.addEventListener(`click`,a),n?.addEventListener(`click`,a),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a()});</script><main id="main-content"><div class="lesson-page" data-astro-cid-ohwqzt66><!-- Sidebar --><aside class="lesson-sidebar" id="lesson-sidebar" data-astro-cid-ohwqzt66><div class="sidebar-header" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup" class="sidebar-module-link" data-astro-cid-ohwqzt66><span class="sidebar-module-number readout" data-astro-cid-ohwqzt66>12</span><span class="sidebar-module-title" data-astro-cid-ohwqzt66>CNC Setup, Optimization &amp; Troubleshooting</span></a><span class="badge badge-advanced" data-astro-cid-ohwqzt66>Advanced</span></div><nav class="sidebar-nav" aria-label="Module lessons" data-astro-cid-ohwqzt66><ul class="sidebar-lessons" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/01-machining-economy" class="sidebar-lesson-link active" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>01</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Machining Economy — Cost per Component &amp; Tool Life</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/02-metal-cutting-troubleshooting" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>02</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Metal Cutting Troubleshooting — Vibration, Wear &amp; Finish</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/03-manual-programming-workflow" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>03</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Manual Programming Workflow at the Control</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/04-first-article-inspection" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>04</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>First Article Inspection Workflow</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/05-control-editing-debugging" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>05</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>In-Machine Editing, Debugging, and Alarm Recovery</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/06-job-documentation" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>06</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Job Documentation and Setup Sheets</span></a></li></ul></nav></aside><!-- Main Content --><article class="lesson-content" data-astro-cid-ohwqzt66><!-- Breadcrumb --><nav class="breadcrumb" aria-label="Breadcrumb" data-astro-cid-ohwqzt66><ol data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/" data-astro-cid-ohwqzt66>Home</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-ohwqzt66>Syllabus</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup" data-astro-cid-ohwqzt66>CNC Setup, Optimization &amp; Troubleshooting</a></li><li aria-current="page" data-astro-cid-ohwqzt66>Machining Economy — Cost per Component &amp; Tool Life</li></ol></nav><!-- Lesson Header --><header class="lesson-header" data-astro-cid-ohwqzt66><div class="lesson-meta" data-astro-cid-ohwqzt66><span class="badge badge-advanced" data-astro-cid-ohwqzt66>Level 3</span><span class="meta-item label" data-astro-cid-ohwqzt66>55 minutes</span><span class="meta-item label" data-astro-cid-ohwqzt66>advanced</span></div><h1 class="lesson-title" data-astro-cid-ohwqzt66>Machining Economy — Cost per Component &amp; Tool Life</h1><p class="lesson-description" data-astro-cid-ohwqzt66>Learn how cutting speed, feed, depth of cut, and tool life together determine the total cost per machined component.</p></header><!-- Learning Objectives --><div class="objectives-box" data-astro-cid-ohwqzt66><h2 class="objectives-heading" data-astro-cid-ohwqzt66>Learning objectives</h2><ul class="objectives-list" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66>Explain how the three cutting parameters affect tool life and productivity.</li><li data-astro-cid-ohwqzt66>Break down the total cost per component into machining, tool, and tool-change costs.</li><li data-astro-cid-ohwqzt66>Contrast the economic cutting speed with the maximum-production cutting speed.</li><li data-astro-cid-ohwqzt66>Calculate and compare the cost per component for two different cutting speeds.</li></ul></div><!-- Lesson Body --><div class="prose" data-astro-cid-ohwqzt66><h2 id="why-machining-economy-matters">Why machining economy matters</h2>
+<p>Every part that comes off a machine carries a price tag built from time, tooling, and
+overhead, and a shop only stays competitive if it keeps shrinking that price tag faster
+than its costs creep up. The lever for doing that is productivity — the ratio of what the
+machine produces to what it consumes to produce it. The machinist who
+understands how cutting data drives cost can deliver more parts for the same spend.</p>
+<div class="callout callout-key-concept"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.4"></circle><path d="M1.6 8h12.8"></path></svg></span><strong class="callout-label">Key concept</strong></div><p>Total cost per component is the sum of three contributions: <strong>machining cost</strong>
+(machine time), <strong>tool cost</strong> (the consumed cutting edge), and <strong>tool-changing cost</strong>
+(the time and labour to index or replace the insert). Cutting speed moves all three at
+once, which is why it is the dominant economic lever.</p></div>
+<h2 id="where-the-money-goes">Where the money goes</h2>
+<p>Costs split into fixed costs (present even when the machine is idle) and variable costs
+(incurred only during production).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Cost type</th><th>Share (typical)</th><th>Examples</th></tr></thead><tbody><tr><td>Fixed</td><td>27%</td><td>Machine and tool holders</td></tr><tr><td>Fixed</td><td>31%</td><td>Labour</td></tr><tr><td>Fixed</td><td>22%</td><td>Buildings, administration</td></tr><tr><td>Variable</td><td>17%</td><td>Workpiece material</td></tr><tr><td>Variable</td><td>3%</td><td>Cutting tools and consumables</td></tr></tbody></table>
+<p>Notice that cutting tools themselves are only about 3% of cost. The biggest levers are
+the fixed machine and labour costs, which is why using the machine faster — not buying
+cheaper inserts — usually delivers the largest saving.</p>
+<h2 id="the-three-parameters-and-tool-life">The three parameters and tool life</h2>
+<p>Depth of cut, feed, and cutting speed do not affect tool life equally.</p>
+<ul>
+<li><strong>Depth of cut (ap)</strong> has the smallest effect on tool life.</li>
+<li><strong>Feed (fn)</strong> has a larger effect, and the largest effect on productivity.</li>
+<li><strong>Cutting speed (vc)</strong> has by far the largest effect on insert tool life.</li>
+</ul>
+<p>The practical consequence: to maximise productivity, optimise in the order <strong>ap first,
+then fn, then vc</strong>. Raising ap and fn removes more metal per minute with comparatively
+little penalty to tool life; raising vc is the fastest way to burn an edge.</p>
+<h2 id="the-total-cost-per-component">The total cost per component</h2>
+<p>Consider what happens as cutting speed rises:</p>
+<ul>
+<li>More parts are produced per hour, so the <strong>machine (fixed) cost per part falls</strong>.</li>
+<li>More tools are consumed, so the <strong>tool cost per part rises</strong>.</li>
+<li>More time is spent changing tools, so the <strong>tool-changing cost per part rises</strong>.</li>
+</ul>
+<p>Adding the three curves together gives the total production cost. As speed increases the
+parts-per-hour climb, until a point is reached where a disproportionate amount of time is
+spent changing tools and the production rate starts to fall.</p>
+<div class="callout callout-key-concept"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.4"></circle><path d="M1.6 8h12.8"></path></svg></span><strong class="callout-label">Key concept</strong></div><p>Plot total cost against cutting speed and it bottoms out at one particular speed — that
+minimum is the <strong>economic cutting speed</strong>. Plot output rate instead, and it peaks at a
+higher speed still — that peak is the <strong>maximum-production speed</strong>. Because tool wear
+accelerates faster than cost drops as speed climbs, the economic speed always sits below
+the maximum-production speed. Machinists sometimes call the window between them the
+“high-efficiency range” — a professional operation should aim to run somewhere in that band.</p></div>
+<h2 id="economic-vs-maximum-production-speed">Economic vs maximum-production speed</h2>
+<ul>
+<li><strong>Maximum-production speed</strong> produces parts as fast as possible, but the extra speed is
+paid for in tool changes. Each small gain in cutting time costs a large loss in tool life.</li>
+<li><strong>Economic speed</strong> accepts a slightly longer cut in exchange for far fewer tool changes,
+giving the lowest total cost per part.</li>
+</ul>
+<div class="callout callout-warning"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.9 15 14.1H1z"></path><path d="M8 6.2v3.3"></path><circle cx="8" cy="11.7" r="0.7" fill="currentColor" stroke="none"></circle></svg></span><strong class="callout-label">Safety warning</strong></div><p>Running at or above maximum-production speed is rarely economical. A modest reduction in
+cutting speed, back into that efficient operating band, can cut total cost per part with
+only a small increase in cutting time.</p></div>
+<h2 id="tool-life-correction-factors">Tool life correction factors</h2>
+<p>Recommended cutting data is published at a base of <strong>15 minutes of tool life</strong>. To aim for
+a different tool life, multiply the recommended speed by the factor below.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Desired tool life (min)</th><th>Correction factor</th></tr></thead><tbody><tr><td>10</td><td>1.11</td></tr><tr><td>15</td><td>1.0</td></tr><tr><td>20</td><td>0.93</td></tr><tr><td>25</td><td>0.88</td></tr><tr><td>30</td><td>0.84</td></tr><tr><td>45</td><td>0.75</td></tr><tr><td>60</td><td>0.70</td></tr></tbody></table>
+<p>Example from the source: a recommended speed of 225 m/min multiplied by 0.93 (for 20 min
+tool life) gives 209 m/min. To gain metal removal instead, move the other way: 225 m/min ×
+1.11 (for 10 min) gives 250 m/min.</p>
+<p>The relationship is a <strong>Taylor-type tool life law</strong>. For a typical exponent n ≈ 0.25–0.30
+(carbide in steel), doubling cutting speed shortens tool life by roughly <strong>10–16 times</strong>.
+Small speed increases therefore carry a large tool-life penalty.</p>
+<h2 id="worked-example-two-cutting-speeds-compared">Worked example: two cutting speeds compared</h2>
+<p>Turn a Ø100 mm bar, one pass, L = 100 mm, ap = 2 mm, fn = 0.25 mm/rev.</p>
+<ul>
+<li>Machine hour rate: €60/h = <strong>€1.00/min</strong></li>
+<li>Insert cost: <strong>€6 per cutting edge</strong></li>
+<li>Tool-change time: <strong>1.0 min</strong></li>
+<li>Tool life exponent: <strong>n = 0.25</strong> (typical)</li>
+<li>Reference: vc = 200 m/min gives <strong>T = 15 min</strong></li>
+</ul>
+<p>Tool life at any speed: <strong>T₂ = T₁ × (vc₁ / vc₂)^(1/n)</strong></p>
+<h3 id="option-a--vc--200-mmin">Option A — vc = 200 m/min</h3>
+<ol>
+<li>Spindle speed: n = vc × 1000 / (π × Dm) = 200 × 1000 / (π × 100) = <strong>637 rpm</strong></li>
+<li>Cutting time: tc = L / (fn × n) = 100 / (0.25 × 637) = <strong>0.63 min</strong></li>
+<li>Tool life T = 15 min, so parts per edge N = 15 / 0.63 = <strong>23.8</strong></li>
+<li>Cost per part:
+<ul>
+<li>Machining: 0.63 × €1.00 = <strong>€0.63</strong></li>
+<li>Tool: €6 / 23.8 = <strong>€0.25</strong></li>
+<li>Tool change: (1.0 × €1.00) / 23.8 = <strong>€0.04</strong></li>
+<li><strong>Total ≈ €0.92</strong></li>
+</ul>
+</li>
+</ol>
+<h3 id="option-b--vc--280-mmin">Option B — vc = 280 m/min</h3>
+<ol>
+<li>Spindle speed: n = 280 × 1000 / (π × 100) = <strong>891 rpm</strong></li>
+<li>Cutting time: tc = 100 / (0.25 × 891) = <strong>0.45 min</strong></li>
+<li>Tool life: T = 15 × (200 / 280)^4 = <strong>3.9 min</strong>; parts per edge N = 3.9 / 0.45 = <strong>8.7</strong></li>
+<li>Cost per part:
+<ul>
+<li>Machining: 0.45 × €1.00 = <strong>€0.45</strong></li>
+<li>Tool: €6 / 8.7 = <strong>€0.69</strong></li>
+<li>Tool change: (1.0 × €1.00) / 8.7 = <strong>€0.11</strong></li>
+<li><strong>Total ≈ €1.25</strong></li>
+</ul>
+</li>
+</ol>
+<h3 id="result">Result</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Speed</th><th>Cutting time</th><th>Tool life</th><th>Cost per part</th></tr></thead><tbody><tr><td>200 m/min</td><td>0.63 min</td><td>15 min</td><td><strong>€0.92</strong></td></tr><tr><td>280 m/min</td><td>0.45 min</td><td>3.9 min</td><td><strong>€1.25</strong></td></tr></tbody></table>
+<p>The faster cut saves only 0.18 min but shortens tool life from 15 min to 3.9 min and raises
+cost per part by about a third. The slower speed is the economical choice.</p>
+<div class="callout callout-pro-tip"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.8 14.2 8 8 14.2 1.8 8z"></path><circle cx="8" cy="8" r="1.6"></circle></svg></span><strong class="callout-label">Pro tip</strong></div><p>Test this on your own jobs: compute parts per edge from tool life and cutting time, then
+cost each option fully. A spreadsheet makes the trade-off visible in seconds.</p></div>
+<h2 id="the-three-levers-compared">The three levers compared</h2>
+<p>From the source cost example (a shop spending €10,000 to make 1,000 parts, €10 per part):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Action</th><th>Effect on cost per part</th></tr></thead><tbody><tr><td>30% lower insert price</td><td>About 1% saving</td></tr><tr><td>50% longer tool life</td><td>About 1% saving</td></tr><tr><td>20% higher cutting data</td><td>About 15% saving</td></tr></tbody></table>
+<p>Insert price and tool life are easy to measure, but they barely move the total. Cutting
+data — doing more machining in the same production time — is the lever that pays.</p>
+<p><strong>1. Which parameter has the largest effect on tool life?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Cutting speed (vc). Depth of cut has the smallest effect, and feed sits in between while
+also having the largest effect on productivity.</p>
+</details>
+<p><strong>2. What are the three components of total cost per machined part?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Machining cost (machine time), tool cost (the consumed cutting edge), and tool-changing
+cost (time and labour to index or replace the insert).</p>
+</details>
+<p><strong>3. Why is the economic cutting speed lower than the maximum-production speed?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>At maximum-production speed the time saved per part is outweighed by the extra tool wear
+and tool-change time, so total cost rises. The economic speed trades a slightly longer cut
+for far fewer tool changes and the lowest total cost per part.</p>
+</details>
+<p><strong>4. Using the worked example, why does 280 m/min cost more than 200 m/min despite cutting faster?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Raising the speed to 280 m/min shortens tool life from 15 min to 3.9 min, cutting parts
+per edge from 23.8 to 8.7. Tool cost climbs from €0.25 to €0.69 (+€0.44) and tool-change
+cost climbs from €0.04 to €0.11 (+€0.07) — a €0.51 combined increase — which exceeds the
+€0.18 saved on machining time, so total cost rises from €0.92 to €1.25 per part.</p>
+</details></div><!-- Prev/Next Navigation --><nav class="lesson-nav" aria-label="Lesson navigation" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/09-complete-lathe-project-bushing" class="lesson-nav-card prev" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>← Previous Lesson</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Complete Lathe Project — Bushing with Boring</span></a><a href="/Cnc-Mastery/pr-preview/pr-11/module/12-cnc-setup/02-metal-cutting-troubleshooting" class="lesson-nav-card next" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>Next Lesson →</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Metal Cutting Troubleshooting — Vibration, Wear &amp; Finish</span></a></nav></article></div><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle lesson sidebar" data-astro-cid-ohwqzt66><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ohwqzt66><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-ohwqzt66></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-ohwqzt66></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-ohwqzt66></line></svg>Lessons</button><script type="module">var e=document.getElementById(`sidebar-toggle`),t=document.getElementById(`lesson-sidebar`);e?.addEventListener(`click`,()=>{t?.classList.toggle(`open`)}),t?.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{t?.classList.remove(`open`)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="footer-container container" data-astro-cid-jo6i4kqk><div class="footer-grid" data-astro-cid-jo6i4kqk><div class="footer-brand" data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/" class="footer-logo" data-astro-cid-jo6i4kqk>CNC <span data-astro-cid-jo6i4kqk>Mastery</span></a><p class="footer-tagline" data-astro-cid-jo6i4kqk>Learn CNC machining online — from blueprint to finished part. No school required.</p></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>Course</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-jo6i4kqk>Full Syllabus</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/module/01-shop-safety" data-astro-cid-jo6i4kqk>Start Learning</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" data-astro-cid-jo6i4kqk>G-Code Reference</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/formulas" data-astro-cid-jo6i4kqk>Shop Math Formulas</a></li></ul></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>More</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/resources" data-astro-cid-jo6i4kqk>Resources & Books</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/about" data-astro-cid-jo6i4kqk>About</a></li></ul></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 CNC Mastery. Built by Milan Khadka.</p><p class="footer-status" data-astro-cid-jo6i4kqk><span class="status-dot" aria-hidden="true" data-astro-cid-jo6i4kqk></span>All systems nominal</p></div></div></footer></body></html>

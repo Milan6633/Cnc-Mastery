@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.1"><!-- Prevent flash of wrong theme / language --><script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        const savedLang = localStorage.getItem('cnc-mastery-lang');
+        if (savedLang && savedLang !== 'en') {
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      })();
+    </script><!-- Fonts: Source Serif 4 (display + body), JetBrains Mono (data + code), Noto Sans Devanagari (Hindi) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"><!-- SEO --><title>Complete Turning Program — Stepped Shaft | CNC Mastery</title><meta name="description" content="Program a complete stepped shaft from blueprint to finished part, combining facing, roughing, finishing, grooving, and threading."><link rel="canonical" href="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/08-complete-turning-program/"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="Complete Turning Program — Stepped Shaft | CNC Mastery"><meta property="og:description" content="Program a complete stepped shaft from blueprint to finished part, combining facing, roughing, finishing, grooving, and threading."><meta property="og:url" content="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/08-complete-turning-program/"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Cnc-Mastery/pr-preview/pr-11/favicon.svg"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/BaseLayout.9EMDZLzl.css"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/_lesson_.o8WOnXci.css"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header class="site-header" data-astro-cid-nen7h5rs><div class="header-container container" data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/" class="logo" aria-label="CNC Mastery — Home" data-astro-cid-nen7h5rs><svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2" data-astro-cid-nen7h5rs></circle><line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)" data-astro-cid-nen7h5rs></circle></svg><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span></a><nav class="main-nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><ul class="nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="nav-link" data-i18n="nav.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-i18n-hi="पाठ्यक्रम" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="nav-link" data-i18n="nav.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-i18n-hi="जी-कोड संदर्भ" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="nav-link" data-i18n="nav.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-i18n-hi="संसाधन" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="nav-link" data-i18n="nav.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-i18n-hi="परिचय" data-astro-cid-nen7h5rs>About</a></li></ul></nav><div class="header-actions" data-astro-cid-nen7h5rs><div class="lang-group" role="group" aria-label="Switch language" data-astro-cid-ra2rg4ph><button class="lang-btn" data-lang-btn="en" aria-pressed="false" title="Switch to English" data-astro-cid-ra2rg4ph>EN</button><button class="lang-btn" data-lang-btn="fi" aria-pressed="false" title="Vaihda suomeksi" data-astro-cid-ra2rg4ph>FI</button><button class="lang-btn" data-lang-btn="hi" aria-pressed="false" title="हिन्दी में बदलें" data-astro-cid-ra2rg4ph>HI</button></div><script type="module">var e=`cnc-mastery-lang`,t=[`en`,`fi`,`hi`];function n(){let n=localStorage.getItem(e);return t.includes(n||``)?n:`en`}function r(t){localStorage.setItem(e,t),document.documentElement.setAttribute(`data-lang`,t),document.documentElement.setAttribute(`lang`,t),a(t),i(t)}function i(e){document.querySelectorAll(`[data-lang-btn]`).forEach(t=>{let n=t.dataset.langBtn===e;t.classList.toggle(`active`,n),t.setAttribute(`aria-pressed`,String(n))})}function a(e){document.querySelectorAll(`[data-i18n]`).forEach(t=>{let n=t.getAttribute(`data-i18n-en`),r=t.getAttribute(`data-i18n-fi`),i=t.getAttribute(`data-i18n-hi`);e===`hi`&&i?t.textContent=i:e===`fi`&&r?t.textContent=r:n&&(t.textContent=n)}),document.querySelectorAll(`[data-i18n-aria]`).forEach(t=>{let n=t.getAttribute(`data-i18n-aria-en`),r=t.getAttribute(`data-i18n-aria-fi`),i=t.getAttribute(`data-i18n-aria-hi`);e===`hi`&&i?t.setAttribute(`aria-label`,i):e===`fi`&&r?t.setAttribute(`aria-label`,r):n&&t.setAttribute(`aria-label`,n)})}var o=n();document.documentElement.setAttribute(`data-lang`,o),document.documentElement.setAttribute(`lang`,o),i(o),a(o),document.querySelectorAll(`[data-lang-btn]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.langBtn;t&&t!==n()&&r(t)})});</script><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" data-astro-cid-l6lhmie6><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><circle cx="12" cy="12" r="5" data-astro-cid-l6lhmie6></circle><line x1="12" y1="1" x2="12" y2="3" data-astro-cid-l6lhmie6></line><line x1="12" y1="21" x2="12" y2="23" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-l6lhmie6></line><line x1="1" y1="12" x2="3" y2="12" data-astro-cid-l6lhmie6></line><line x1="21" y1="12" x2="23" y2="12" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-l6lhmie6></line></svg><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-l6lhmie6></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`);function t(){return localStorage.getItem(`theme`)||`dark`}function n(e){document.documentElement.setAttribute(`data-theme`,e),localStorage.setItem(`theme`,e)}e?.addEventListener(`click`,()=>{n(t()===`dark`?`light`:`dark`)});</script><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-nen7h5rs></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-nen7h5rs></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div></div><!-- Mobile Nav Drawer --><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-astro-cid-nen7h5rs></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-astro-cid-nen7h5rs><div class="mobile-nav-header" data-astro-cid-nen7h5rs><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span><button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="18" y1="6" x2="6" y2="18" data-astro-cid-nen7h5rs></line><line x1="6" y1="6" x2="18" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div><ul class="mobile-nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="mobile-nav-link" data-i18n="mobile.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="mobile-nav-link" data-i18n="mobile.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="mobile-nav-link" data-i18n="mobile.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="mobile-nav-link" data-i18n="mobile.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`mobile-menu-btn`),t=document.getElementById(`mobile-close-btn`),n=document.getElementById(`mobile-nav-overlay`),r=document.getElementById(`mobile-nav`);function i(){r?.classList.add(`open`),n?.classList.add(`open`),e?.setAttribute(`aria-expanded`,`true`),document.body.style.overflow=`hidden`}function a(){r?.classList.remove(`open`),n?.classList.remove(`open`),e?.setAttribute(`aria-expanded`,`false`),document.body.style.overflow=``}e?.addEventListener(`click`,i),t?.addEventListener(`click`,a),n?.addEventListener(`click`,a),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a()});</script><main id="main-content"><div class="lesson-page" data-astro-cid-ohwqzt66><!-- Sidebar --><aside class="lesson-sidebar" id="lesson-sidebar" data-astro-cid-ohwqzt66><div class="sidebar-header" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning" class="sidebar-module-link" data-astro-cid-ohwqzt66><span class="sidebar-module-number readout" data-astro-cid-ohwqzt66>11</span><span class="sidebar-module-title" data-astro-cid-ohwqzt66>G-Code Programming — Turning</span></a><span class="badge badge-core" data-astro-cid-ohwqzt66>Core CNC</span></div><nav class="sidebar-nav" aria-label="Module lessons" data-astro-cid-ohwqzt66><ul class="sidebar-lessons" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/01-diameter-programming" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>01</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Turning Program Structure and Diameter Programming</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/02-linear-circular-turning" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>02</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Linear and Circular Motion for Turning</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/03-roughing-finishing-cycles" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>03</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Roughing and Finishing Cycles — G70, G71, G72, G73</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/04-grooving-parting-cycles" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>04</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Grooving and Parting Cycles — G74 and G75</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/05-threading-g76" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>05</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Threading with G76</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/06-constant-surface-speed" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>06</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Constant Surface Speed and G96</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/07-tool-nose-radius-compensation" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>07</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Tool Nose Radius Compensation (TNRC)</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/08-complete-turning-program" class="sidebar-lesson-link active" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>08</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Complete Turning Program — Stepped Shaft</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/09-complete-lathe-project-bushing" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>09</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Complete Lathe Project — Bushing with Boring</span></a></li></ul></nav></aside><!-- Main Content --><article class="lesson-content" data-astro-cid-ohwqzt66><!-- Breadcrumb --><nav class="breadcrumb" aria-label="Breadcrumb" data-astro-cid-ohwqzt66><ol data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/" data-astro-cid-ohwqzt66>Home</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-ohwqzt66>Syllabus</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning" data-astro-cid-ohwqzt66>G-Code Programming — Turning</a></li><li aria-current="page" data-astro-cid-ohwqzt66>Complete Turning Program — Stepped Shaft</li></ol></nav><!-- Lesson Header --><header class="lesson-header" data-astro-cid-ohwqzt66><div class="lesson-meta" data-astro-cid-ohwqzt66><span class="badge badge-core" data-astro-cid-ohwqzt66>Level 2</span><span class="meta-item label" data-astro-cid-ohwqzt66>55 minutes</span><span class="meta-item label" data-astro-cid-ohwqzt66>intermediate</span></div><h1 class="lesson-title" data-astro-cid-ohwqzt66>Complete Turning Program — Stepped Shaft</h1><p class="lesson-description" data-astro-cid-ohwqzt66>Program a complete stepped shaft from blueprint to finished part, combining facing, roughing, finishing, grooving, and threading.</p></header><!-- Learning Objectives --><div class="objectives-box" data-astro-cid-ohwqzt66><h2 class="objectives-heading" data-astro-cid-ohwqzt66>Learning objectives</h2><ul class="objectives-list" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66>Read a turning blueprint and identify the operations needed</li><li data-astro-cid-ohwqzt66>Plan the operation sequence and tooling for a multi-feature part</li><li data-astro-cid-ohwqzt66>Write a complete G-code program with all operations</li><li data-astro-cid-ohwqzt66>Inspect the finished part against the blueprint dimensions</li></ul></div><!-- Lesson Body --><div class="prose" data-astro-cid-ohwqzt66><h2 id="the-blueprint">The Blueprint</h2>
+<p>A stepped shaft with the following features:</p>
+<ul>
+<li>Material: Mild steel, Ø55 mm × 110 mm (stock)</li>
+<li>Overall length: 100 mm</li>
+<li>Ø50 mm × 60 mm (first diameter)</li>
+<li>Ø30 mm × 30 mm (second diameter, threaded end)</li>
+<li>45° chamfer at the shoulder (2 mm × 45°)</li>
+<li>R3 radius at the step from Ø50 to Ø30</li>
+<li>M20 × 1.5 thread on the Ø30 section (20 mm long)</li>
+<li>4 mm wide × 3 mm deep groove at Z-55 (near the end of Ø50)</li>
+</ul>
+<h2 id="operation-plan">Operation Plan</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Op</th><th>Tool</th><th>Operation</th></tr></thead><tbody><tr><td>1</td><td>T01 (CNMG 120408, roughing)</td><td>Face the end, rough turn OD</td></tr><tr><td>2</td><td>T02 (CNMG 120408, finishing)</td><td>Finish OD, chamfer, radius</td></tr><tr><td>3</td><td>T03 (Grooving tool, 4 mm wide)</td><td>Groove at Z-55</td></tr><tr><td>4</td><td>T04 (Threading insert, 60°)</td><td>Thread M20 × 1.5</td></tr><tr><td>5</td><td>T05 (Parting tool, 3 mm)</td><td>Part off to length</td></tr></tbody></table>
+<h2 id="setup">Setup</h2>
+<ul>
+<li>3-jaw chuck, gripping Ø55 stock, ~80 mm stickout</li>
+<li>G54 work zero: face of the finished part, centreline</li>
+<li>Coolant on for all operations</li>
+</ul>
+<h2 id="complete-g-code-program">Complete G-Code Program</h2>
+<pre class="astro-code astro-code-themes github-dark-dimmed github-light-high-contrast" style="--shiki-dark:#adbac7;--shiki-light:#0e1116;--shiki-dark-bg:#22272e;--shiki-light-bg:#ffffff; overflow-x: auto;" tabindex="0" data-language="gcode"><code><span class="line"><span style="--shiki-dark:#DCBDFB;--shiki-light:#622CBC">O4000</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (STEPPED SHAFT)</span></span>
+<span class="line"><span style="--shiki-dark:#768390;--shiki-light:#66707B">(Operator: load Ø55 bar stock, 80 mm stickout)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G90</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G95</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G18</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G21</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G40</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G49</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G80</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G54</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-dark:#768390;--shiki-light:#66707B">(Op 1 — Face and rough turn)</span></span>
+<span class="line"><span style="--shiki-dark:#F69D50;--shiki-light:#702C00">T01</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M06</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (CNMG 120408 roughing)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G96</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S200</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M03</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G50</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S2500</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z2.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M08</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.2</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">               (face)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z2.0</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-60.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.3</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">              (rough OD to Ø50)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z2.0</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X32.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.2</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">            (rough face to Ø30)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-30.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.3</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">              (rough turn Ø30)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z2.0</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M09</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M05</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M01</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-dark:#768390;--shiki-light:#66707B">(Op 2 — Finish OD, chamfer, radius)</span></span>
+<span class="line"><span style="--shiki-dark:#F69D50;--shiki-light:#702C00">T02</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M06</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (CNMG 120408 finishing)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G96</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S250</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M03</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G50</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S3000</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G42</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z2.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M08</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.15</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X30.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-2.0</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">              (chamfer 2×45°)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-30.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.2</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">              (turn Ø30)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G03</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X50.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-40.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> R3.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.15</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (radius)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-60.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.2</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">              (turn Ø50)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X54.0</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G40</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z2.0</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M09</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M05</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M01</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-dark:#768390;--shiki-light:#66707B">(Op 3 — Groove)</span></span>
+<span class="line"><span style="--shiki-dark:#F69D50;--shiki-light:#702C00">T03</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M06</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (Grooving tool, 4 mm wide)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G97</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S800</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M03</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X52.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-55.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M08</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G75</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> R0.5</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G75</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X44.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> P500</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.08</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M09</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M05</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M01</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-dark:#768390;--shiki-light:#66707B">(Op 4 — Thread M20 × 1.5)</span></span>
+<span class="line"><span style="--shiki-dark:#F69D50;--shiki-light:#702C00">T04</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M06</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (Threading insert, 60°)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G97</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S600</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M03</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X22.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z5.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M08</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G76</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> P020060</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Q50</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> R0.05</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G76</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X18.16</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-20.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> P920</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Q200</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F1.5</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X50.0</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M09</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M05</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M01</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-dark:#768390;--shiki-light:#66707B">(Op 5 — Part off)</span></span>
+<span class="line"><span style="--shiki-dark:#F69D50;--shiki-light:#702C00">T05</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M06</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (Parting tool, 3 mm)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G96</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S120</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M03</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G50</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> S3000</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z-99.0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M08</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X0</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> F0.05</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X56.0</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M09</span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95"> M05</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G28</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G91</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Z0</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G28</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G91</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X0</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G90</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">M30</span></span></code></pre>
+<h2 id="inspection-checklist">Inspection Checklist</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Dimension</th><th>Method</th></tr></thead><tbody><tr><td>Ø50 ±0.1</td><td>49.9–50.1 mm</td><td>Micrometer</td></tr><tr><td>Ø30 ±0.1</td><td>29.9–30.1 mm</td><td>Micrometer</td></tr><tr><td>Overall length 100 ±0.2</td><td>99.8–100.2 mm</td><td>Calliper</td></tr><tr><td>Groove Ø44 × 4 mm</td><td>Ø44 ±0.2, 4 ±0.2 mm</td><td>Calliper, groove gauge</td></tr><tr><td>Thread M20 × 1.5</td><td>Go/No-Go gauge</td><td>Thread ring gauge</td></tr><tr><td>Chamfer 2 × 45°</td><td>2 mm ±0.2</td><td>Chamfer gauge</td></tr><tr><td>R3 radius</td><td>R3 ±0.2</td><td>Radius gauge</td></tr></tbody></table>
+<h2 id="self-check-questions">Self-Check Questions</h2>
+<p><strong>1. Why does the program use M01 between operations?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>M01 is an optional stop. It lets the operator check the part, change tools, and inspect between operations when the optional stop switch is on.</p>
+</details>
+<p><strong>2. What is the purpose of the G42 on the finishing tool?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>G42 applies tool nose radius compensation, which ensures the chamfer and radius are machined to the correct profile. Without it, the nose radius would round the sharp corner.</p>
+</details>
+<p><strong>3. Why is the threading operation done at G97 (fixed RPM) instead of G96?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Threading requires a constant spindle speed per pass. G96 would vary the speed as the tool moves along the thread, which is not acceptable for thread quality.</p>
+</details>
+<p><strong>4. What is the significance of the Z-99.0 position in the parting operation?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>The shaft is 100 mm long. Z-99.0 leaves 1 mm of stock for the part-off operation. The parting tool is 3 mm wide, so it parts at Z-99.0, leaving the finished part 100 mm long.</p>
+</details></div><!-- Prev/Next Navigation --><nav class="lesson-nav" aria-label="Lesson navigation" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/07-tool-nose-radius-compensation" class="lesson-nav-card prev" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>← Previous Lesson</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Tool Nose Radius Compensation (TNRC)</span></a><a href="/Cnc-Mastery/pr-preview/pr-11/module/11-gcode-turning/09-complete-lathe-project-bushing" class="lesson-nav-card next" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>Next Lesson →</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Complete Lathe Project — Bushing with Boring</span></a></nav></article></div><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle lesson sidebar" data-astro-cid-ohwqzt66><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ohwqzt66><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-ohwqzt66></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-ohwqzt66></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-ohwqzt66></line></svg>Lessons</button><script type="module">var e=document.getElementById(`sidebar-toggle`),t=document.getElementById(`lesson-sidebar`);e?.addEventListener(`click`,()=>{t?.classList.toggle(`open`)}),t?.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{t?.classList.remove(`open`)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="footer-container container" data-astro-cid-jo6i4kqk><div class="footer-grid" data-astro-cid-jo6i4kqk><div class="footer-brand" data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/" class="footer-logo" data-astro-cid-jo6i4kqk>CNC <span data-astro-cid-jo6i4kqk>Mastery</span></a><p class="footer-tagline" data-astro-cid-jo6i4kqk>Learn CNC machining online — from blueprint to finished part. No school required.</p></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>Course</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-jo6i4kqk>Full Syllabus</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/module/01-shop-safety" data-astro-cid-jo6i4kqk>Start Learning</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" data-astro-cid-jo6i4kqk>G-Code Reference</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/formulas" data-astro-cid-jo6i4kqk>Shop Math Formulas</a></li></ul></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>More</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/resources" data-astro-cid-jo6i4kqk>Resources & Books</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/about" data-astro-cid-jo6i4kqk>About</a></li></ul></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 CNC Mastery. Built by Milan Khadka.</p><p class="footer-status" data-astro-cid-jo6i4kqk><span class="status-dot" aria-hidden="true" data-astro-cid-jo6i4kqk></span>All systems nominal</p></div></div></footer></body></html>

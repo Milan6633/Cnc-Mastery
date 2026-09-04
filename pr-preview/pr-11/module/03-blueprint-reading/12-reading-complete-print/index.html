@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.1"><!-- Prevent flash of wrong theme / language --><script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        const savedLang = localStorage.getItem('cnc-mastery-lang');
+        if (savedLang && savedLang !== 'en') {
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      })();
+    </script><!-- Fonts: Source Serif 4 (display + body), JetBrains Mono (data + code), Noto Sans Devanagari (Hindi) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"><!-- SEO --><title>Reading a Complete Print — The 7-Step Method | CNC Mastery</title><meta name="description" content="Apply a systematic 7-step method to read any engineering drawing from title block to GD&amp;T, with a worked example."><link rel="canonical" href="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/12-reading-complete-print/"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="Reading a Complete Print — The 7-Step Method | CNC Mastery"><meta property="og:description" content="Apply a systematic 7-step method to read any engineering drawing from title block to GD&amp;T, with a worked example."><meta property="og:url" content="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/12-reading-complete-print/"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Cnc-Mastery/pr-preview/pr-11/favicon.svg"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/BaseLayout.9EMDZLzl.css"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/_lesson_.o8WOnXci.css"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header class="site-header" data-astro-cid-nen7h5rs><div class="header-container container" data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/" class="logo" aria-label="CNC Mastery — Home" data-astro-cid-nen7h5rs><svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2" data-astro-cid-nen7h5rs></circle><line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)" data-astro-cid-nen7h5rs></circle></svg><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span></a><nav class="main-nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><ul class="nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="nav-link" data-i18n="nav.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-i18n-hi="पाठ्यक्रम" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="nav-link" data-i18n="nav.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-i18n-hi="जी-कोड संदर्भ" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="nav-link" data-i18n="nav.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-i18n-hi="संसाधन" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="nav-link" data-i18n="nav.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-i18n-hi="परिचय" data-astro-cid-nen7h5rs>About</a></li></ul></nav><div class="header-actions" data-astro-cid-nen7h5rs><div class="lang-group" role="group" aria-label="Switch language" data-astro-cid-ra2rg4ph><button class="lang-btn" data-lang-btn="en" aria-pressed="false" title="Switch to English" data-astro-cid-ra2rg4ph>EN</button><button class="lang-btn" data-lang-btn="fi" aria-pressed="false" title="Vaihda suomeksi" data-astro-cid-ra2rg4ph>FI</button><button class="lang-btn" data-lang-btn="hi" aria-pressed="false" title="हिन्दी में बदलें" data-astro-cid-ra2rg4ph>HI</button></div><script type="module">var e=`cnc-mastery-lang`,t=[`en`,`fi`,`hi`];function n(){let n=localStorage.getItem(e);return t.includes(n||``)?n:`en`}function r(t){localStorage.setItem(e,t),document.documentElement.setAttribute(`data-lang`,t),document.documentElement.setAttribute(`lang`,t),a(t),i(t)}function i(e){document.querySelectorAll(`[data-lang-btn]`).forEach(t=>{let n=t.dataset.langBtn===e;t.classList.toggle(`active`,n),t.setAttribute(`aria-pressed`,String(n))})}function a(e){document.querySelectorAll(`[data-i18n]`).forEach(t=>{let n=t.getAttribute(`data-i18n-en`),r=t.getAttribute(`data-i18n-fi`),i=t.getAttribute(`data-i18n-hi`);e===`hi`&&i?t.textContent=i:e===`fi`&&r?t.textContent=r:n&&(t.textContent=n)}),document.querySelectorAll(`[data-i18n-aria]`).forEach(t=>{let n=t.getAttribute(`data-i18n-aria-en`),r=t.getAttribute(`data-i18n-aria-fi`),i=t.getAttribute(`data-i18n-aria-hi`);e===`hi`&&i?t.setAttribute(`aria-label`,i):e===`fi`&&r?t.setAttribute(`aria-label`,r):n&&t.setAttribute(`aria-label`,n)})}var o=n();document.documentElement.setAttribute(`data-lang`,o),document.documentElement.setAttribute(`lang`,o),i(o),a(o),document.querySelectorAll(`[data-lang-btn]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.langBtn;t&&t!==n()&&r(t)})});</script><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" data-astro-cid-l6lhmie6><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><circle cx="12" cy="12" r="5" data-astro-cid-l6lhmie6></circle><line x1="12" y1="1" x2="12" y2="3" data-astro-cid-l6lhmie6></line><line x1="12" y1="21" x2="12" y2="23" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-l6lhmie6></line><line x1="1" y1="12" x2="3" y2="12" data-astro-cid-l6lhmie6></line><line x1="21" y1="12" x2="23" y2="12" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-l6lhmie6></line></svg><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-l6lhmie6></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`);function t(){return localStorage.getItem(`theme`)||`dark`}function n(e){document.documentElement.setAttribute(`data-theme`,e),localStorage.setItem(`theme`,e)}e?.addEventListener(`click`,()=>{n(t()===`dark`?`light`:`dark`)});</script><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-nen7h5rs></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-nen7h5rs></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div></div><!-- Mobile Nav Drawer --><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-astro-cid-nen7h5rs></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-astro-cid-nen7h5rs><div class="mobile-nav-header" data-astro-cid-nen7h5rs><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span><button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="18" y1="6" x2="6" y2="18" data-astro-cid-nen7h5rs></line><line x1="6" y1="6" x2="18" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div><ul class="mobile-nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="mobile-nav-link" data-i18n="mobile.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="mobile-nav-link" data-i18n="mobile.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="mobile-nav-link" data-i18n="mobile.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="mobile-nav-link" data-i18n="mobile.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`mobile-menu-btn`),t=document.getElementById(`mobile-close-btn`),n=document.getElementById(`mobile-nav-overlay`),r=document.getElementById(`mobile-nav`);function i(){r?.classList.add(`open`),n?.classList.add(`open`),e?.setAttribute(`aria-expanded`,`true`),document.body.style.overflow=`hidden`}function a(){r?.classList.remove(`open`),n?.classList.remove(`open`),e?.setAttribute(`aria-expanded`,`false`),document.body.style.overflow=``}e?.addEventListener(`click`,i),t?.addEventListener(`click`,a),n?.addEventListener(`click`,a),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a()});</script><main id="main-content"><div class="lesson-page" data-astro-cid-ohwqzt66><!-- Sidebar --><aside class="lesson-sidebar" id="lesson-sidebar" data-astro-cid-ohwqzt66><div class="sidebar-header" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading" class="sidebar-module-link" data-astro-cid-ohwqzt66><span class="sidebar-module-number readout" data-astro-cid-ohwqzt66>03</span><span class="sidebar-module-title" data-astro-cid-ohwqzt66>Blueprint Reading &amp; Technical Drawing</span></a><span class="badge badge-foundation" data-astro-cid-ohwqzt66>Foundation</span></div><nav class="sidebar-nav" aria-label="Module lessons" data-astro-cid-ohwqzt66><ul class="sidebar-lessons" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/01-why-blueprints-matter" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>01</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Why Blueprints Matter</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/02-orthographic-projection" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>02</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Orthographic Projection</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/03-isometric-section-views" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>03</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Isometric and Section Views</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/04-title-blocks" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>04</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Title Blocks, Revision History, and Material Callouts</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/05-line-types" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>05</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Line Types and Line Weight</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/06-dimensioning-practices" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>06</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Dimensioning Practices</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/07-tolerances-fits" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>07</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Tolerances and Fits Introduction</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/08-surface-finish" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>08</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Surface Finish — Ra and Rz</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/09-thread-callouts" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>09</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Thread Callouts — Metric and Imperial</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/10-hole-types" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>10</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Hole Types and Callouts</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/11-gdt-introduction" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>11</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>GD&amp;T Introduction</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/12-reading-complete-print" class="sidebar-lesson-link active" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>12</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Reading a Complete Print — The 7-Step Method</span></a></li></ul></nav></aside><!-- Main Content --><article class="lesson-content" data-astro-cid-ohwqzt66><!-- Breadcrumb --><nav class="breadcrumb" aria-label="Breadcrumb" data-astro-cid-ohwqzt66><ol data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/" data-astro-cid-ohwqzt66>Home</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-ohwqzt66>Syllabus</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading" data-astro-cid-ohwqzt66>Blueprint Reading &amp; Technical Drawing</a></li><li aria-current="page" data-astro-cid-ohwqzt66>Reading a Complete Print — The 7-Step Method</li></ol></nav><!-- Lesson Header --><header class="lesson-header" data-astro-cid-ohwqzt66><div class="lesson-meta" data-astro-cid-ohwqzt66><span class="badge badge-foundation" data-astro-cid-ohwqzt66>Level 1</span><span class="meta-item label" data-astro-cid-ohwqzt66>45 minutes</span><span class="meta-item label" data-astro-cid-ohwqzt66>intermediate</span></div><h1 class="lesson-title" data-astro-cid-ohwqzt66>Reading a Complete Print — The 7-Step Method</h1><p class="lesson-description" data-astro-cid-ohwqzt66>Apply a systematic 7-step method to read any engineering drawing from title block to GD&amp;T, with a worked example.</p></header><!-- Learning Objectives --><div class="objectives-box" data-astro-cid-ohwqzt66><h2 class="objectives-heading" data-astro-cid-ohwqzt66>Learning objectives</h2><ul class="objectives-list" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66>Apply the 7-step print-reading method in order</li><li data-astro-cid-ohwqzt66>Extract a feature table from a complete print</li><li data-astro-cid-ohwqzt66>Plan a machining sequence from the feature table</li><li data-astro-cid-ohwqzt66>Avoid the seven most common beginner mistakes</li></ul></div><!-- Lesson Body --><div class="prose" data-astro-cid-ohwqzt66><h2 id="the-7-step-reading-method">The 7-Step Reading Method</h2>
+<p>Never read a print line by line from the top. Use this order — it goes from the cheapest information to the most critical:</p>
+<ol>
+<li><strong>Title block</strong> — material, units, revision, tolerance block</li>
+<li><strong>Views &#x26; projection</strong> — identify every view and the projection convention</li>
+<li><strong>Critical dimensions</strong> — the main sizes and feature locations</li>
+<li><strong>Tolerances</strong> — which features are tight (specific vs general)</li>
+<li><strong>Surface finish</strong> — where finish matters</li>
+<li><strong>Holes, threads &#x26; special callouts</strong> — the features that need special tooling</li>
+<li><strong>Notes &#x26; GD&#x26;T</strong> — the remaining requirements</li>
+</ol>
+<h2 id="step-1-title-block--revision">Step 1: Title Block &#x26; Revision</h2>
+<p>Answer first: <strong>What am I making, from what, in which units, at which revision?</strong></p>
+<ul>
+<li>Material (6061-T6, 4140, 304…)</li>
+<li>Units (mm or inch) — everything downstream depends on this</li>
+<li>Revision letter — verify against the current revision on the floor</li>
+<li>General tolerance block (e.g., ISO 2768-m) and default finish note</li>
+</ul>
+<h2 id="step-2-views--projection">Step 2: Views &#x26; Projection</h2>
+<ul>
+<li>Identify the front view (most descriptive), top, side, and any sections</li>
+<li>Check the projection symbol (first vs third angle)</li>
+<li>Use the isometric view (if present) to understand the shape</li>
+<li>Trace features from view to view using alignment</li>
+</ul>
+<h2 id="step-3-critical-dimensions">Step 3: Critical Dimensions</h2>
+<ul>
+<li>Note the overall sizes (length, width, height, stock size)</li>
+<li>Identify the <strong>main features</strong> and their locations (holes, pockets, bosses)</li>
+<li>Watch for baseline/ordinate dimensioning — features located from datums</li>
+</ul>
+<h2 id="step-4-tolerances">Step 4: Tolerances</h2>
+<ul>
+<li>Find every dimension with its own tolerance — these are the critical ones</li>
+<li>Apply the general tolerance block to the rest</li>
+<li>Identify fits (H7/g6, bearing seats, press fits) that need special attention</li>
+</ul>
+<h2 id="step-5-surface-finish">Step 5: Surface Finish</h2>
+<ul>
+<li>Find all surface finish symbols and values (Ra/Rz)</li>
+<li>Check the default finish note in the title block</li>
+<li>Flag surfaces needing grinding or finishing passes (Ra ≤ 0.8)</li>
+</ul>
+<h2 id="step-6-holes-threads--special-callouts">Step 6: Holes, Threads &#x26; Special Callouts</h2>
+<ul>
+<li>List every hole: Ø THRU, Ø × depth, H7 reamed, bored ±, tapped M-series or UNC/UNF</li>
+<li>Note counterbores, countersinks, spotfaces</li>
+<li>Write the operation for each: drill, drill+ream, drill+bore, drill+tap</li>
+</ul>
+<h2 id="step-7-notes--gdt">Step 7: Notes &#x26; GD&#x26;T</h2>
+<ul>
+<li>Read every general note (“remove burrs”, “break sharp edges”, coatings)</li>
+<li>Find feature control frames and datums</li>
+<li>Plan your setup so datums A, B, C are your reference surfaces</li>
+</ul>
+<h2 id="worked-example-a-mounting-bracket">Worked Example: A Mounting Bracket</h2>
+<p><strong>Title block:</strong> 6061-T6 aluminum, mm, Rev C, ISO 2768-m, “Ra 3.2 unless noted”</p>
+<p><strong>Views:</strong> Front, top, right side, third-angle projection. Two Ø8 THRU clearance holes at 20 from each end; one M6 tapped hole in the top face.</p>
+<p><strong>Key info extracted:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Callout</th><th>Operation</th></tr></thead><tbody><tr><td>Overall</td><td>80 × 40 × 10</td><td>Face all sides to size</td></tr><tr><td>2× holes</td><td>Ø8 THRU at 20/60 from datum B</td><td>Drill Ø8</td></tr><tr><td>Tapped hole</td><td>M6 - 6H in top face</td><td>Drill Ø5 tap drill + tap M6</td></tr><tr><td>Finish</td><td>Ra 3.2 general</td><td>Standard milling passes</td></tr><tr><td>Edges</td><td>“Break sharp edges 0.5 max”</td><td>Deburr</td></tr></tbody></table>
+<p><strong>Machining sequence plan:</strong></p>
+<ol>
+<li>Cut and face stock to 80 × 40 × 10 (tolerance ±0.3 general)</li>
+<li>Locate datum A (bottom face) and datum B (left edge) on the vise</li>
+<li>Drill the two Ø8 through holes at their X positions</li>
+<li>Drill + tap the M6 hole in the top face</li>
+<li>Deburr all edges per the general note</li>
+<li>Inspect: check overall sizes, hole positions, thread, and finish</li>
+</ol>
+<div class="callout callout-pro-tip"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.8 14.2 8 8 14.2 1.8 8z"></path><circle cx="8" cy="8" r="1.6"></circle></svg></span><strong class="callout-label">Pro tip</strong></div><p>Turn every print into a <strong>feature table</strong> like the one above before you touch a machine. It forces you to read everything, and it becomes your setup sheet and inspection list.</p></div>
+<h2 id="common-beginner-mistakes">Common Beginner Mistakes</h2>
+<ol>
+<li><strong>Scaling the print</strong> — measuring the paper instead of reading the numbers</li>
+<li><strong>Ignoring the revision</strong> — making Rev B when the floor runs Rev C</li>
+<li><strong>Missing the units</strong> — assuming mm on an inch drawing (or vice versa)</li>
+<li><strong>Machining to nominal, not the window</strong> — forgetting the tolerance block</li>
+<li><strong>Forgetting finish</strong> — Ra 0.8 surface left at Ra 3.2</li>
+<li><strong>Wrong projection</strong> — reading a first-angle drawing as third-angle</li>
+<li><strong>Not setting up to the datums</strong> — referencing the wrong edges</li>
+</ol>
+<h2 id="the-print-reading-checklist">The Print-Reading Checklist</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Material, units, revision, tolerance block read</li>
+<li class="task-list-item"><input type="checkbox" disabled> All views identified; projection convention confirmed</li>
+<li class="task-list-item"><input type="checkbox" disabled> Overall dimensions and critical features noted</li>
+<li class="task-list-item"><input type="checkbox" disabled> Specific tolerances and fits flagged</li>
+<li class="task-list-item"><input type="checkbox" disabled> Surface finish requirements listed</li>
+<li class="task-list-item"><input type="checkbox" disabled> All holes/threads/callouts turned into operations</li>
+<li class="task-list-item"><input type="checkbox" disabled> Notes and GD&#x26;T reviewed; datums planned into setup</li>
+</ul>
+<h2 id="self-check-questions">Self-Check Questions</h2>
+<p><strong>1. Why is the title block the first step in reading a print?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Because it tells you the material, units, revision, and general tolerances — the context needed to interpret every dimension and feature correctly. Reading views before the title block risks machining with the wrong units, revision, or material.</p>
+</details>
+<p><strong>2. What is the purpose of turning a print into a feature table?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>A feature table forces you to read every feature and callout, translates them into concrete operations (drill, ream, tap, deburr), and becomes both the setup sheet and the inspection list — preventing missed features.</p>
+</details>
+<p><strong>3. Name three common beginner print-reading mistakes.</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Scaling dimensions off the paper instead of reading the numbers; ignoring the revision or units; machining to the nominal without considering the tolerance window. (Also common: missing finish requirements and setting up to the wrong reference edges.)</p>
+</details></div><!-- Prev/Next Navigation --><nav class="lesson-nav" aria-label="Lesson navigation" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/03-blueprint-reading/11-gdt-introduction" class="lesson-nav-card prev" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>← Previous Lesson</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>GD&amp;T Introduction</span></a><a href="/Cnc-Mastery/pr-preview/pr-11/module/04-precision-measurement/01-steel-rules-squares-protractors" class="lesson-nav-card next" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>Next Lesson →</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Steel Rules, Combination Squares, and Protractors</span></a></nav></article></div><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle lesson sidebar" data-astro-cid-ohwqzt66><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ohwqzt66><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-ohwqzt66></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-ohwqzt66></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-ohwqzt66></line></svg>Lessons</button><script type="module">var e=document.getElementById(`sidebar-toggle`),t=document.getElementById(`lesson-sidebar`);e?.addEventListener(`click`,()=>{t?.classList.toggle(`open`)}),t?.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{t?.classList.remove(`open`)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="footer-container container" data-astro-cid-jo6i4kqk><div class="footer-grid" data-astro-cid-jo6i4kqk><div class="footer-brand" data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/" class="footer-logo" data-astro-cid-jo6i4kqk>CNC <span data-astro-cid-jo6i4kqk>Mastery</span></a><p class="footer-tagline" data-astro-cid-jo6i4kqk>Learn CNC machining online — from blueprint to finished part. No school required.</p></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>Course</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-jo6i4kqk>Full Syllabus</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/module/01-shop-safety" data-astro-cid-jo6i4kqk>Start Learning</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" data-astro-cid-jo6i4kqk>G-Code Reference</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/formulas" data-astro-cid-jo6i4kqk>Shop Math Formulas</a></li></ul></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>More</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/resources" data-astro-cid-jo6i4kqk>Resources & Books</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/about" data-astro-cid-jo6i4kqk>About</a></li></ul></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 CNC Mastery. Built by Milan Khadka.</p><p class="footer-status" data-astro-cid-jo6i4kqk><span class="status-dot" aria-hidden="true" data-astro-cid-jo6i4kqk></span>All systems nominal</p></div></div></footer></body></html>

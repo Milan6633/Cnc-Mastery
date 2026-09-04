@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.1"><!-- Prevent flash of wrong theme / language --><script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        const savedLang = localStorage.getItem('cnc-mastery-lang');
+        if (savedLang && savedLang !== 'en') {
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      })();
+    </script><!-- Fonts: Source Serif 4 (display + body), JetBrains Mono (data + code), Noto Sans Devanagari (Hindi) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"><!-- SEO --><title>Macro B — Variables and Arithmetic | CNC Mastery</title><meta name="description" content="Write parametric G-code programs using Fanuc Macro B variables, arithmetic, and built-in functions."><link rel="canonical" href="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/01-macro-variables/"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="Macro B — Variables and Arithmetic | CNC Mastery"><meta property="og:description" content="Write parametric G-code programs using Fanuc Macro B variables, arithmetic, and built-in functions."><meta property="og:url" content="https://milan6633.github.io/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/01-macro-variables/"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Cnc-Mastery/pr-preview/pr-11/favicon.svg"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/BaseLayout.9EMDZLzl.css"><link rel="stylesheet" href="/Cnc-Mastery/pr-preview/pr-11/_astro/_lesson_.o8WOnXci.css"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header class="site-header" data-astro-cid-nen7h5rs><div class="header-container container" data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/" class="logo" aria-label="CNC Mastery — Home" data-astro-cid-nen7h5rs><svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2" data-astro-cid-nen7h5rs></circle><line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)" data-astro-cid-nen7h5rs></circle></svg><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span></a><nav class="main-nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><ul class="nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="nav-link" data-i18n="nav.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-i18n-hi="पाठ्यक्रम" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="nav-link" data-i18n="nav.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-i18n-hi="जी-कोड संदर्भ" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="nav-link" data-i18n="nav.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-i18n-hi="संसाधन" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="nav-link" data-i18n="nav.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-i18n-hi="परिचय" data-astro-cid-nen7h5rs>About</a></li></ul></nav><div class="header-actions" data-astro-cid-nen7h5rs><div class="lang-group" role="group" aria-label="Switch language" data-astro-cid-ra2rg4ph><button class="lang-btn" data-lang-btn="en" aria-pressed="false" title="Switch to English" data-astro-cid-ra2rg4ph>EN</button><button class="lang-btn" data-lang-btn="fi" aria-pressed="false" title="Vaihda suomeksi" data-astro-cid-ra2rg4ph>FI</button><button class="lang-btn" data-lang-btn="hi" aria-pressed="false" title="हिन्दी में बदलें" data-astro-cid-ra2rg4ph>HI</button></div><script type="module">var e=`cnc-mastery-lang`,t=[`en`,`fi`,`hi`];function n(){let n=localStorage.getItem(e);return t.includes(n||``)?n:`en`}function r(t){localStorage.setItem(e,t),document.documentElement.setAttribute(`data-lang`,t),document.documentElement.setAttribute(`lang`,t),a(t),i(t)}function i(e){document.querySelectorAll(`[data-lang-btn]`).forEach(t=>{let n=t.dataset.langBtn===e;t.classList.toggle(`active`,n),t.setAttribute(`aria-pressed`,String(n))})}function a(e){document.querySelectorAll(`[data-i18n]`).forEach(t=>{let n=t.getAttribute(`data-i18n-en`),r=t.getAttribute(`data-i18n-fi`),i=t.getAttribute(`data-i18n-hi`);e===`hi`&&i?t.textContent=i:e===`fi`&&r?t.textContent=r:n&&(t.textContent=n)}),document.querySelectorAll(`[data-i18n-aria]`).forEach(t=>{let n=t.getAttribute(`data-i18n-aria-en`),r=t.getAttribute(`data-i18n-aria-fi`),i=t.getAttribute(`data-i18n-aria-hi`);e===`hi`&&i?t.setAttribute(`aria-label`,i):e===`fi`&&r?t.setAttribute(`aria-label`,r):n&&t.setAttribute(`aria-label`,n)})}var o=n();document.documentElement.setAttribute(`data-lang`,o),document.documentElement.setAttribute(`lang`,o),i(o),a(o),document.querySelectorAll(`[data-lang-btn]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.langBtn;t&&t!==n()&&r(t)})});</script><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" data-astro-cid-l6lhmie6><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><circle cx="12" cy="12" r="5" data-astro-cid-l6lhmie6></circle><line x1="12" y1="1" x2="12" y2="3" data-astro-cid-l6lhmie6></line><line x1="12" y1="21" x2="12" y2="23" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-l6lhmie6></line><line x1="1" y1="12" x2="3" y2="12" data-astro-cid-l6lhmie6></line><line x1="21" y1="12" x2="23" y2="12" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-l6lhmie6></line></svg><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-l6lhmie6></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`);function t(){return localStorage.getItem(`theme`)||`dark`}function n(e){document.documentElement.setAttribute(`data-theme`,e),localStorage.setItem(`theme`,e)}e?.addEventListener(`click`,()=>{n(t()===`dark`?`light`:`dark`)});</script><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-nen7h5rs></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-nen7h5rs></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div></div><!-- Mobile Nav Drawer --><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-astro-cid-nen7h5rs></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-astro-cid-nen7h5rs><div class="mobile-nav-header" data-astro-cid-nen7h5rs><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span><button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="18" y1="6" x2="6" y2="18" data-astro-cid-nen7h5rs></line><line x1="6" y1="6" x2="18" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div><ul class="mobile-nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" class="mobile-nav-link" data-i18n="mobile.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" class="mobile-nav-link" data-i18n="mobile.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/resources" class="mobile-nav-link" data-i18n="mobile.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/pr-preview/pr-11/about" class="mobile-nav-link" data-i18n="mobile.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`mobile-menu-btn`),t=document.getElementById(`mobile-close-btn`),n=document.getElementById(`mobile-nav-overlay`),r=document.getElementById(`mobile-nav`);function i(){r?.classList.add(`open`),n?.classList.add(`open`),e?.setAttribute(`aria-expanded`,`true`),document.body.style.overflow=`hidden`}function a(){r?.classList.remove(`open`),n?.classList.remove(`open`),e?.setAttribute(`aria-expanded`,`false`),document.body.style.overflow=``}e?.addEventListener(`click`,i),t?.addEventListener(`click`,a),n?.addEventListener(`click`,a),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a()});</script><main id="main-content"><div class="lesson-page" data-astro-cid-ohwqzt66><!-- Sidebar --><aside class="lesson-sidebar" id="lesson-sidebar" data-astro-cid-ohwqzt66><div class="sidebar-header" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming" class="sidebar-module-link" data-astro-cid-ohwqzt66><span class="sidebar-module-number readout" data-astro-cid-ohwqzt66>19</span><span class="sidebar-module-title" data-astro-cid-ohwqzt66>Advanced Programming &amp; Automation</span></a><span class="badge badge-specialist" data-astro-cid-ohwqzt66>Specialist</span></div><nav class="sidebar-nav" aria-label="Module lessons" data-astro-cid-ohwqzt66><ul class="sidebar-lessons" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/01-macro-variables" class="sidebar-lesson-link active" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>01</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Macro B — Variables and Arithmetic</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/02-macro-arithmetic-logic" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>02</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Macro B — Conditional Logic and Loops</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/03-custom-cycles-macros" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>03</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Custom Cycles with G65 and G66</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/04-parametric-programming" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>04</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Parametric Programming — Part Families and Formula-Driven Paths</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/05-conversational-programming" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>05</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Conversational Programming Overview</span></a></li></ul></nav></aside><!-- Main Content --><article class="lesson-content" data-astro-cid-ohwqzt66><!-- Breadcrumb --><nav class="breadcrumb" aria-label="Breadcrumb" data-astro-cid-ohwqzt66><ol data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/" data-astro-cid-ohwqzt66>Home</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-ohwqzt66>Syllabus</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming" data-astro-cid-ohwqzt66>Advanced Programming &amp; Automation</a></li><li aria-current="page" data-astro-cid-ohwqzt66>Macro B — Variables and Arithmetic</li></ol></nav><!-- Lesson Header --><header class="lesson-header" data-astro-cid-ohwqzt66><div class="lesson-meta" data-astro-cid-ohwqzt66><span class="badge badge-specialist" data-astro-cid-ohwqzt66>Level 4</span><span class="meta-item label" data-astro-cid-ohwqzt66>50 minutes</span><span class="meta-item label" data-astro-cid-ohwqzt66>intermediate</span></div><h1 class="lesson-title" data-astro-cid-ohwqzt66>Macro B — Variables and Arithmetic</h1><p class="lesson-description" data-astro-cid-ohwqzt66>Write parametric G-code programs using Fanuc Macro B variables, arithmetic, and built-in functions.</p></header><!-- Learning Objectives --><div class="objectives-box" data-astro-cid-ohwqzt66><h2 class="objectives-heading" data-astro-cid-ohwqzt66>Learning objectives</h2><ul class="objectives-list" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66>Identify the three types of macro variables and their persistence</li><li data-astro-cid-ohwqzt66>Assign values to variables and use them in G-code words</li><li data-astro-cid-ohwqzt66>Perform arithmetic operations including SIN, COS, and SQRT</li><li data-astro-cid-ohwqzt66>Read and write system variables for tool offsets and work offsets</li></ul></div><!-- Lesson Body --><div class="prose" data-astro-cid-ohwqzt66><h2 id="what-is-macro-b">What Is Macro B?</h2>
+<p>Macro B (also called custom macro) is a programming language built into most Fanuc, Haas, and compatible controls. It lets you write G-code with variables, arithmetic, and logic — the same tools that make any language powerful.</p>
+<h2 id="variable-types">Variable Types</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th>Numbers</th><th>Persistence</th><th>Use</th></tr></thead><tbody><tr><td>Local</td><td>#1 – #33</td><td>Lost on macro end</td><td>Arguments, temporary values</td></tr><tr><td>Common</td><td>#100 – #149</td><td>Lost on power off</td><td>Global data within a program run</td></tr><tr><td>Common</td><td>#500 – #549</td><td>Retained on power off</td><td>Tool data, offsets, setup values</td></tr><tr><td>System</td><td>Various</td><td>Machine-specific</td><td>Tool offsets, work offsets, alarms</td></tr></tbody></table>
+<h2 id="assigning-and-using-variables">Assigning and Using Variables</h2>
+<pre class="astro-code astro-code-themes github-dark-dimmed github-light-high-contrast" style="--shiki-dark:#adbac7;--shiki-light:#0e1116;--shiki-dark-bg:#22272e;--shiki-light-bg:#ffffff; overflow-x: auto;" tabindex="0" data-language="gcode"><code><span class="line"><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">#100 = </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">50.0</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">           (assign 50.0 to variable #100)</span></span>
+<span class="line"><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">#101 = #100 + </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">10.0</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">    (arithmetic)</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G01</span><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116"> X#100 Y#101 </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">F200</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">  (move to X50.0 Y60.0)</span></span></code></pre>
+<p>The variable name is always a number preceded by the hash sign. The value can be an integer or a decimal.</p>
+<h2 id="arithmetic-operations">Arithmetic Operations</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operator</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td>+</td><td>Addition</td><td>#100 = #101 + 5.0</td></tr><tr><td>-</td><td>Subtraction</td><td>#100 = #101 - 5.0</td></tr><tr><td>*</td><td>Multiplication</td><td>#100 = #101 * 2.0</td></tr><tr><td>/</td><td>Division</td><td>#100 = #101 / 2.0</td></tr><tr><td>SIN</td><td>Sine (degrees)</td><td>#100 = SIN[45.0]</td></tr><tr><td>COS</td><td>Cosine (degrees)</td><td>#100 = COS[45.0]</td></tr><tr><td>TAN</td><td>Tangent (degrees)</td><td>#100 = TAN[30.0]</td></tr><tr><td>ATAN</td><td>Arctangent</td><td>#100 = ATAN[1.0]</td></tr><tr><td>SQRT</td><td>Square root</td><td>#100 = SQRT[#101 * #101 + #102 * #102]</td></tr><tr><td>ABS</td><td>Absolute value</td><td>#100 = ABS[#101]</td></tr><tr><td>ROUND</td><td>Round to nearest integer</td><td>#100 = ROUND[#101]</td></tr><tr><td>FIX</td><td>Round down</td><td>#100 = FIX[#101.9]</td></tr><tr><td>FUP</td><td>Round up</td><td>#100 = FUP[#101.1]</td></tr></tbody></table>
+<h2 id="worked-example">Worked Example</h2>
+<p>Calculate the hypotenuse of a right triangle with legs 30 mm and 40 mm:</p>
+<pre class="astro-code astro-code-themes github-dark-dimmed github-light-high-contrast" style="--shiki-dark:#adbac7;--shiki-light:#0e1116;--shiki-dark-bg:#22272e;--shiki-light-bg:#ffffff; overflow-x: auto;" tabindex="0" data-language="gcode"><code><span class="line"><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">#1 = </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">30.0</span></span>
+<span class="line"><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">#2 = </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">40.0</span></span>
+<span class="line"><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">#3 = SQRT[#1 * #1 + #2 * #2]</span></span>
+<span class="line"><span style="--shiki-dark:#F47067;--shiki-light:#A0111F">G00</span><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116"> X#3              </span><span style="--shiki-dark:#768390;--shiki-light:#66707B">(move to X50.0)</span></span></code></pre>
+<h2 id="system-variables">System Variables</h2>
+<p>System variables access the control’s internal data. Common examples:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Purpose</th></tr></thead><tbody><tr><td>#5221</td><td>G54 X offset</td></tr><tr><td>#5222</td><td>G54 Y offset</td></tr><tr><td>#5223</td><td>G54 Z offset</td></tr><tr><td>#2001</td><td>Tool offset geometry (length) for tool 1</td></tr><tr><td>#2002</td><td>Tool offset geometry for tool 2</td></tr><tr><td>#3000</td><td>Macro alarm — stops the program with a message</td></tr><tr><td>#3011</td><td>Current date (YYYYMMDD)</td></tr><tr><td>#3012</td><td>Current time (HHMMSS)</td></tr></tbody></table>
+<pre class="astro-code astro-code-themes github-dark-dimmed github-light-high-contrast" style="--shiki-dark:#adbac7;--shiki-light:#0e1116;--shiki-dark-bg:#22272e;--shiki-light-bg:#ffffff; overflow-x: auto;" tabindex="0" data-language="gcode"><code><span class="line"><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">IF [#100 GT </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">100.0</span><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">] GOTO </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">10</span></span>
+<span class="line"><span style="--shiki-dark:#ADBAC7;--shiki-light:#0E1116">#3000 = </span><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">100</span><span style="--shiki-dark:#768390;--shiki-light:#66707B"> (PART OVERSIZE)</span><span style="--shiki-dark:#768390;--shiki-light:#66707B">   (stops program with alarm)</span></span>
+<span class="line"><span style="--shiki-dark:#6CB6FF;--shiki-light:#023B95">N10</span><span style="--shiki-dark:#F47067;--shiki-light:#A0111F"> G00</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> X0</span><span style="--shiki-dark:#F69D50;--shiki-light:#702C00"> Y0</span></span></code></pre>
+<h2 id="self-check-questions">Self-Check Questions</h2>
+<p><strong>1. What is the difference between #100 and #500?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>#100 (#100–#149) is a common variable that is lost when the machine powers off. #500 (#500–#549) is also common but is retained in memory when the power cycles.</p>
+</details>
+<p><strong>2. What does #3000 = 1 (ALARM TEXT) do in a macro program?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>It stops the program and displays the alarm message “ALARM TEXT” on the control screen. The number after the equals sign is the alarm number (1–200).</p>
+</details>
+<p><strong>3. How do you write the square root of 25 in a macro expression?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>#100 = SQRT[25.0] — the result is 5.0. Arguments to functions must be enclosed in square brackets.</p>
+</details>
+<p><strong>4. Which system variable reads the G54 X offset?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>#5221. The ranges are: #5221 (G54), #5241 (G55), #5261 (G56), #5281 (G57), #5301 (G58), #5321 (G59).</p>
+</details></div><!-- Prev/Next Navigation --><nav class="lesson-nav" aria-label="Lesson navigation" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/pr-preview/pr-11/module/18-multi-axis/15-choosing-3-plus-2-vs-simultaneous-5-axis" class="lesson-nav-card prev" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>← Previous Lesson</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Choosing Between 3+2 and Simultaneous 5-Axis Machining</span></a><a href="/Cnc-Mastery/pr-preview/pr-11/module/19-advanced-programming/02-macro-arithmetic-logic" class="lesson-nav-card next" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>Next Lesson →</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Macro B — Conditional Logic and Loops</span></a></nav></article></div><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle lesson sidebar" data-astro-cid-ohwqzt66><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ohwqzt66><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-ohwqzt66></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-ohwqzt66></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-ohwqzt66></line></svg>Lessons</button><script type="module">var e=document.getElementById(`sidebar-toggle`),t=document.getElementById(`lesson-sidebar`);e?.addEventListener(`click`,()=>{t?.classList.toggle(`open`)}),t?.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{t?.classList.remove(`open`)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="footer-container container" data-astro-cid-jo6i4kqk><div class="footer-grid" data-astro-cid-jo6i4kqk><div class="footer-brand" data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/" class="footer-logo" data-astro-cid-jo6i4kqk>CNC <span data-astro-cid-jo6i4kqk>Mastery</span></a><p class="footer-tagline" data-astro-cid-jo6i4kqk>Learn CNC machining online — from blueprint to finished part. No school required.</p></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>Course</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/syllabus" data-astro-cid-jo6i4kqk>Full Syllabus</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/module/01-shop-safety" data-astro-cid-jo6i4kqk>Start Learning</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/gcode" data-astro-cid-jo6i4kqk>G-Code Reference</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/reference/formulas" data-astro-cid-jo6i4kqk>Shop Math Formulas</a></li></ul></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>More</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/resources" data-astro-cid-jo6i4kqk>Resources & Books</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/pr-preview/pr-11/about" data-astro-cid-jo6i4kqk>About</a></li></ul></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 CNC Mastery. Built by Milan Khadka.</p><p class="footer-status" data-astro-cid-jo6i4kqk><span class="status-dot" aria-hidden="true" data-astro-cid-jo6i4kqk></span>All systems nominal</p></div></div></footer></body></html>
