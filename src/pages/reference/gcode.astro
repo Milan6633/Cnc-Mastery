@@ -112,11 +112,85 @@ const mcodes = [
         </table>
       </div>
     </section>
+
+    <section class="modal-groups">
+      <h2>Modal Groups &amp; Programming Notes</h2>
+      <p class="modal-intro">G-codes are grouped by function. Only one code from each group can be active at a time. The table below lists the common groups and their default states.</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Group</th><th>Function</th><th>Codes</th><th>Default</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Motion</td><td>G00, G01, G02, G03, G33</td><td>G00</td></tr>
+            <tr><td>2</td><td>Plane selection</td><td>G17 (XY), G18 (XZ), G19 (YZ)</td><td>G17</td></tr>
+            <tr><td>3</td><td>Units</td><td>G20 (inch), G21 (millimetre)</td><td>G21</td></tr>
+            <tr><td>4</td><td>Canned cycle cancel</td><td>G80</td><td>G80</td></tr>
+            <tr><td>5</td><td>Positioning mode</td><td>G90 (absolute), G91 (incremental)</td><td>G90</td></tr>
+            <tr><td>6</td><td>Feed mode</td><td>G94 (mm/min), G95 (mm/rev)</td><td>G94 (mill), G95 (lathe)</td></tr>
+            <tr><td>7</td><td>Spindle speed mode</td><td>G96 (CSS), G97 (RPM)</td><td>G97</td></tr>
+            <tr><td>8</td><td>Return plane (cycles)</td><td>G98 (initial level), G99 (R-point)</td><td>G98</td></tr>
+            <tr><td>9</td><td>Cutter compensation</td><td>G40 (off), G41 (left), G42 (right)</td><td>G40</td></tr>
+            <tr><td>10</td><td>Tool length compensation</td><td>G43 (positive), G44 (negative), G49 (cancel)</td><td>G49</td></tr>
+            <tr><td>12</td><td>Work coordinate system</td><td>G54&#8211;G59, G52 (local), G53 (machine)</td><td>G54</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Additional codes not in the main tables</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Code</th><th>Name</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="code-cell">G10</td><td>Programmable data input</td><td>Set work offsets &amp; tool offsets from G-code</td></tr>
+            <tr><td class="code-cell">G15/G16</td><td>Polar coordinate system</td><td>G15 off, G16 on; X = radius, Y = angle in degrees</td></tr>
+            <tr><td class="code-cell">G28</td><td>Return to home</td><td>G28 G91 Z0; G28 G91 X0 Y0 — same as reference table</td></tr>
+            <tr><td class="code-cell">G52</td><td>Local coordinate system</td><td>Shifts the active work coordinate; use G52 X0 Y0 Z0 to cancel</td></tr>
+            <tr><td class="code-cell">G53</td><td>Machine coordinate system</td><td>Non-modal: move to a machine-absolute position, e.g. G53 G00 Z-50</td></tr>
+            <tr><td class="code-cell">G65</td><td>Macro call (non-modal)</td><td>Calls a subprogram with local variables, e.g. G65 P9001 A10. B20.</td></tr>
+            <tr><td class="code-cell">G66</td><td>Macro call (modal)</td><td>Modal macro call — every positioning move calls the macro</td></tr>
+            <tr><td class="code-cell">G67</td><td>Cancel modal macro call</td><td>Ends G66 modal macro call</td></tr>
+            <tr><td class="code-cell">G68/G69</td><td>Coordinate rotation</td><td>G68 X0 Y0 R45. — rotate 45°; G69 cancels (Fanuc/Haas, not standard on all controls)</td></tr>
+            <tr><td class="code-cell">G70</td><td>Finishing cycle (turning)</td><td>Follows G71/G72/G73; finishes the rough profile</td></tr>
+            <tr><td class="code-cell">G71</td><td>Rough turning cycle</td><td>Multiple-pass roughing along the Z axis (OD/ID)</td></tr>
+            <tr><td class="code-cell">G72</td><td>Rough facing cycle</td><td>Multiple-pass roughing along the X axis</td></tr>
+            <tr><td class="code-cell">G73</td><td>Pattern repeating cycle</td><td>Roughing for cast/wrought stock; also chip-breaking peck (milling)</td></tr>
+            <tr><td class="code-cell">G74</td><td>Face grooving / peck drilling</td><td>Lathe face grooving; also left-hand tapping (mill)</td></tr>
+            <tr><td class="code-cell">G75</td><td>Grooving / peck drilling (turning)</td><td>OD/ID grooving cycle</td></tr>
+            <tr><td class="code-cell">G76</td><td>Threading cycle</td><td>Thread turning with multiple infeeds; compound infeed angle</td></tr>
+            <tr><td class="code-cell">G82</td><td>Drill cycle with dwell</td><td>Same as G81 but dwells at the bottom — spot drilling</td></tr>
+            <tr><td class="code-cell">G85</td><td>Boring cycle (feed out)</td><td>Feed in, feed out — no spindle stop</td></tr>
+            <tr><td class="code-cell">G86</td><td>Boring cycle (stop, rapid out)</td><td>Feed in, spindle stop, rapid out</td></tr>
+            <tr><td class="code-cell">G89</td><td>Boring cycle (dwell, feed out)</td><td>Feed in, dwell, feed out — for blind bores</td></tr>
+            <tr><td class="code-cell">G92</td><td>Threading (lathe) / Position register</td><td>G92..: thread cutting; G92 X0 Y0 Z0: set position register</td></tr>
+            <tr><td class="code-cell">G94</td><td>Feed per minute</td><td>F-word in mm/min (default for mills)</td></tr>
+            <tr><td class="code-cell">G95</td><td>Feed per revolution</td><td>F-word in mm/rev (default for lathes)</td></tr>
+            <tr><td class="code-cell">G96</td><td>Constant surface speed</td><td>Spindle speed varies to maintain constant vc; G96 S200 M03</td></tr>
+            <tr><td class="code-cell">G97</td><td>RPM mode (cancel CSS)</td><td>G97 S1500 M03 — fixed spindle speed in rev/min</td></tr>
+            <tr><td class="code-cell">G98</td><td>Return to initial plane</td><td>In canned cycles: the tool returns to the initial Z level</td></tr>
+            <tr><td class="code-cell">G99</td><td>Return to R-point</td><td>In canned cycles: the tool returns to the R-plane between holes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Controller differences</h3>
+      <p>While the core G-code set is similar across controls, there are important differences:</p>
+      <ul>
+        <li><strong>Fanuc</strong> — the de facto standard; most machines use a Fanuc variant. Type I and Type II cutter comp, G70/G71/G72/G73 for turning, G76 threading.</li>
+        <li><strong>Haas</strong> — Fanuc-like but with simplifications: G70 bolt circle, G71 bolt arc, G72/G73 pattern repeats differ; G84 rigid tap is default; G103 block restrict.</li>
+        <li><strong>Siemens</strong> — ShopTurn/Mill uses DIN 66025; cycles are called with CYCLE81, CYCLE83, etc. rather than G81/G83. Siemens also supports high-level language (Sinumerik).</li>
+        <li><strong>Mazak</strong> — Mazatrol conversational is primary; G-code mode (EIA/ISO) is also available but differs in syntax.</li>
+        <li><strong>Okuma</strong> — uses OSP (Okuma Special Parameters) control; code set is similar to Fanuc but with different alarm codes and some unique functions.</li>
+      </ul>
+    </section>
   </div>
 
   <script>
     const searchInput = document.getElementById('code-search') as HTMLInputElement;
-    const tables = document.querySelectorAll('table');
+    const tables = document.querySelectorAll('#gcode-table, #mcode-table');
 
     searchInput?.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase().trim();
