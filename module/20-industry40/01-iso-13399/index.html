@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.1"><!-- Prevent flash of wrong theme / language --><script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        const savedLang = localStorage.getItem('cnc-mastery-lang');
+        if (savedLang && savedLang !== 'en') {
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      })();
+    </script><!-- Fonts: Source Serif 4 (display + body), JetBrains Mono (data + code), Noto Sans Devanagari (Hindi) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"><!-- SEO --><title>ISO 13399 — The Data Standard for Cutting Tools | CNC Mastery</title><meta name="description" content="Understand how the ISO 13399 standard enables consistent digital exchange of cutting-tool data across manufacturing systems."><link rel="canonical" href="https://milan6633.github.io/Cnc-Mastery/module/20-industry40/01-iso-13399/"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="ISO 13399 — The Data Standard for Cutting Tools | CNC Mastery"><meta property="og:description" content="Understand how the ISO 13399 standard enables consistent digital exchange of cutting-tool data across manufacturing systems."><meta property="og:url" content="https://milan6633.github.io/Cnc-Mastery/module/20-industry40/01-iso-13399/"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Cnc-Mastery/favicon.svg"><link rel="stylesheet" href="/Cnc-Mastery/_astro/BaseLayout.9EMDZLzl.css"><link rel="stylesheet" href="/Cnc-Mastery/_astro/_lesson_.o8WOnXci.css"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header class="site-header" data-astro-cid-nen7h5rs><div class="header-container container" data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/" class="logo" aria-label="CNC Mastery — Home" data-astro-cid-nen7h5rs><svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2" data-astro-cid-nen7h5rs></circle><line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)" data-astro-cid-nen7h5rs></circle></svg><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span></a><nav class="main-nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><ul class="nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/syllabus" class="nav-link" data-i18n="nav.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-i18n-hi="पाठ्यक्रम" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/reference/gcode" class="nav-link" data-i18n="nav.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-i18n-hi="जी-कोड संदर्भ" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/resources" class="nav-link" data-i18n="nav.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-i18n-hi="संसाधन" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/about" class="nav-link" data-i18n="nav.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-i18n-hi="परिचय" data-astro-cid-nen7h5rs>About</a></li></ul></nav><div class="header-actions" data-astro-cid-nen7h5rs><div class="lang-group" role="group" aria-label="Switch language" data-astro-cid-ra2rg4ph><button class="lang-btn" data-lang-btn="en" aria-pressed="false" title="Switch to English" data-astro-cid-ra2rg4ph>EN</button><button class="lang-btn" data-lang-btn="fi" aria-pressed="false" title="Vaihda suomeksi" data-astro-cid-ra2rg4ph>FI</button><button class="lang-btn" data-lang-btn="hi" aria-pressed="false" title="हिन्दी में बदलें" data-astro-cid-ra2rg4ph>HI</button></div><script type="module">var e=`cnc-mastery-lang`,t=[`en`,`fi`,`hi`];function n(){let n=localStorage.getItem(e);return t.includes(n||``)?n:`en`}function r(t){localStorage.setItem(e,t),document.documentElement.setAttribute(`data-lang`,t),document.documentElement.setAttribute(`lang`,t),a(t),i(t)}function i(e){document.querySelectorAll(`[data-lang-btn]`).forEach(t=>{let n=t.dataset.langBtn===e;t.classList.toggle(`active`,n),t.setAttribute(`aria-pressed`,String(n))})}function a(e){document.querySelectorAll(`[data-i18n]`).forEach(t=>{let n=t.getAttribute(`data-i18n-en`),r=t.getAttribute(`data-i18n-fi`),i=t.getAttribute(`data-i18n-hi`);e===`hi`&&i?t.textContent=i:e===`fi`&&r?t.textContent=r:n&&(t.textContent=n)}),document.querySelectorAll(`[data-i18n-aria]`).forEach(t=>{let n=t.getAttribute(`data-i18n-aria-en`),r=t.getAttribute(`data-i18n-aria-fi`),i=t.getAttribute(`data-i18n-aria-hi`);e===`hi`&&i?t.setAttribute(`aria-label`,i):e===`fi`&&r?t.setAttribute(`aria-label`,r):n&&t.setAttribute(`aria-label`,n)})}var o=n();document.documentElement.setAttribute(`data-lang`,o),document.documentElement.setAttribute(`lang`,o),i(o),a(o),document.querySelectorAll(`[data-lang-btn]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.langBtn;t&&t!==n()&&r(t)})});</script><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" data-astro-cid-l6lhmie6><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><circle cx="12" cy="12" r="5" data-astro-cid-l6lhmie6></circle><line x1="12" y1="1" x2="12" y2="3" data-astro-cid-l6lhmie6></line><line x1="12" y1="21" x2="12" y2="23" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-l6lhmie6></line><line x1="1" y1="12" x2="3" y2="12" data-astro-cid-l6lhmie6></line><line x1="21" y1="12" x2="23" y2="12" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-l6lhmie6></line></svg><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-l6lhmie6></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`);function t(){return localStorage.getItem(`theme`)||`dark`}function n(e){document.documentElement.setAttribute(`data-theme`,e),localStorage.setItem(`theme`,e)}e?.addEventListener(`click`,()=>{n(t()===`dark`?`light`:`dark`)});</script><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-nen7h5rs></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-nen7h5rs></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div></div><!-- Mobile Nav Drawer --><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-astro-cid-nen7h5rs></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-astro-cid-nen7h5rs><div class="mobile-nav-header" data-astro-cid-nen7h5rs><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span><button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="18" y1="6" x2="6" y2="18" data-astro-cid-nen7h5rs></line><line x1="6" y1="6" x2="18" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div><ul class="mobile-nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/syllabus" class="mobile-nav-link" data-i18n="mobile.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/reference/gcode" class="mobile-nav-link" data-i18n="mobile.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/resources" class="mobile-nav-link" data-i18n="mobile.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/about" class="mobile-nav-link" data-i18n="mobile.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`mobile-menu-btn`),t=document.getElementById(`mobile-close-btn`),n=document.getElementById(`mobile-nav-overlay`),r=document.getElementById(`mobile-nav`);function i(){r?.classList.add(`open`),n?.classList.add(`open`),e?.setAttribute(`aria-expanded`,`true`),document.body.style.overflow=`hidden`}function a(){r?.classList.remove(`open`),n?.classList.remove(`open`),e?.setAttribute(`aria-expanded`,`false`),document.body.style.overflow=``}e?.addEventListener(`click`,i),t?.addEventListener(`click`,a),n?.addEventListener(`click`,a),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a()});</script><main id="main-content"><div class="lesson-page" data-astro-cid-ohwqzt66><!-- Sidebar --><aside class="lesson-sidebar" id="lesson-sidebar" data-astro-cid-ohwqzt66><div class="sidebar-header" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/20-industry40" class="sidebar-module-link" data-astro-cid-ohwqzt66><span class="sidebar-module-number readout" data-astro-cid-ohwqzt66>20</span><span class="sidebar-module-title" data-astro-cid-ohwqzt66>Industry 4.0 &amp; Emerging Technologies</span></a><span class="badge badge-specialist" data-astro-cid-ohwqzt66>Specialist</span></div><nav class="sidebar-nav" aria-label="Module lessons" data-astro-cid-ohwqzt66><ul class="sidebar-lessons" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/20-industry40/01-iso-13399" class="sidebar-lesson-link active" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>01</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>ISO 13399 — The Data Standard for Cutting Tools</span></a></li></ul></nav></aside><!-- Main Content --><article class="lesson-content" data-astro-cid-ohwqzt66><!-- Breadcrumb --><nav class="breadcrumb" aria-label="Breadcrumb" data-astro-cid-ohwqzt66><ol data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/" data-astro-cid-ohwqzt66>Home</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/syllabus" data-astro-cid-ohwqzt66>Syllabus</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/20-industry40" data-astro-cid-ohwqzt66>Industry 4.0 &amp; Emerging Technologies</a></li><li aria-current="page" data-astro-cid-ohwqzt66>ISO 13399 — The Data Standard for Cutting Tools</li></ol></nav><!-- Lesson Header --><header class="lesson-header" data-astro-cid-ohwqzt66><div class="lesson-meta" data-astro-cid-ohwqzt66><span class="badge badge-specialist" data-astro-cid-ohwqzt66>Level 4</span><span class="meta-item label" data-astro-cid-ohwqzt66>45 minutes</span><span class="meta-item label" data-astro-cid-ohwqzt66>advanced</span></div><h1 class="lesson-title" data-astro-cid-ohwqzt66>ISO 13399 — The Data Standard for Cutting Tools</h1><p class="lesson-description" data-astro-cid-ohwqzt66>Understand how the ISO 13399 standard enables consistent digital exchange of cutting-tool data across manufacturing systems.</p></header><!-- Learning Objectives --><div class="objectives-box" data-astro-cid-ohwqzt66><h2 class="objectives-heading" data-astro-cid-ohwqzt66>Learning objectives</h2><ul class="objectives-list" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66>Define ISO 13399 and the problem it solves.</li><li data-astro-cid-ohwqzt66>Explain why consistent tool data matters to CAM, simulation, and tool management.</li><li data-astro-cid-ohwqzt66>Identify who benefits from the standard across the supply chain.</li><li data-astro-cid-ohwqzt66>Describe the kinds of cutting-tool data the standard covers.</li></ul></div><!-- Lesson Body --><div class="prose" data-astro-cid-ohwqzt66><h2 id="what-iso-13399-is">What ISO 13399 is</h2>
+<p>ISO 13399 is the international standard for representing and exchanging cutting-tool
+information in computer-aided design (CAD) and computer-aided manufacture (CAM). Before
+it existed, a tool’s geometry and cutting data had no fixed vocabulary — every vendor and
+every piece of software described the same insert or drill in its own terms, so nothing
+moved between systems without someone rebuilding it by hand. ISO 13399 replaces that with
+one shared vocabulary that any compliant system can read without a translation step in
+between.</p>
+<div class="callout callout-key-concept"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.4"></circle><path d="M1.6 8h12.8"></path></svg></span><strong class="callout-label">Key concept</strong></div><p>Think of ISO 13399 as a dictionary that every CAM system, tool-management package, and
+supplier catalogue agrees to use. A tool’s cutting diameter always carries the same code
+no matter who published the data; its maximum depth of cut is likewise pinned to one fixed
+identifier. Overall reach, mounting geometry, coating, and dozens of other properties are
+captured the same structured way, so nothing needs re-interpreting as it crosses from one
+program to the next.</p></div>
+<p>The standard is developed within ISO technical committee TC 29 (small tools) and is
+published as a family of parts covering the data model, the representation of the
+parameters, and the exchange format. It applies to the full tool: assemblies, components,
+cutting items, and their properties.</p>
+<h2 id="the-problem-it-solves">The problem it solves</h2>
+<p>Cutting-tool suppliers do not use the same terminology, and the mismatch isn’t limited to
+diameters. Picture a programmer sourcing an insert from three different catalogues to
+finish one job: one vendor lists the corner radius as “RE,” another buries the same value
+under a field simply labeled “radius,” and a third spells out “corner rad. (mm)” in a PDF
+spec sheet with no code at all. Nothing about the number changes — it’s the same physical
+corner — but the programmer has to hunt it down three separate ways and retype it by hand
+each time.</p>
+<p>ISO 13399 removes that ambiguity. When suppliers describe their tools using the standard,
+every property is pinned to one fixed code regardless of who published it — the corner
+radius, for instance, is always <strong>RE</strong>, in every catalogue, every time.</p>
+<p>At the same time, modern manufacturing systems increasingly rely on access to relevant and
+exact information. A CAM system that reads a wrong or ambiguous tool dimension produces a
+wrong toolpath; a simulation that cannot find the correct geometry cannot validate the job.</p>
+<div class="callout callout-warning"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.9 15 14.1H1z"></path><path d="M8 6.2v3.3"></path><circle cx="8" cy="11.7" r="0.7" fill="currentColor" stroke="none"></circle></svg></span><strong class="callout-label">Safety warning</strong></div><p>The value of the standard is in consistent, machine-readable data. It does not by itself
+make tools better — it makes the information about tools reliable and reusable across
+systems.</p></div>
+<h2 id="what-data-the-standard-covers">What data the standard covers</h2>
+<p>ISO 13399 organises tooling as a hierarchy of related items, each described by standardised
+properties.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>What it holds</th></tr></thead><tbody><tr><td>Tool assembly</td><td>A complete mounted tool: cutter plus adapter plus holder</td></tr><tr><td>Component</td><td>A part of the assembly, such as a holder, shank, or adapter</td></tr><tr><td>Cutting item</td><td>The replaceable cutting element, such as an insert</td></tr><tr><td>Properties</td><td>Dimensions, grades, and cutting data attached to each item</td></tr></tbody></table>
+<p>Standardised parameter codes identify each attribute unambiguously. Examples from the
+standard’s terminology:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td>DCX</td><td>Cutting diameter, maximum</td></tr><tr><td>LF</td><td>Functional length</td></tr><tr><td>APMX</td><td>Depth of cut, maximum</td></tr><tr><td>DMM</td><td>Shank diameter</td></tr><tr><td>ZYL-01</td><td>Straight shank with no features</td></tr><tr><td>EDMIL</td><td>End mill</td></tr></tbody></table>
+<p>Because the codes are fixed and shared, a tool-management system, a CAM program, and a
+simulation package all interpret “DCX” as exactly the same measurement.</p>
+<h2 id="who-benefits">Who benefits</h2>
+<ul>
+<li><strong>Tool manufacturers</strong> — publish a catalogue once, in a form every downstream system can
+consume.</li>
+<li><strong>CAM software</strong> — import correct tool geometry automatically instead of relying on
+manual entry.</li>
+<li><strong>Machine shops</strong> — build tool assemblies in CAM and simulation without re-typing
+dimensions, and reuse them across jobs.</li>
+<li><strong>Tool cribs and ERP</strong> — manage inventory and tool life against a single, unambiguous
+record of each tool.</li>
+</ul>
+<h2 id="iso-13399-and-industry-40">ISO 13399 and Industry 4.0</h2>
+<p>Industry 4.0 depends on a continuous digital thread of data across design, planning,
+machining, and management. Cutting tools are a core part of that thread, yet tooling has
+historically been described in free text and paper catalogues.</p>
+<p>ISO 13399 turns tooling into structured digital data. That enables:</p>
+<ul>
+<li><strong>Digital twin of the tool</strong> — an exact, machine-readable model usable in simulation and
+verification.</li>
+<li><strong>Digital thread</strong> — the same tool record flows from supplier catalogue through CAM,
+simulation, tool management, and PLM without re-entry.</li>
+<li><strong>Fewer errors</strong> — removing manual data re-entry removes a major source of programming
+and setup mistakes.</li>
+</ul>
+<div class="callout callout-pro-tip"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.8 14.2 8 8 14.2 1.8 8z"></path><circle cx="8" cy="8" r="1.6"></circle></svg></span><strong class="callout-label">Pro tip</strong></div><p>When choosing tool-management or CAM software, check that it can import ISO 13399 tool
+data. A system that reads the standard will scale with your digitalisation, instead of
+blocking it with manual re-entry.</p></div>
+<p><strong>1. What is ISO 13399 in one sentence?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>It is the international standard for representing and exchanging cutting-tool information
+between CAD, CAM, simulation, and tool-management systems in a consistent, machine-readable
+way.</p>
+</details>
+<p><strong>2. What problem does the standard solve between tool suppliers?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Suppliers use different names and formats for the same property (for example RE, “radius,”
+or “corner rad.” for a corner radius). ISO 13399 standardises the parameters, so any given
+property is always identified by the same code — the corner radius is always RE.</p>
+</details>
+<p><strong>3. Name the main levels of the tooling hierarchy the standard describes.</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Tool assemblies, components, and cutting items, each with attached properties such as
+dimensions, grades, and cutting data.</p>
+</details>
+<p><strong>4. How does ISO 13399 support the Industry 4.0 digital thread?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>It turns tooling into structured digital data that can flow unchanged from supplier
+catalogue through CAM, simulation, tool management, and PLM, enabling a digital twin of
+the tool and removing manual re-entry and its errors.</p>
+</details></div><!-- Prev/Next Navigation --><nav class="lesson-nav" aria-label="Lesson navigation" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/19-advanced-programming/05-conversational-programming" class="lesson-nav-card prev" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>← Previous Lesson</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Conversational Programming Overview</span></a><a href="/Cnc-Mastery/syllabus" class="lesson-nav-card next" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>Completed! →</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Back to Syllabus</span></a></nav></article></div><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle lesson sidebar" data-astro-cid-ohwqzt66><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ohwqzt66><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-ohwqzt66></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-ohwqzt66></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-ohwqzt66></line></svg>Lessons</button><script type="module">var e=document.getElementById(`sidebar-toggle`),t=document.getElementById(`lesson-sidebar`);e?.addEventListener(`click`,()=>{t?.classList.toggle(`open`)}),t?.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{t?.classList.remove(`open`)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="footer-container container" data-astro-cid-jo6i4kqk><div class="footer-grid" data-astro-cid-jo6i4kqk><div class="footer-brand" data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/" class="footer-logo" data-astro-cid-jo6i4kqk>CNC <span data-astro-cid-jo6i4kqk>Mastery</span></a><p class="footer-tagline" data-astro-cid-jo6i4kqk>Learn CNC machining online — from blueprint to finished part. No school required.</p></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>Course</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/syllabus" data-astro-cid-jo6i4kqk>Full Syllabus</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/module/01-shop-safety" data-astro-cid-jo6i4kqk>Start Learning</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/reference/gcode" data-astro-cid-jo6i4kqk>G-Code Reference</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/reference/formulas" data-astro-cid-jo6i4kqk>Shop Math Formulas</a></li></ul></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>More</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/resources" data-astro-cid-jo6i4kqk>Resources & Books</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/about" data-astro-cid-jo6i4kqk>About</a></li></ul></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 CNC Mastery. Built by Milan Khadka.</p><p class="footer-status" data-astro-cid-jo6i4kqk><span class="status-dot" aria-hidden="true" data-astro-cid-jo6i4kqk></span>All systems nominal</p></div></div></footer></body></html>

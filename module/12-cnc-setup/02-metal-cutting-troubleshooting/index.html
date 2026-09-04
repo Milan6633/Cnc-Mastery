@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.1"><!-- Prevent flash of wrong theme / language --><script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        const savedLang = localStorage.getItem('cnc-mastery-lang');
+        if (savedLang && savedLang !== 'en') {
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      })();
+    </script><!-- Fonts: Source Serif 4 (display + body), JetBrains Mono (data + code), Noto Sans Devanagari (Hindi) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"><!-- SEO --><title>Metal Cutting Troubleshooting — Vibration, Wear &amp; Finish | CNC Mastery</title><meta name="description" content="Apply a systematic method to diagnose and fix the most common metal-cutting problems across turning, milling, drilling, and boring."><link rel="canonical" href="https://milan6633.github.io/Cnc-Mastery/module/12-cnc-setup/02-metal-cutting-troubleshooting/"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="Metal Cutting Troubleshooting — Vibration, Wear &amp; Finish | CNC Mastery"><meta property="og:description" content="Apply a systematic method to diagnose and fix the most common metal-cutting problems across turning, milling, drilling, and boring."><meta property="og:url" content="https://milan6633.github.io/Cnc-Mastery/module/12-cnc-setup/02-metal-cutting-troubleshooting/"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Cnc-Mastery/favicon.svg"><link rel="stylesheet" href="/Cnc-Mastery/_astro/BaseLayout.9EMDZLzl.css"><link rel="stylesheet" href="/Cnc-Mastery/_astro/_lesson_.o8WOnXci.css"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header class="site-header" data-astro-cid-nen7h5rs><div class="header-container container" data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/" class="logo" aria-label="CNC Mastery — Home" data-astro-cid-nen7h5rs><svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2" data-astro-cid-nen7h5rs></circle><line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)" data-astro-cid-nen7h5rs></circle></svg><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span></a><nav class="main-nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><ul class="nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/syllabus" class="nav-link" data-i18n="nav.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-i18n-hi="पाठ्यक्रम" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/reference/gcode" class="nav-link" data-i18n="nav.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-i18n-hi="जी-कोड संदर्भ" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/resources" class="nav-link" data-i18n="nav.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-i18n-hi="संसाधन" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/about" class="nav-link" data-i18n="nav.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-i18n-hi="परिचय" data-astro-cid-nen7h5rs>About</a></li></ul></nav><div class="header-actions" data-astro-cid-nen7h5rs><div class="lang-group" role="group" aria-label="Switch language" data-astro-cid-ra2rg4ph><button class="lang-btn" data-lang-btn="en" aria-pressed="false" title="Switch to English" data-astro-cid-ra2rg4ph>EN</button><button class="lang-btn" data-lang-btn="fi" aria-pressed="false" title="Vaihda suomeksi" data-astro-cid-ra2rg4ph>FI</button><button class="lang-btn" data-lang-btn="hi" aria-pressed="false" title="हिन्दी में बदलें" data-astro-cid-ra2rg4ph>HI</button></div><script type="module">var e=`cnc-mastery-lang`,t=[`en`,`fi`,`hi`];function n(){let n=localStorage.getItem(e);return t.includes(n||``)?n:`en`}function r(t){localStorage.setItem(e,t),document.documentElement.setAttribute(`data-lang`,t),document.documentElement.setAttribute(`lang`,t),a(t),i(t)}function i(e){document.querySelectorAll(`[data-lang-btn]`).forEach(t=>{let n=t.dataset.langBtn===e;t.classList.toggle(`active`,n),t.setAttribute(`aria-pressed`,String(n))})}function a(e){document.querySelectorAll(`[data-i18n]`).forEach(t=>{let n=t.getAttribute(`data-i18n-en`),r=t.getAttribute(`data-i18n-fi`),i=t.getAttribute(`data-i18n-hi`);e===`hi`&&i?t.textContent=i:e===`fi`&&r?t.textContent=r:n&&(t.textContent=n)}),document.querySelectorAll(`[data-i18n-aria]`).forEach(t=>{let n=t.getAttribute(`data-i18n-aria-en`),r=t.getAttribute(`data-i18n-aria-fi`),i=t.getAttribute(`data-i18n-aria-hi`);e===`hi`&&i?t.setAttribute(`aria-label`,i):e===`fi`&&r?t.setAttribute(`aria-label`,r):n&&t.setAttribute(`aria-label`,n)})}var o=n();document.documentElement.setAttribute(`data-lang`,o),document.documentElement.setAttribute(`lang`,o),i(o),a(o),document.querySelectorAll(`[data-lang-btn]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.langBtn;t&&t!==n()&&r(t)})});</script><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" data-astro-cid-l6lhmie6><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><circle cx="12" cy="12" r="5" data-astro-cid-l6lhmie6></circle><line x1="12" y1="1" x2="12" y2="3" data-astro-cid-l6lhmie6></line><line x1="12" y1="21" x2="12" y2="23" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-l6lhmie6></line><line x1="1" y1="12" x2="3" y2="12" data-astro-cid-l6lhmie6></line><line x1="21" y1="12" x2="23" y2="12" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-l6lhmie6></line></svg><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-l6lhmie6></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`);function t(){return localStorage.getItem(`theme`)||`dark`}function n(e){document.documentElement.setAttribute(`data-theme`,e),localStorage.setItem(`theme`,e)}e?.addEventListener(`click`,()=>{n(t()===`dark`?`light`:`dark`)});</script><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-nen7h5rs></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-nen7h5rs></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div></div><!-- Mobile Nav Drawer --><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-astro-cid-nen7h5rs></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-astro-cid-nen7h5rs><div class="mobile-nav-header" data-astro-cid-nen7h5rs><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span><button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="18" y1="6" x2="6" y2="18" data-astro-cid-nen7h5rs></line><line x1="6" y1="6" x2="18" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div><ul class="mobile-nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/syllabus" class="mobile-nav-link" data-i18n="mobile.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/reference/gcode" class="mobile-nav-link" data-i18n="mobile.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/resources" class="mobile-nav-link" data-i18n="mobile.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/about" class="mobile-nav-link" data-i18n="mobile.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`mobile-menu-btn`),t=document.getElementById(`mobile-close-btn`),n=document.getElementById(`mobile-nav-overlay`),r=document.getElementById(`mobile-nav`);function i(){r?.classList.add(`open`),n?.classList.add(`open`),e?.setAttribute(`aria-expanded`,`true`),document.body.style.overflow=`hidden`}function a(){r?.classList.remove(`open`),n?.classList.remove(`open`),e?.setAttribute(`aria-expanded`,`false`),document.body.style.overflow=``}e?.addEventListener(`click`,i),t?.addEventListener(`click`,a),n?.addEventListener(`click`,a),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a()});</script><main id="main-content"><div class="lesson-page" data-astro-cid-ohwqzt66><!-- Sidebar --><aside class="lesson-sidebar" id="lesson-sidebar" data-astro-cid-ohwqzt66><div class="sidebar-header" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup" class="sidebar-module-link" data-astro-cid-ohwqzt66><span class="sidebar-module-number readout" data-astro-cid-ohwqzt66>12</span><span class="sidebar-module-title" data-astro-cid-ohwqzt66>CNC Setup, Optimization &amp; Troubleshooting</span></a><span class="badge badge-advanced" data-astro-cid-ohwqzt66>Advanced</span></div><nav class="sidebar-nav" aria-label="Module lessons" data-astro-cid-ohwqzt66><ul class="sidebar-lessons" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup/01-machining-economy" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>01</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Machining Economy — Cost per Component &amp; Tool Life</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup/02-metal-cutting-troubleshooting" class="sidebar-lesson-link active" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>02</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Metal Cutting Troubleshooting — Vibration, Wear &amp; Finish</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup/03-manual-programming-workflow" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>03</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Manual Programming Workflow at the Control</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup/04-first-article-inspection" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>04</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>First Article Inspection Workflow</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup/05-control-editing-debugging" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>05</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>In-Machine Editing, Debugging, and Alarm Recovery</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup/06-job-documentation" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>06</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Job Documentation and Setup Sheets</span></a></li></ul></nav></aside><!-- Main Content --><article class="lesson-content" data-astro-cid-ohwqzt66><!-- Breadcrumb --><nav class="breadcrumb" aria-label="Breadcrumb" data-astro-cid-ohwqzt66><ol data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/" data-astro-cid-ohwqzt66>Home</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/syllabus" data-astro-cid-ohwqzt66>Syllabus</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup" data-astro-cid-ohwqzt66>CNC Setup, Optimization &amp; Troubleshooting</a></li><li aria-current="page" data-astro-cid-ohwqzt66>Metal Cutting Troubleshooting — Vibration, Wear &amp; Finish</li></ol></nav><!-- Lesson Header --><header class="lesson-header" data-astro-cid-ohwqzt66><div class="lesson-meta" data-astro-cid-ohwqzt66><span class="badge badge-advanced" data-astro-cid-ohwqzt66>Level 3</span><span class="meta-item label" data-astro-cid-ohwqzt66>50 minutes</span><span class="meta-item label" data-astro-cid-ohwqzt66>intermediate</span></div><h1 class="lesson-title" data-astro-cid-ohwqzt66>Metal Cutting Troubleshooting — Vibration, Wear &amp; Finish</h1><p class="lesson-description" data-astro-cid-ohwqzt66>Apply a systematic method to diagnose and fix the most common metal-cutting problems across turning, milling, drilling, and boring.</p></header><!-- Learning Objectives --><div class="objectives-box" data-astro-cid-ohwqzt66><h2 class="objectives-heading" data-astro-cid-ohwqzt66>Learning objectives</h2><ul class="objectives-list" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66>Follow a four-point observation method to diagnose cutting problems.</li><li data-astro-cid-ohwqzt66>Classify common faults into chip, surface, burr, vibration, and tool-life categories.</li><li data-astro-cid-ohwqzt66>Distinguish the sub-causes of vibration: radial force, tangential force, and instability.</li><li data-astro-cid-ohwqzt66>Select the correct remedy family: cutting data, geometry, grade, stability, or coolant.</li></ul></div><!-- Lesson Body --><div class="prose" data-astro-cid-ohwqzt66><h2 id="the-troubleshooting-method">The troubleshooting method</h2>
+<p>A cutting fault is usually the symptom of one of a small number of root causes. Instead of
+guessing, work through four signals in order before touching anything:</p>
+<ol>
+<li><strong>Chip</strong> — colour, shape, length, and where it goes. A long snarl points to poor chip
+control; a burnt chip points to excessive speed.</li>
+<li><strong>Surface</strong> — feed marks, “hairy” texture, or tearing all point to a specific edge or
+data problem.</li>
+<li><strong>Sound</strong> — a steady hiss is healthy; a rhythmic screech or rattle is chatter. Note the
+pitch and whether it follows spindle speed.</li>
+<li><strong>Tool</strong> — the wear pattern on the edge (flank, crater, notch, built-up edge, chipping)
+records exactly what the cut was doing.</li>
+</ol>
+<div class="callout callout-key-concept"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.4"></circle><path d="M1.6 8h12.8"></path></svg></span><strong class="callout-label">Key concept</strong></div><p>Always observe before you adjust. The chip tells you about chip control, the surface about
+the edge, the sound about vibration, and the wear scar about cutting data and grade. Change
+one variable at a time so you know which change fixed the problem.</p></div>
+<h2 id="problem-categories">Problem categories</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category</th><th>What you see or hear</th></tr></thead><tbody><tr><td>Poor chip control</td><td>Long snarls winding around tool or part; chips jamming the cut</td></tr><tr><td>Bad surface finish</td><td>“Hairy” texture, feed marks, tearing, scratching</td></tr><tr><td>Burrs</td><td>Material raised at the exit of the cut</td></tr><tr><td>Vibration (chatter)</td><td>Chatter marks, noise, tool or part ringing</td></tr><tr><td>Poor tool life</td><td>Rapid flank or crater wear, early edge failure</td></tr><tr><td>Insert breakage</td><td>Chipped or fractured edge, sudden failure</td></tr><tr><td>Built-up edge</td><td>Workpiece material welded onto the cutting edge</td></tr></tbody></table>
+<h2 id="vibration-three-distinct-causes">Vibration: three distinct causes</h2>
+<p>Chatter is not one problem. The remedy depends on which force is driving it.</p>
+<ul>
+<li><strong>High radial cutting force</strong> — caused by too large a nose radius or an unsuitable
+entering/lead angle. The tool is pushed sideways and deflects.</li>
+<li><strong>High tangential cutting force</strong> — caused by a negative geometry, too hard a
+chipbreaker, or a high feed. The tool is loaded in the cutting direction.</li>
+<li><strong>Instability</strong> — long overhang, insufficient clamping, or wrong centre height. The
+system itself is flexible, so even a moderate force excites it.</li>
+</ul>
+<div class="callout callout-warning"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.9 15 14.1H1z"></path><path d="M8 6.2v3.3"></path><circle cx="8" cy="11.7" r="0.7" fill="currentColor" stroke="none"></circle></svg></span><strong class="callout-label">Safety warning</strong></div><p>Treating chatter as a speed problem when the real cause is a long boring-bar overhang will
+not fix it — it will only hide the symptom and waste cutting data. Diagnose the force path
+first.</p></div>
+<h2 id="chip-control-problems">Chip control problems</h2>
+<ul>
+<li><strong>Snarls / stuck chips</strong>: feed too low for the geometry, depth of cut too shallow, or nose
+radius too large. Increase the feed, choose a geometry with better chip breaking, or use
+high-precision coolant to flush the chip away.</li>
+<li><strong>Too short, hard-broken chips</strong>: the chipbreaker is working too hard, raising cutting
+forces and risking edge breakage. Use a more open chipbreaker or reduce the feed.</li>
+</ul>
+<h2 id="surface-finish-and-burrs">Surface finish and burrs</h2>
+<ul>
+<li><strong>“Hairy” surface</strong>: the edge is not sharp enough, or notch wear is tearing the surface.
+Use a sharp PVD-coated or ground insert, a positive geometry, or a cermet grade, and
+reduce speed if oxidation wear is present.</li>
+<li><strong>Burrs at cut exit</strong>: the chip breaks against the edge as it leaves the workpiece. End
+the cut with a chamfer or radius, or use a wiper insert and reduce feed.</li>
+</ul>
+<h2 id="tool-life-and-edge-failure">Tool life and edge failure</h2>
+<p>Each wear pattern names its own cause:</p>
+<ul>
+<li><strong>Flank / crater wear</strong>: cutting speed too high or grade too soft. Reduce vc or use a
+more wear-resistant grade.</li>
+<li><strong>Built-up edge</strong>: speed too low, edge temperature too high, or no coating. Increase vc,
+sharpen the edge, and raise the oil percentage in the coolant.</li>
+<li><strong>Breakage / chipping</strong>: too hard a chipbreaker, an unstable setup, or a grade that is
+too hard for an intermittent cut. Use a tougher grade, reduce feed, and check fixturing
+and runout.</li>
+<li><strong>Notch wear at the depth-of-cut line</strong>: work-hardened or scaled material at that line.
+Vary the depth of cut, reduce speed, or use a harder grade.</li>
+</ul>
+<h2 id="remedy-families">Remedy families</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Family</th><th>What you change</th></tr></thead><tbody><tr><td>Cutting data</td><td>vc, fn, ap (raise or lower, one at a time)</td></tr><tr><td>Geometry</td><td>Positive vs negative, entering angle, chipbreaker, nose radius, wiper</td></tr><tr><td>Grade</td><td>Tougher (breakage) vs more wear-resistant (wear)</td></tr><tr><td>Stability</td><td>Shorter overhang, larger or dampened bar, better clamping, correct centre height</td></tr><tr><td>Coolant</td><td>Precision or internal supply, correct oil mix, or coolant off when appropriate</td></tr></tbody></table>
+<h2 id="consolidated-problem--cause--remedy">Consolidated problem → cause → remedy</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Problem</th><th>Typical cause</th><th>Remedy</th></tr></thead><tbody><tr><td>Chip snarls / jamming</td><td>Feed too low, ap too shallow, large nose radius</td><td>Raise feed; better chipbreaker geometry; precision coolant</td></tr><tr><td>Hard, over-broken chips</td><td>Chipbreaker too aggressive</td><td>More open chipbreaker; reduce feed</td></tr><tr><td>“Hairy” / rough surface</td><td>Blunt edge, notch wear, high feed + small nose radius</td><td>Sharp positive edge; wiper or larger nose radius; reduce feed</td></tr><tr><td>Burrs at exit</td><td>Chip breaks at exit; high feed + small nose radius</td><td>Chamfer/radius on exit; wiper insert; reduce feed</td></tr><tr><td>Chatter — radial force</td><td>Large nose radius; small entering angle</td><td>Entering angle near 90°; smaller nose radius; positive geometry</td></tr><tr><td>Chatter — tangential force</td><td>Negative geometry; hard chipbreaking; high feed</td><td>Positive insert; reduce feed; reduce speed</td></tr><tr><td>Chatter — instability</td><td>Long overhang; weak clamping; centre height</td><td>Shorter overhang; larger or dampened bar; correct centre height</td></tr><tr><td>Rapid flank / crater wear</td><td>Speed too high; grade too soft</td><td>Reduce vc; more wear-resistant grade</td></tr><tr><td>Built-up edge</td><td>Speed too low; no coating; blunt land</td><td>Increase vc; sharp coated edge; more oil in coolant</td></tr><tr><td>Breakage / chipping</td><td>Hard chipbreaking; unstable setup; brittle grade</td><td>Tougher grade; reduce feed; check fixture and runout</td></tr><tr><td>Notch wear at DOC line</td><td>Hardened or scaled surface at cut line</td><td>Vary ap; reduce speed; harder grade</td></tr><tr><td>Plastic deformation</td><td>Speed/feed too high; poor coolant</td><td>Reduce vc/fn; harder grade; improve coolant</td></tr><tr><td>Thermal cracks</td><td>Inconsistent coolant; intermittent cut</td><td>Stabilise coolant supply; reduce feed</td></tr></tbody></table>
+<div class="callout callout-pro-tip"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.8 14.2 8 8 14.2 1.8 8z"></path><circle cx="8" cy="8" r="1.6"></circle></svg></span><strong class="callout-label">Pro tip</strong></div><p>Across all processes the same stability rules apply: use the shortest possible overhang,
+the largest possible tool diameter, correct cutter pitch in milling, climb milling where
+possible, and dampened tools when overhang exceeds about 4× the tool diameter.</p></div>
+<p><strong>1. What four signals should you observe before changing any cutting data?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>The chip, the surface finish, the sound, and the tool (its wear pattern). Each one points
+to a different root cause: chip control, edge condition, vibration, and data/grade.</p>
+</details>
+<p><strong>2. What are the three distinct causes of vibration (chatter)?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>High radial cutting force, high tangential cutting force, and instability (long overhang,
+weak clamping, or wrong centre height). Each needs a different remedy.</p>
+</details>
+<p><strong>3. A long chip snarl keeps wrapping around the tool. What is the most likely fix?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>The feed is likely too low for the geometry. Increase the feed, choose a geometry with
+better chip breaking, or apply high-precision coolant to control the chip.</p>
+</details>
+<p><strong>4. Your insert shows built-up edge on a steel job. What do you change?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Increase the cutting speed, use a sharper coated edge, and raise the oil percentage in the
+cutting fluid. Built-up edge forms when the edge is too cold and material welds onto it.</p>
+</details>
+<p><strong>5. A boring bar chatters badly on a deep bore. What stability remedies apply?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Reduce the overhang, use the largest possible bar diameter, switch to a dampened or solid
+carbide bar, extend the clamping length, and verify centre height.</p>
+</details></div><!-- Prev/Next Navigation --><nav class="lesson-nav" aria-label="Lesson navigation" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/12-cnc-setup/01-machining-economy" class="lesson-nav-card prev" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>← Previous Lesson</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Machining Economy — Cost per Component &amp; Tool Life</span></a><a href="/Cnc-Mastery/module/12-cnc-setup/03-manual-programming-workflow" class="lesson-nav-card next" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>Next Lesson →</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Manual Programming Workflow at the Control</span></a></nav></article></div><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle lesson sidebar" data-astro-cid-ohwqzt66><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ohwqzt66><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-ohwqzt66></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-ohwqzt66></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-ohwqzt66></line></svg>Lessons</button><script type="module">var e=document.getElementById(`sidebar-toggle`),t=document.getElementById(`lesson-sidebar`);e?.addEventListener(`click`,()=>{t?.classList.toggle(`open`)}),t?.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{t?.classList.remove(`open`)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="footer-container container" data-astro-cid-jo6i4kqk><div class="footer-grid" data-astro-cid-jo6i4kqk><div class="footer-brand" data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/" class="footer-logo" data-astro-cid-jo6i4kqk>CNC <span data-astro-cid-jo6i4kqk>Mastery</span></a><p class="footer-tagline" data-astro-cid-jo6i4kqk>Learn CNC machining online — from blueprint to finished part. No school required.</p></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>Course</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/syllabus" data-astro-cid-jo6i4kqk>Full Syllabus</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/module/01-shop-safety" data-astro-cid-jo6i4kqk>Start Learning</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/reference/gcode" data-astro-cid-jo6i4kqk>G-Code Reference</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/reference/formulas" data-astro-cid-jo6i4kqk>Shop Math Formulas</a></li></ul></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>More</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/resources" data-astro-cid-jo6i4kqk>Resources & Books</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/about" data-astro-cid-jo6i4kqk>About</a></li></ul></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 CNC Mastery. Built by Milan Khadka.</p><p class="footer-status" data-astro-cid-jo6i4kqk><span class="status-dot" aria-hidden="true" data-astro-cid-jo6i4kqk></span>All systems nominal</p></div></div></footer></body></html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.1"><!-- Prevent flash of wrong theme / language --><script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        const savedLang = localStorage.getItem('cnc-mastery-lang');
+        if (savedLang && savedLang !== 'en') {
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        }
+      })();
+    </script><!-- Fonts: Source Serif 4 (display + body), JetBrains Mono (data + code), Noto Sans Devanagari (Hindi) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"><!-- SEO --><title>Drilling Tools — Types &amp; Theory | CNC Mastery</title><meta name="description" content="Choose the right drill type, read drill geometry, and set correct cutting data and entry technique."><link rel="canonical" href="https://milan6633.github.io/Cnc-Mastery/module/07-cutting-tools/10-drilling-tools/"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="Drilling Tools — Types &amp; Theory | CNC Mastery"><meta property="og:description" content="Choose the right drill type, read drill geometry, and set correct cutting data and entry technique."><meta property="og:url" content="https://milan6633.github.io/Cnc-Mastery/module/07-cutting-tools/10-drilling-tools/"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/Cnc-Mastery/favicon.svg"><link rel="stylesheet" href="/Cnc-Mastery/_astro/BaseLayout.9EMDZLzl.css"><link rel="stylesheet" href="/Cnc-Mastery/_astro/_lesson_.o8WOnXci.css"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header class="site-header" data-astro-cid-nen7h5rs><div class="header-container container" data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/" class="logo" aria-label="CNC Mastery — Home" data-astro-cid-nen7h5rs><svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2" data-astro-cid-nen7h5rs></circle><line x1="14" y1="2" x2="14" y2="26" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" data-astro-cid-nen7h5rs></line><circle cx="14" cy="14" r="3" fill="var(--color-accent-primary)" data-astro-cid-nen7h5rs></circle></svg><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span></a><nav class="main-nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><ul class="nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/syllabus" class="nav-link" data-i18n="nav.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-i18n-hi="पाठ्यक्रम" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/reference/gcode" class="nav-link" data-i18n="nav.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-i18n-hi="जी-कोड संदर्भ" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/resources" class="nav-link" data-i18n="nav.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-i18n-hi="संसाधन" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/about" class="nav-link" data-i18n="nav.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-i18n-hi="परिचय" data-astro-cid-nen7h5rs>About</a></li></ul></nav><div class="header-actions" data-astro-cid-nen7h5rs><div class="lang-group" role="group" aria-label="Switch language" data-astro-cid-ra2rg4ph><button class="lang-btn" data-lang-btn="en" aria-pressed="false" title="Switch to English" data-astro-cid-ra2rg4ph>EN</button><button class="lang-btn" data-lang-btn="fi" aria-pressed="false" title="Vaihda suomeksi" data-astro-cid-ra2rg4ph>FI</button><button class="lang-btn" data-lang-btn="hi" aria-pressed="false" title="हिन्दी में बदलें" data-astro-cid-ra2rg4ph>HI</button></div><script type="module">var e=`cnc-mastery-lang`,t=[`en`,`fi`,`hi`];function n(){let n=localStorage.getItem(e);return t.includes(n||``)?n:`en`}function r(t){localStorage.setItem(e,t),document.documentElement.setAttribute(`data-lang`,t),document.documentElement.setAttribute(`lang`,t),a(t),i(t)}function i(e){document.querySelectorAll(`[data-lang-btn]`).forEach(t=>{let n=t.dataset.langBtn===e;t.classList.toggle(`active`,n),t.setAttribute(`aria-pressed`,String(n))})}function a(e){document.querySelectorAll(`[data-i18n]`).forEach(t=>{let n=t.getAttribute(`data-i18n-en`),r=t.getAttribute(`data-i18n-fi`),i=t.getAttribute(`data-i18n-hi`);e===`hi`&&i?t.textContent=i:e===`fi`&&r?t.textContent=r:n&&(t.textContent=n)}),document.querySelectorAll(`[data-i18n-aria]`).forEach(t=>{let n=t.getAttribute(`data-i18n-aria-en`),r=t.getAttribute(`data-i18n-aria-fi`),i=t.getAttribute(`data-i18n-aria-hi`);e===`hi`&&i?t.setAttribute(`aria-label`,i):e===`fi`&&r?t.setAttribute(`aria-label`,r):n&&t.setAttribute(`aria-label`,n)})}var o=n();document.documentElement.setAttribute(`data-lang`,o),document.documentElement.setAttribute(`lang`,o),i(o),a(o),document.querySelectorAll(`[data-lang-btn]`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.langBtn;t&&t!==n()&&r(t)})});</script><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" data-astro-cid-l6lhmie6><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><circle cx="12" cy="12" r="5" data-astro-cid-l6lhmie6></circle><line x1="12" y1="1" x2="12" y2="3" data-astro-cid-l6lhmie6></line><line x1="12" y1="21" x2="12" y2="23" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-l6lhmie6></line><line x1="1" y1="12" x2="3" y2="12" data-astro-cid-l6lhmie6></line><line x1="21" y1="12" x2="23" y2="12" data-astro-cid-l6lhmie6></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-l6lhmie6></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-l6lhmie6></line></svg><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-l6lhmie6><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-l6lhmie6></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`);function t(){return localStorage.getItem(`theme`)||`dark`}function n(e){document.documentElement.setAttribute(`data-theme`,e),localStorage.setItem(`theme`,e)}e?.addEventListener(`click`,()=>{n(t()===`dark`?`light`:`dark`)});</script><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" id="mobile-menu-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-nen7h5rs></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-nen7h5rs></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div></div><!-- Mobile Nav Drawer --><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-astro-cid-nen7h5rs></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-astro-cid-nen7h5rs><div class="mobile-nav-header" data-astro-cid-nen7h5rs><span class="logo-text" data-astro-cid-nen7h5rs>CNC <span class="logo-highlight" data-astro-cid-nen7h5rs>Mastery</span></span><button class="mobile-close-btn" aria-label="Close menu" id="mobile-close-btn" data-astro-cid-nen7h5rs><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-nen7h5rs><line x1="18" y1="6" x2="6" y2="18" data-astro-cid-nen7h5rs></line><line x1="6" y1="6" x2="18" y2="18" data-astro-cid-nen7h5rs></line></svg></button></div><ul class="mobile-nav-list" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/syllabus" class="mobile-nav-link" data-i18n="mobile.syllabus" data-i18n-en="Syllabus" data-i18n-fi="Opetussuunnitelma" data-astro-cid-nen7h5rs>Syllabus</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/reference/gcode" class="mobile-nav-link" data-i18n="mobile.g-code-reference" data-i18n-en="G-Code Reference" data-i18n-fi="G-koodi viite" data-astro-cid-nen7h5rs>G-Code Reference</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/resources" class="mobile-nav-link" data-i18n="mobile.resources" data-i18n-en="Resources" data-i18n-fi="Resurssit" data-astro-cid-nen7h5rs>Resources</a></li><li data-astro-cid-nen7h5rs><a href="/Cnc-Mastery/about" class="mobile-nav-link" data-i18n="mobile.about" data-i18n-en="About" data-i18n-fi="Tietoa" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`mobile-menu-btn`),t=document.getElementById(`mobile-close-btn`),n=document.getElementById(`mobile-nav-overlay`),r=document.getElementById(`mobile-nav`);function i(){r?.classList.add(`open`),n?.classList.add(`open`),e?.setAttribute(`aria-expanded`,`true`),document.body.style.overflow=`hidden`}function a(){r?.classList.remove(`open`),n?.classList.remove(`open`),e?.setAttribute(`aria-expanded`,`false`),document.body.style.overflow=``}e?.addEventListener(`click`,i),t?.addEventListener(`click`,a),n?.addEventListener(`click`,a),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a()});</script><main id="main-content"><div class="lesson-page" data-astro-cid-ohwqzt66><!-- Sidebar --><aside class="lesson-sidebar" id="lesson-sidebar" data-astro-cid-ohwqzt66><div class="sidebar-header" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools" class="sidebar-module-link" data-astro-cid-ohwqzt66><span class="sidebar-module-number readout" data-astro-cid-ohwqzt66>07</span><span class="sidebar-module-title" data-astro-cid-ohwqzt66>Cutting Tools &amp; Toolholders</span></a><span class="badge badge-core" data-astro-cid-ohwqzt66>Core CNC</span></div><nav class="sidebar-nav" aria-label="Module lessons" data-astro-cid-ohwqzt66><ul class="sidebar-lessons" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/01-the-cutting-edge" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>01</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>The Cutting Edge: Macro and Micro Geometry</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/02-chip-formation" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>02</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Chip Formation and Chip Control</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/03-cutting-tool-materials" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>03</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Cutting Tool Material Families</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/04-cemented-carbide-manufacture" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>04</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>How Cemented Carbide Inserts Are Made</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/05-insert-shapes-geometry" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>05</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Insert Shapes, Nose Radius and Wiper Geometry</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/06-iso-insert-code" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>06</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Reading the ISO 1832 Insert Code</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/07-turning-toolholders" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>07</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Turning Toolholders: External and Internal</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/08-milling-cutters" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>08</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Milling Cutters — Types &amp; Application Theory</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/09-milling-insert-selection" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>09</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Milling Insert &amp; Cutter Selection</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/10-drilling-tools" class="sidebar-lesson-link active" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>10</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Drilling Tools — Types &amp; Theory</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/11-drilling-hole-quality" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>11</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Hole Quality &amp; Tolerances in Drilling</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/12-boring-tools" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>12</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Boring Tools &amp; Application</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/13-threading-tools" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>13</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Thread Turning Tools &amp; Infeed Methods</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/14-tapping" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>14</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Tapping — Taps, Hole Size &amp; Tool Holding</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/15-parting-grooving" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>15</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Parting &amp; Grooving Tools</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/16-tool-wear" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>16</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Tool Wear, Tool Life &amp; Edge Failure</span></a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/17-tool-holding-systems" class="sidebar-lesson-link" data-astro-cid-ohwqzt66><span class="sidebar-lesson-number" data-astro-cid-ohwqzt66>17</span><span class="sidebar-lesson-title" data-astro-cid-ohwqzt66>Tool Holding Systems &amp; Chucks</span></a></li></ul></nav></aside><!-- Main Content --><article class="lesson-content" data-astro-cid-ohwqzt66><!-- Breadcrumb --><nav class="breadcrumb" aria-label="Breadcrumb" data-astro-cid-ohwqzt66><ol data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/" data-astro-cid-ohwqzt66>Home</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/syllabus" data-astro-cid-ohwqzt66>Syllabus</a></li><li data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools" data-astro-cid-ohwqzt66>Cutting Tools &amp; Toolholders</a></li><li aria-current="page" data-astro-cid-ohwqzt66>Drilling Tools — Types &amp; Theory</li></ol></nav><!-- Lesson Header --><header class="lesson-header" data-astro-cid-ohwqzt66><div class="lesson-meta" data-astro-cid-ohwqzt66><span class="badge badge-core" data-astro-cid-ohwqzt66>Level 2</span><span class="meta-item label" data-astro-cid-ohwqzt66>50 minutes</span><span class="meta-item label" data-astro-cid-ohwqzt66>intermediate</span></div><h1 class="lesson-title" data-astro-cid-ohwqzt66>Drilling Tools — Types &amp; Theory</h1><p class="lesson-description" data-astro-cid-ohwqzt66>Choose the right drill type, read drill geometry, and set correct cutting data and entry technique.</p></header><!-- Learning Objectives --><div class="objectives-box" data-astro-cid-ohwqzt66><h2 class="objectives-heading" data-astro-cid-ohwqzt66>Learning objectives</h2><ul class="objectives-list" data-astro-cid-ohwqzt66><li data-astro-cid-ohwqzt66>Match solid carbide, exchangeable-tip, indexable and HSS drills to the hole.</li><li data-astro-cid-ohwqzt66>Identify drill geometry: point angle, flutes, margin, core and chisel edge.</li><li data-astro-cid-ohwqzt66>Calculate drilling cutting speed, feed per revolution and penetration rate.</li><li data-astro-cid-ohwqzt66>Apply correct entry, chip evacuation and pecking practice for deep holes.</li></ul></div><!-- Lesson Body --><div class="prose" data-astro-cid-ohwqzt66><h2 id="the-drilling-process">The drilling process</h2>
+<p>Drilling makes cylindrical holes with a rotating (or workpiece-rotating) cutting
+tool. Unlike milling, the drill is always engulfed in the workpiece, so you never
+see the cut — chips must be controlled and evacuated reliably.</p>
+<p>Four common drilling methods:</p>
+<ul>
+<li><strong>Drilling</strong> — solid drilling, the basic hole-making method.</li>
+<li><strong>Trepanning</strong> — cuts a ring, leaving a core; used for large diameters where
+solid drilling would consume too much power (through holes only).</li>
+<li><strong>Chamfer drilling</strong> — drills and chamfers in one pass, often to prepare a hole
+for threading.</li>
+<li><strong>Step drilling</strong> — produces a step or step-plus-chamfer profile in one tool.</li>
+</ul>
+<h2 id="drill-types">Drill types</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Drill</th><th>Diameter range</th><th>Best for</th></tr></thead><tbody><tr><td>Solid carbide</td><td>Small</td><td>Close/precision tolerances, short to deep holes</td></tr><tr><td>Exchangeable tip</td><td>Medium</td><td>Close tolerances, economical; steel body gives toughness</td></tr><tr><td>Indexable insert</td><td>Medium to large</td><td>Medium tolerance, flat-bottom blind holes, plunge/boring ops</td></tr><tr><td>HSS</td><td>Small to medium</td><td>Low-cost, low-speed general work</td></tr></tbody></table>
+<div class="callout callout-key-concept"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.4"></circle><path d="M1.6 8h12.8"></path></svg></span><strong class="callout-label">Key concept</strong></div><p>Short-hole drills are always the first choice on cost per hole. Solid carbide
+wins for small diameters and close tolerance; the exchangeable tip is the
+economical solution for medium diameters; indexable insert drills cover medium
+and large holes.</p></div>
+<p>Indexable insert drills reach diameters up to 84 mm; trepanning drills extend to
+about 110 mm. For larger holes, or when chip breaking is a problem, helical or
+circular interpolation with a milling cutter is an alternative — less
+productive, but flexible.</p>
+<h2 id="drill-geometry">Drill geometry</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Element</th><th>Function</th></tr></thead><tbody><tr><td>Point angle</td><td>Forms the cutting point; 140° typical on solid carbide, 118° on HSS</td></tr><tr><td>Main cutting edge</td><td>The two edges that cut, from periphery to centre</td></tr><tr><td>Chisel edge</td><td>The web at the centre that extrudes rather than cuts</td></tr><tr><td>Flute</td><td>Helical channel that carries chips out of the hole</td></tr><tr><td>Margin</td><td>Narrow land on the diameter that guides the drill</td></tr><tr><td>Core</td><td>The central web that gives the drill its stiffness</td></tr><tr><td>Primary/secondary clearance</td><td>Relief behind the cutting edge to prevent rubbing</td></tr></tbody></table>
+<div class="callout callout-key-concept"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.4"></circle><path d="M1.6 8h12.8"></path></svg></span><strong class="callout-label">Key concept</strong></div><p>On a solid carbide drill the chisel edge is practically eliminated and the main
+cutting edge reaches the centre point. This cuts chips close to the centre,
+lowers thrust and torque, improves centering, and removes the need for a centre
+drill.</p></div>
+<p>The point angle is a trade-off: a 140° point centres better and lowers thrust,
+while a conventional 118° point is the general-purpose HSS standard.</p>
+<h2 id="cutting-data">Cutting data</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td>vc</td><td>Cutting speed, m/min</td></tr><tr><td>fn</td><td>Feed per revolution, mm/rev</td></tr><tr><td>vf</td><td>Penetration rate, mm/min</td></tr><tr><td>DC</td><td>Drill diameter, mm</td></tr></tbody></table>
+<p>Relationships:</p>
+<ul>
+<li><code>vc = π × DC × n / 1000</code></li>
+<li><code>vf = fn × n</code></li>
+<li>For a two-edge drill: <code>fn = fz × 2</code></li>
+</ul>
+<div class="callout callout-warning"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.9 15 14.1H1z"></path><path d="M8 6.2v3.3"></path><circle cx="8" cy="11.7" r="0.7" fill="currentColor" stroke="none"></circle></svg></span><strong class="callout-label">Safety warning</strong></div><p>On any drill, cutting speed is a maximum at the periphery and <strong>zero at the
+centre</strong>. On an indexable drill the peripheral insert works from about 50% to
+100% of vc max, while the central insert runs from zero to about 50% of vc max.</p></div>
+<p>Effects of cutting speed:</p>
+<ul>
+<li><strong>Run it too fast</strong> and the flank wears away quickly, the edge deforms plastically, and the hole comes out with poor quality and loose tolerance.</li>
+<li><strong>Run it too slow</strong> and material welds onto the edge as built-up edge, chips stop clearing well, the tool spends longer in the cut, and the drill is more likely to snap.</li>
+</ul>
+<p>Effects of feed:</p>
+<ul>
+<li><strong>Too high</strong> → harder chip breaking, shorter time in cut.</li>
+<li><strong>Too low</strong> → longer, thinner chips, better quality but accelerated tool wear and longer time in cut.</li>
+</ul>
+<div class="callout callout-pro-tip"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.8 14.2 8 8 14.2 1.8 8z"></path><circle cx="8" cy="8" r="1.6"></circle></svg></span><strong class="callout-label">Pro tip</strong></div><p>Feed and speed must be set together. Higher speed helps chip formation in
+long-chipping soft materials (low-carbon steel); higher feed thickens and
+stiffens the chip for easier breaking.</p></div>
+<h3 id="starting-values-by-material">Starting values by material</h3>
+<p>Use these as starting points and adjust for the specific drill and machine.
+(typical range — verify against the tool catalogue for the exact drill.)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Material</th><th>vc (m/min)</th><th>fn (mm/rev)</th></tr></thead><tbody><tr><td>Low-carbon steel (P)</td><td>60–120</td><td>0.05–0.30 (rises with diameter)</td></tr><tr><td>Stainless steel (M)</td><td>40–80</td><td>0.05–0.20</td></tr><tr><td>Cast iron (K)</td><td>60–100</td><td>0.08–0.30</td></tr><tr><td>Aluminium (N)</td><td>150–250</td><td>0.10–0.40</td></tr></tbody></table>
+<p>Feed per revolution scales with diameter: a Ø5 mm drill might take 0.05–0.08 mm/rev,
+while a Ø20 mm drill takes 0.20–0.30 mm/rev in steel.</p>
+<h2 id="entering-the-workpiece">Entering the workpiece</h2>
+<p>Drilling into a flat, perpendicular surface is the norm. Any other entry
+increases the risk of drill deflection and edge chipping.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Surface</th><th>Rule</th></tr></thead><tbody><tr><td>Convex</td><td>Drill if radius > 4 × drill diameter, hole perpendicular to radius; reduce feed to 50% during entrance</td></tr><tr><td>Concave</td><td>Drill if radius > 15 × drill diameter, hole perpendicular to radius; reduce feed to 25% during entrance</td></tr><tr><td>Inclined</td><td>Up to 10° reduce feed to 1/3 during entrance; over 10° mill a small flat first</td></tr><tr><td>Irregular</td><td>Reduce feed to 1/4 to avoid chipping the cutting edges</td></tr></tbody></table>
+<p>For a pre-drilled or pilot hole, keep it small rather than large — not more than
+25% of the drill diameter — to avoid drill deflection.</p>
+<div class="callout callout-warning"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.9 15 14.1H1z"></path><path d="M8 6.2v3.3"></path><circle cx="8" cy="11.7" r="0.7" fill="currentColor" stroke="none"></circle></svg></span><strong class="callout-label">Safety warning</strong></div><p>Stack drilling and crossing holes interrupt the cut. Reduce feed on entry and
+exit, and expect the edge to see shock loads on breakthrough.</p></div>
+<h2 id="chip-evacuation-and-coolant">Chip evacuation and coolant</h2>
+<p>Chip formation and evacuation is the dominant factor in drilling; it controls
+hole quality and tool life.</p>
+<ul>
+<li>Internal coolant is always preferred — essential for long-chipping materials
+and deeper holes (over 4–5 × DC).</li>
+<li>External coolant is acceptable in short-chipping materials and shallow holes.</li>
+<li>Dry or minimal-lubrication drilling works only in short-chipping materials,
+shallow holes (up to 3 × DC), preferably horizontal.</li>
+<li>Emulsion: 5–12% oil (10–25% for stainless). Neat oil always with EP additives.</li>
+</ul>
+<h2 id="deep-holes-and-pecking">Deep holes and pecking</h2>
+<p>Hole depth is expressed as the L/D ratio (length : diameter). The maximum depth
+is a function of hole diameter DC — for example a short-hole drill may be limited
+to about 3 × DC.</p>
+<div class="callout callout-key-concept"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.4"></circle><path d="M1.6 8h12.8"></path></svg></span><strong class="callout-label">Key concept</strong></div><p>As L/D grows, chips have further to travel and the drill becomes less rigid.
+Internal coolant and good chip formation are non-negotiable; pecking is the
+fallback when chips will not clear.</p></div>
+<p>Two pecking methods exist:</p>
+<ul>
+<li><strong>Method 1 (best productivity)</strong> — retract the drill no more than about 0.3 mm
+from the hole bottom, or pause periodically while the drill still rotates.</li>
+<li><strong>Method 2 (best chip evacuation)</strong> — retract the drill fully out of the hole
+after each cycle so no chips stay stuck to the tool.</li>
+</ul>
+<div class="callout callout-warning"><div class="callout-header"><span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.9 15 14.1H1z"></path><path d="M8 6.2v3.3"></path><circle cx="8" cy="11.7" r="0.7" fill="currentColor" stroke="none"></circle></svg></span><strong class="callout-label">Safety warning</strong></div><p>Peck drilling is a fallback, not a default. Use it only when chip evacuation
+cannot be solved by geometry, feed/speed or coolant pressure.</p></div>
+<h2 id="self-check">Self-check</h2>
+<p><strong>1. Which drill type is the economical first choice for a medium-diameter hole needing close tolerance?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>The exchangeable-tip drill — it gives close tolerances and its steel body
+provides toughness at a lower cost than a full solid carbide drill.</p>
+</details>
+<p><strong>2. Why is cutting speed zero at the centre of any drill?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Cutting speed is proportional to radius. At the centre the radius is zero, so
+the surface speed is zero — the material there is displaced by the chisel edge
+rather than cut at speed.</p>
+</details>
+<p><strong>3. A Ø16 mm drill runs at 1400 rpm. What is the cutting speed vc?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>vc = π × DC × n / 1000 = 3.14 × 16 × 1400 / 1000 ≈ 70 m/min.</p>
+</details>
+<p><strong>4. You must drill into a surface inclined 8° to the drill axis. How do you enter it?</strong></p>
+<details>
+<summary>Show Answer</summary>
+<p>Reduce the feed to about 1/3 of the normal rate during entrance (inclinations
+up to 10°). Above 10°, mill a small flat first, then drill.</p>
+</details></div><!-- Prev/Next Navigation --><nav class="lesson-nav" aria-label="Lesson navigation" data-astro-cid-ohwqzt66><a href="/Cnc-Mastery/module/07-cutting-tools/09-milling-insert-selection" class="lesson-nav-card prev" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>← Previous Lesson</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Milling Insert &amp; Cutter Selection</span></a><a href="/Cnc-Mastery/module/07-cutting-tools/11-drilling-hole-quality" class="lesson-nav-card next" data-astro-cid-ohwqzt66><span class="lesson-nav-label" data-astro-cid-ohwqzt66>Next Lesson →</span><span class="lesson-nav-title" data-astro-cid-ohwqzt66>Hole Quality &amp; Tolerances in Drilling</span></a></nav></article></div><button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle lesson sidebar" data-astro-cid-ohwqzt66><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ohwqzt66><line x1="3" y1="6" x2="21" y2="6" data-astro-cid-ohwqzt66></line><line x1="3" y1="12" x2="21" y2="12" data-astro-cid-ohwqzt66></line><line x1="3" y1="18" x2="21" y2="18" data-astro-cid-ohwqzt66></line></svg>Lessons</button><script type="module">var e=document.getElementById(`sidebar-toggle`),t=document.getElementById(`lesson-sidebar`);e?.addEventListener(`click`,()=>{t?.classList.toggle(`open`)}),t?.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{t?.classList.remove(`open`)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="footer-container container" data-astro-cid-jo6i4kqk><div class="footer-grid" data-astro-cid-jo6i4kqk><div class="footer-brand" data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/" class="footer-logo" data-astro-cid-jo6i4kqk>CNC <span data-astro-cid-jo6i4kqk>Mastery</span></a><p class="footer-tagline" data-astro-cid-jo6i4kqk>Learn CNC machining online — from blueprint to finished part. No school required.</p></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>Course</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/syllabus" data-astro-cid-jo6i4kqk>Full Syllabus</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/module/01-shop-safety" data-astro-cid-jo6i4kqk>Start Learning</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/reference/gcode" data-astro-cid-jo6i4kqk>G-Code Reference</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/reference/formulas" data-astro-cid-jo6i4kqk>Shop Math Formulas</a></li></ul></div><div class="footer-links" data-astro-cid-jo6i4kqk><h3 class="footer-heading" data-astro-cid-jo6i4kqk>More</h3><ul data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/resources" data-astro-cid-jo6i4kqk>Resources & Books</a></li><li data-astro-cid-jo6i4kqk><a href="/Cnc-Mastery/about" data-astro-cid-jo6i4kqk>About</a></li></ul></div></div><div class="footer-bottom" data-astro-cid-jo6i4kqk><p data-astro-cid-jo6i4kqk>&copy; 2026 CNC Mastery. Built by Milan Khadka.</p><p class="footer-status" data-astro-cid-jo6i4kqk><span class="status-dot" aria-hidden="true" data-astro-cid-jo6i4kqk></span>All systems nominal</p></div></div></footer></body></html>
