@@ -280,6 +280,29 @@ h6 { font-size: var(--text-base); font-weight: var(--weight-semibold); letter-sp
   border: 1px solid var(--color-border);
 }
 
+/* Diagrams — inline SVG line drawings embedded directly in lesson bodies */
+.prose .diagram-figure {
+  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.prose .diagram-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.prose .diagram-figure figcaption {
+  margin-top: var(--space-3);
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
 /* --- Callout Boxes --- */
 .callout {
   border-left: 4px solid;
